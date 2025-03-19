@@ -1,4 +1,4 @@
-rootProject.name = "kingscup-android"
+rootProject.name = "KingsCup"
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
