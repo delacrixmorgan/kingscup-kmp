@@ -1,26 +1,25 @@
 package com.delacrixmorgan.kingscup.ui.theme
 
-import androidx.compose.material.MaterialTheme
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import com.delacrixmorgan.kingscup.data.model.ThemePreference
+import com.delacrixmorgan.kingscup.ui.theme.color.ColorPreference
+import com.delacrixmorgan.kingscup.ui.theme.color.SandColorPreference
 
 @Composable
 fun AppTheme(
-    theme: ThemePreference = ThemePreference.Default,
+    colorPreference: ColorPreference = SandColorPreference,
     content: @Composable () -> Unit
 ) {
-//    val colorScheme = when (theme) {
-//        ThemePreference.System -> if (isSystemInDarkTheme()) darkScheme else lightScheme
-//        ThemePreference.Light -> lightScheme
-//        ThemePreference.Dark -> darkScheme
-//    }
-
-    MaterialTheme
-
-//    MaterialTheme(
-//        colorScheme = colorScheme,
-//        typography = AppTypography,
-//        shapes = AppShapes,
-//        content = content
-//    )
+    val colorScheme = if (!isSystemInDarkTheme()) {
+        colorPreference.lightScheme
+    } else {
+        colorPreference.darkScheme
+    }
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = AppTypography,
+        shapes = AppShapes,
+        content = content
+    )
 }
