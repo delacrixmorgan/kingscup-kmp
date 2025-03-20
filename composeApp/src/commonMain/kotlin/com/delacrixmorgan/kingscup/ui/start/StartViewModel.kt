@@ -15,8 +15,8 @@ class StartViewModel : ViewModel() {
     val state = _state
         .onStart {
             if (!hasLoadedInitialData) {
-                /** Load initial data here **/
                 hasLoadedInitialData = true
+                loadData()
             }
         }
         .stateIn(
@@ -25,10 +25,12 @@ class StartViewModel : ViewModel() {
             initialValue = StartUiState()
         )
 
+    private fun loadData() {
+
+    }
+
     fun onAction(action: StartAction) {
-        when (action) {
-            else -> TODO("Handle actions")
-        }
+
     }
 }
 
@@ -37,5 +39,5 @@ data class StartUiState(
 )
 
 sealed interface StartAction {
-
+    data object OnCloseScreen : StartAction
 }
