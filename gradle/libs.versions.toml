@@ -1,39 +1,29 @@
 [versions]
+kotlin = "2.1.0"
 agp = "8.8.2"
 android-compileSdk = "35"
 android-minSdk = "23"
 android-targetSdk = "35"
-androidx-appcompat = "1.7.0"
-androidx-constraintlayout = "2.2.1"
-androidx-core-ktx = "1.15.0"
-androidx-espresso-core = "3.6.1"
+
 androidx-lifecycle = "2.8.4"
-androidx-material = "1.12.0"
-androidx-navigation-compose = "2.9.0-alpha14" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
-androidx-test-junit = "1.2.1"
+androidx-navigation-compose = "2.9.0-alpha15" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
 
 compose-multiplatform = "1.7.0"
 composeBoM = "2025.03.00" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 
-junit = "4.13.2"
-kotlin = "2.1.0"
-kotlinx-coroutines = "1.10.1"
+koinBoM = "4.0.0" # https://insert-koin.io/docs/setup/koin/
 
 [libraries]
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
-kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-junit = { group = "junit", name = "junit", version.ref = "junit" }
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
-androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-junit" }
-androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-espresso-core" }
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
-androidx-material = { group = "com.google.android.material", name = "material", version.ref = "androidx-material" }
-androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "androidx-constraintlayout" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
 
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBoM" }
+
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBoM" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-composeVM = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinBoM" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

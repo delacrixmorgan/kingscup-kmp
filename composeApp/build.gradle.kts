@@ -25,15 +25,17 @@ kotlin {
         }
     }
 
-    jvm("desktop")
-
     sourceSets {
-        val desktopMain by getting
-
         androidMain.dependencies {
             implementation(compose.preview)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
+            // Common
+            implementation(project.dependencies.platform(libs.koin.bom))
+            implementation(libs.koin.core)
+            implementation(libs.koin.composeVM)
+
             // Compose
             implementation(project.dependencies.platform(libs.compose.bom))
             implementation(compose.runtime)
