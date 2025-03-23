@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.ui.start
+package com.delacrixmorgan.kingscup.ui.rules
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,18 +12,18 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun StartRoot(viewModel: StartViewModel) {
+fun RulesRoot(viewModel: RulesViewModel) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    StartScreen(state = state, onAction = viewModel::onAction)
+    RulesScreen(state = state, onAction = viewModel::onAction)
 }
 
 @Composable
-fun StartScreen(
-    state: StartUiState,
-    onAction: (StartAction) -> Unit,
+fun RulesScreen(
+    state: RulesUiState,
+    onAction: (RulesAction) -> Unit,
 ) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Start")
+        Text(text = "Rules")
     }
 }
 
@@ -31,8 +31,8 @@ fun StartScreen(
 @Composable
 private fun Preview() {
     AppTheme {
-        StartScreen(
-            state = StartUiState(),
+        RulesScreen(
+            state = RulesUiState(),
             onAction = {}
         )
     }

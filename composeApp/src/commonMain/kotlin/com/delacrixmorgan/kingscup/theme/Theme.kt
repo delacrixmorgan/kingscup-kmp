@@ -1,13 +1,13 @@
-package com.delacrixmorgan.kingscup.ui.theme
+package com.delacrixmorgan.kingscup.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import com.delacrixmorgan.kingscup.ui.theme.color.BoraThemPreference
-import com.delacrixmorgan.kingscup.ui.theme.color.ColorPreference
-import com.delacrixmorgan.kingscup.ui.theme.color.EmeraldColorPreference
-import com.delacrixmorgan.kingscup.ui.theme.color.MadderColorPreference
-import com.delacrixmorgan.kingscup.ui.theme.color.SandColorPreference
+import com.delacrixmorgan.kingscup.theme.color.BoraThemPreference
+import com.delacrixmorgan.kingscup.theme.color.ColorPreference
+import com.delacrixmorgan.kingscup.theme.color.EmeraldColorPreference
+import com.delacrixmorgan.kingscup.theme.color.MadderColorPreference
+import com.delacrixmorgan.kingscup.theme.color.SandColorPreference
 
 @Composable
 fun AppTheme(

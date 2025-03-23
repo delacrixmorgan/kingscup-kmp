@@ -16,7 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import com.delacrixmorgan.kingscup.ui.theme.AppTheme
+import com.delacrixmorgan.kingscup.ui.App
+import com.delacrixmorgan.kingscup.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup
+package com.delacrixmorgan.kingscup.ui
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
@@ -15,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.delacrixmorgan.kingscup.Greeting
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource

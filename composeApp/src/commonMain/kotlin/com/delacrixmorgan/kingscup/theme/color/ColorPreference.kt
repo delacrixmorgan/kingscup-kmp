@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.ui.theme.color
+package com.delacrixmorgan.kingscup.theme.color
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme

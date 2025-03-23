@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.ui.start
+package com.delacrixmorgan.kingscup.ui.card
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,18 +12,18 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun StartRoot(viewModel: StartViewModel) {
+fun CardRoot(viewModel: CardViewModel) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    StartScreen(state = state, onAction = viewModel::onAction)
+    CardScreen(state = state, onAction = viewModel::onAction)
 }
 
 @Composable
-fun StartScreen(
-    state: StartUiState,
-    onAction: (StartAction) -> Unit,
+fun CardScreen(
+    state: CardUiState,
+    onAction: (CardAction) -> Unit,
 ) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Start")
+        Text(text = "Card")
     }
 }
 
@@ -31,8 +31,8 @@ fun StartScreen(
 @Composable
 private fun Preview() {
     AppTheme {
-        StartScreen(
-            state = StartUiState(),
+        CardScreen(
+            state = CardUiState(),
             onAction = {}
         )
     }
