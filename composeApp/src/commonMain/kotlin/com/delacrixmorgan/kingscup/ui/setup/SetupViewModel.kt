@@ -3,6 +3,7 @@ package com.delacrixmorgan.kingscup.ui.setup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -31,7 +32,17 @@ class SetupViewModel : ViewModel() {
     }
 
     fun onAction(navHostController: NavHostController, action: SetupAction) {
-
+        when (action) {
+            SetupAction.OnRulesClicked -> {
+                navHostController.navigate(Routes.Rules)
+            }
+            SetupAction.OnPlayClicked -> {
+                navHostController.navigate(Routes.Loading)
+            }
+            SetupAction.OnCloseScreen -> {
+                navHostController.navigateUp()
+            }
+        }
     }
 }
 
@@ -40,5 +51,7 @@ data class SetupUiState(
 )
 
 sealed interface SetupAction {
+    data object OnRulesClicked : SetupAction
+    data object OnPlayClicked : SetupAction
     data object OnCloseScreen : SetupAction
 }

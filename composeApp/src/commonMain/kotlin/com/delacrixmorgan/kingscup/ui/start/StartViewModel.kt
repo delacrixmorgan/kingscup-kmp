@@ -3,6 +3,7 @@ package com.delacrixmorgan.kingscup.ui.start
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -31,7 +32,14 @@ class StartViewModel : ViewModel() {
     }
 
     fun onAction(navHostController: NavHostController, action: StartAction) {
-
+        when (action) {
+            StartAction.OnSetupClicked -> {
+                navHostController.navigate(Routes.Setup)
+            }
+            StartAction.OnCloseScreen -> {
+                navHostController.navigateUp()
+            }
+        }
     }
 }
 
@@ -40,5 +48,6 @@ data class StartUiState(
 )
 
 sealed interface StartAction {
+    data object OnSetupClicked : StartAction
     data object OnCloseScreen : StartAction
 }

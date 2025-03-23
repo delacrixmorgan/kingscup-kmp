@@ -3,10 +3,12 @@ package com.delacrixmorgan.kingscup.ui.board
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class BoardViewModel : ViewModel() {
 
@@ -31,14 +33,43 @@ class BoardViewModel : ViewModel() {
     }
 
     fun onAction(navHostController: NavHostController, action: BoardAction) {
-
+        when (action) {
+            is BoardAction.OnCardClicked -> {
+                // TODO (Save action.id to CardRepository)
+                action.id
+                navHostController.navigate(Routes.Card)
+            }
+            BoardAction.OnPauseClicked -> {
+                _state.update { it.copy(showPauseBottomSheet = true) }
+            }
+            BoardAction.OnPauseBottomSheetDismissed -> {
+                _state.update { it.copy(showPauseBottomSheet = false) }
+            }
+            BoardAction.OnPauseBottomSheetRestartClicked -> {
+                // TODO (Restart)
+                _state.update { it.copy(showPauseBottomSheet = false) }
+                navHostController.navigate(Routes.Loading) { popUpTo(Routes.Loading) { inclusive = false } }
+            }
+            BoardAction.OnPauseBottomSheetQuitClicked -> {
+                navHostController.navigate(Routes.Start) { popUpTo(Routes.Start) { inclusive = true } }
+            }
+            BoardAction.OnCloseScreen -> {
+                navHostController.navigateUp()
+            }
+        }
     }
 }
 
 data class BoardUiState(
     val closeScreen: Boolean = false,
+    val showPauseBottomSheet: Boolean = false,
 )
 
 sealed interface BoardAction {
+    data class OnCardClicked(val id: String) : BoardAction
+    data object OnPauseClicked : BoardAction
+    data object OnPauseBottomSheetRestartClicked : BoardAction
+    data object OnPauseBottomSheetQuitClicked : BoardAction
+    data object OnPauseBottomSheetDismissed : BoardAction
     data object OnCloseScreen : BoardAction
 }
