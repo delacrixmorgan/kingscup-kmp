@@ -8,13 +8,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-fun RulesRoot(viewModel: RulesViewModel) {
+fun RulesRoot(viewModel: RulesViewModel, navHostController: NavHostController) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    RulesScreen(state = state, onAction = viewModel::onAction)
+    RulesScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
 }
 
 @Composable

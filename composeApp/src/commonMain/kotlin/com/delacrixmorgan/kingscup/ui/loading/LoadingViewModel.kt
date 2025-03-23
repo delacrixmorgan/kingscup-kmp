@@ -2,6 +2,7 @@ package com.delacrixmorgan.kingscup.ui.loading
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavHostController
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -29,7 +30,7 @@ class LoadingViewModel : ViewModel() {
 
     }
 
-    fun onAction(action: LoadingAction) {
+    fun onAction(navHostController: NavHostController, action: LoadingAction) {
 
     }
 }
