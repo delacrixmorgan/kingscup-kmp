@@ -71,15 +71,15 @@ import kingscup.composeapp.generated.resources.rules_youInfo
 import kingscup.composeapp.generated.resources.rules_youLabel
 import org.jetbrains.compose.resources.StringResource
 
-sealed class Rules(
+sealed class Normal(
     id: String,
     emoji: StringResource,
     label: StringResource,
     description: StringResource,
     info: StringResource
-) : Card(id, emoji, label, description, info) {
+) : Rule(id, emoji, label, description, info) {
 
-    data object King : Rules(
+    data object King : Rule(
         id = King::class.simpleName.toString(),
         emoji = Res.string.rules_kingEmoji,
         label = Res.string.rules_kingLabel,
@@ -87,7 +87,7 @@ sealed class Rules(
         info = Res.string.rules_kingInfo
     )
 
-    data object QuestionMaster : Rules(
+    data object QuestionMaster : Rule(
         id = QuestionMaster::class.simpleName.toString(),
         emoji = Res.string.rules_questionMasterEmoji,
         label = Res.string.rules_questionMasterLabel,
@@ -95,7 +95,7 @@ sealed class Rules(
         info = Res.string.rules_questionMasterInfo
     )
 
-    data object NeverHaveIEver : Rules(
+    data object NeverHaveIEver : Rule(
         id = NeverHaveIEver::class.simpleName.toString(),
         emoji = Res.string.rules_neverHaveIEverEmoji,
         label = Res.string.rules_neverHaveIEverLabel,
@@ -103,7 +103,7 @@ sealed class Rules(
         info = Res.string.rules_neverHaveIEverInfo
     )
 
-    data object Categories : Rules(
+    data object Categories : Rule(
         id = Categories::class.simpleName.toString(),
         emoji = Res.string.rules_categoriesEmoji,
         label = Res.string.rules_categoriesLabel,
@@ -111,7 +111,7 @@ sealed class Rules(
         info = Res.string.rules_categoriesInfo
     )
 
-    data object SnakeEyes : Rules(
+    data object SnakeEyes : Rule(
         id = SnakeEyes::class.simpleName.toString(),
         emoji = Res.string.rules_snakeEyesEmoji,
         label = Res.string.rules_snakeEyesLabel,
@@ -119,7 +119,7 @@ sealed class Rules(
         info = Res.string.rules_snakeEyesInfo
     )
 
-    data object Mate : Rules(
+    data object Mate : Rule(
         id = Mate::class.simpleName.toString(),
         emoji = Res.string.rules_mateEmoji,
         label = Res.string.rules_mateLabel,
@@ -127,7 +127,7 @@ sealed class Rules(
         info = Res.string.rules_mateInfo
     )
 
-    data object Heaven : Rules(
+    data object Heaven : Rule(
         id = Heaven::class.simpleName.toString(),
         emoji = Res.string.rules_heavenEmoji,
         label = Res.string.rules_heavenLabel,
@@ -135,7 +135,7 @@ sealed class Rules(
         info = Res.string.rules_heavenInfo
     )
 
-    data object Chicks : Rules(
+    data object Chicks : Rule(
         id = Chicks::class.simpleName.toString(),
         emoji = Res.string.rules_chicksEmoji,
         label = Res.string.rules_chicksLabel,
@@ -143,7 +143,7 @@ sealed class Rules(
         info = Res.string.rules_chicksInfo
     )
 
-    data object Dudes : Rules(
+    data object Dudes : Rule(
         id = Dudes::class.simpleName.toString(),
         emoji = Res.string.rules_dudesEmoji,
         label = Res.string.rules_dudesLabel,
@@ -151,7 +151,7 @@ sealed class Rules(
         info = Res.string.rules_dudesInfo
     )
 
-    data object ThumbMaster : Rules(
+    data object ThumbMaster : Rule(
         id = ThumbMaster::class.simpleName.toString(),
         emoji = Res.string.rules_thumbMasterEmoji,
         label = Res.string.rules_thumbMasterLabel,
@@ -159,7 +159,7 @@ sealed class Rules(
         info = Res.string.rules_thumbMasterInfo
     )
 
-    data object Me : Rules(
+    data object Me : Rule(
         id = Me::class.simpleName.toString(),
         emoji = Res.string.rules_meEmoji,
         label = Res.string.rules_meLabel,
@@ -167,7 +167,7 @@ sealed class Rules(
         info = Res.string.rules_meInfo
     )
 
-    data object You : Rules(
+    data object You : Rule(
         id = You::class.simpleName.toString(),
         emoji = Res.string.rules_youEmoji,
         label = Res.string.rules_youLabel,
@@ -175,7 +175,7 @@ sealed class Rules(
         info = Res.string.rules_youInfo
     )
 
-    data object Waterfall : Rules(
+    data object Waterfall : Rule(
         id = Waterfall::class.simpleName.toString(),
         emoji = Res.string.rules_waterfallEmoji,
         label = Res.string.rules_waterfallLabel,
@@ -184,7 +184,7 @@ sealed class Rules(
     )
 
     // Variants
-    data object Countdown : Rules(
+    data object Countdown : Rule(
         id = Countdown::class.simpleName.toString(),
         emoji = Res.string.rules_countdownEmoji,
         label = Res.string.rules_countdownLabel,
@@ -192,7 +192,7 @@ sealed class Rules(
         info = Res.string.rules_countdownInfo
     )
 
-    data object Rhyme : Rules(
+    data object Rhyme : Rule(
         id = Rhyme::class.simpleName.toString(),
         emoji = Res.string.rules_rhymeEmoji,
         label = Res.string.rules_rhymeLabel,
@@ -200,7 +200,7 @@ sealed class Rules(
         info = Res.string.rules_rhymeInfo
     )
 
-    data object SwapCups : Rules(
+    data object SwapCups : Rule(
         id = SwapCups::class.simpleName.toString(),
         emoji = Res.string.rules_swapCupsEmoji,
         label = Res.string.rules_swapCupsLabel,
@@ -208,7 +208,7 @@ sealed class Rules(
         info = Res.string.rules_swapCupsInfo
     )
 
-    data object TellAJoke : Rules(
+    data object TellAJoke : Rule(
         id = TellAJoke::class.simpleName.toString(),
         emoji = Res.string.rules_tellAJokeEmoji,
         label = Res.string.rules_tellAJokeLabel,

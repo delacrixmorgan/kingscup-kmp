@@ -57,9 +57,9 @@ sealed class Jokers(
     label: StringResource,
     description: StringResource,
     info: StringResource
-) : Card(id, emoji, label, description, info) {
+) : Rule(id, emoji, label, description, info) {
 
-    data object Viking : Rules(
+    data object Viking : Rule(
         id = Viking::class.simpleName.toString(),
         emoji = Res.string.rules_vikingEmoji,
         label = Res.string.rules_vikingLabel,
@@ -67,7 +67,7 @@ sealed class Jokers(
         info = Res.string.rules_vikingInfo
     )
 
-    data object NoFirstNames : Rules(
+    data object NoFirstNames : Rule(
         id = NoFirstNames::class.simpleName.toString(),
         emoji = Res.string.rules_noFirstNamesEmoji,
         label = Res.string.rules_noFirstNamesLabel,
@@ -75,7 +75,7 @@ sealed class Jokers(
         info = Res.string.rules_noFirstNamesInfo
     )
 
-    data object NoPointing : Rules(
+    data object NoPointing : Rule(
         id = NoPointing::class.simpleName.toString(),
         emoji = Res.string.rules_noPointingEmoji,
         label = Res.string.rules_noPointingLabel,
@@ -83,7 +83,7 @@ sealed class Jokers(
         info = Res.string.rules_noPointingInfo
     )
 
-    data object TRexArms : Rules(
+    data object TRexArms : Rule(
         id = TRexArms::class.simpleName.toString(),
         emoji = Res.string.rules_tRexArmsEmoji,
         label = Res.string.rules_tRexArmsLabel,
@@ -91,7 +91,7 @@ sealed class Jokers(
         info = Res.string.rules_tRexArmsInfo
     )
 
-    data object BeLikeBilly : Rules(
+    data object BeLikeBilly : Rule(
         id = BeLikeBilly::class.simpleName.toString(),
         emoji = Res.string.rules_beLikeBillyEmoji,
         label = Res.string.rules_beLikeBillyLabel,
@@ -99,7 +99,7 @@ sealed class Jokers(
         info = Res.string.rules_beLikeBillyInfo
     )
 
-    data object IWillTellYouWhat : Rules(
+    data object IWillTellYouWhat : Rule(
         id = IWillTellYouWhat::class.simpleName.toString(),
         emoji = Res.string.rules_iWillTellYouWhatEmoji,
         label = Res.string.rules_iWillTellYouWhatLabel,
@@ -107,7 +107,7 @@ sealed class Jokers(
         info = Res.string.rules_iWillTellYouWhatInfo
     )
 
-    data object NoPhones : Rules(
+    data object NoPhones : Rule(
         id = NoPhones::class.simpleName.toString(),
         emoji = Res.string.rules_noPhonesEmoji,
         label = Res.string.rules_noPhonesLabel,
@@ -115,7 +115,7 @@ sealed class Jokers(
         info = Res.string.rules_noPhonesInfo
     )
 
-    data object NoSwearing : Rules(
+    data object NoSwearing : Rule(
         id = NoSwearing::class.simpleName.toString(),
         emoji = Res.string.rules_noSwearingEmoji,
         label = Res.string.rules_noSwearingLabel,
@@ -123,7 +123,7 @@ sealed class Jokers(
         info = Res.string.rules_noSwearingInfo
     )
 
-    data object Photographer : Rules(
+    data object Photographer : Rule(
         id = Photographer::class.simpleName.toString(),
         emoji = Res.string.rules_photographerEmoji,
         label = Res.string.rules_photographerLabel,
@@ -131,7 +131,7 @@ sealed class Jokers(
         info = Res.string.rules_photographerInfo
     )
 
-    data object LastOneLaughing : Rules(
+    data object LastOneLaughing : Normal(
         id = LastOneLaughing::class.simpleName.toString(),
         emoji = Res.string.rules_lastOneLaughingEmoji,
         label = Res.string.rules_lastOneLaughingLabel,
@@ -139,7 +139,7 @@ sealed class Jokers(
         info = Res.string.rules_lastOneLaughingInfo
     )
 
-    data object LeftHand : Rules(
+    data object LeftHand : Normal(
         id = LeftHand::class.simpleName.toString(),
         emoji = Res.string.rules_leftHandEmoji,
         label = Res.string.rules_leftHandLabel,
@@ -147,7 +147,7 @@ sealed class Jokers(
         info = Res.string.rules_leftHandInfo
     )
 
-    data object Toilet : Rules(
+    data object Toilet : Normal(
         id = Toilet::class.simpleName.toString(),
         emoji = Res.string.rules_toiletEmoji,
         label = Res.string.rules_toiletLabel,
