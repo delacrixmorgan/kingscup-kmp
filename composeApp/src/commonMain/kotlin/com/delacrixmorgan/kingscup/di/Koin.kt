@@ -1,5 +1,6 @@
 package com.delacrixmorgan.kingscup.di
 
+import com.delacrixmorgan.kingscup.data.repository.DealerRepository
 import com.delacrixmorgan.kingscup.platformModule
 import com.delacrixmorgan.kingscup.ui.board.BoardViewModel
 import com.delacrixmorgan.kingscup.ui.card.CardViewModel
@@ -24,7 +25,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     }
 
 fun viewModelModule() = module {
-    viewModel { BoardViewModel() }
+    viewModel { BoardViewModel(get()) }
     viewModel { CardViewModel() }
     viewModel { LoadingViewModel() }
     viewModel { RulesViewModel() }
@@ -37,5 +38,5 @@ fun serviceModule() = module {
 }
 
 fun repositoryModule() = module {
-
+    single<DealerRepository> { DealerRepository() }
 }

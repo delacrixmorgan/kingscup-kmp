@@ -3,14 +3,18 @@ package com.delacrixmorgan.kingscup.ui.board
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.data.repository.DealerRepository
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import org.koin.core.component.KoinComponent
 
-class BoardViewModel : ViewModel() {
+class BoardViewModel(
+    private val dealerRepository: DealerRepository
+) : ViewModel(), KoinComponent {
 
     private var hasLoadedInitialData = false
 
@@ -29,7 +33,8 @@ class BoardViewModel : ViewModel() {
         )
 
     private fun loadData() {
-
+        dealerRepository.buildDeck()
+        logDebug()
     }
 
     fun onAction(navHostController: NavHostController, action: BoardAction) {
@@ -38,6 +43,7 @@ class BoardViewModel : ViewModel() {
                 // TODO (Save action.id to CardRepository)
                 action.id
                 navHostController.navigate(Routes.Card)
+                logDebug()
             }
             BoardAction.OnPauseClicked -> {
                 _state.update { it.copy(showPauseBottomSheet = true) }
@@ -58,9 +64,16 @@ class BoardViewModel : ViewModel() {
             }
         }
     }
+
+    private fun logDebug() {
+        _state.update {
+            it.copy(debugText = "Deck Size: ${dealerRepository.deck.size}")
+        }
+    }
 }
 
 data class BoardUiState(
+    val debugText: String = "",
     val closeScreen: Boolean = false,
     val showPauseBottomSheet: Boolean = false,
 )

@@ -6,8 +6,9 @@ import com.delacrixmorgan.kingscup.data.model.Normal
 import com.delacrixmorgan.kingscup.data.model.Rule
 
 class DealerRepository {
-    private val deck: MutableList<Card> = mutableListOf()
-    private val isJokersEnabled: Boolean = true
+    private val previousCard: Card? = null
+    val deck: MutableList<Card> = mutableListOf()
+    private val isJokersEnabled: Boolean = false
 
     private val jokerRules: List<Rule>
         get() = listOf(
