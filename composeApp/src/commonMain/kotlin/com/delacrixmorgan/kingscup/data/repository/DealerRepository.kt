@@ -1,15 +1,16 @@
 package com.delacrixmorgan.kingscup.data.repository
 
+import com.delacrixmorgan.kingscup.data.extension.popOrNull
 import com.delacrixmorgan.kingscup.data.model.Card
 import com.delacrixmorgan.kingscup.data.model.Jokers
 import com.delacrixmorgan.kingscup.data.model.Normal
 import com.delacrixmorgan.kingscup.data.model.Rule
 
 class DealerRepository {
-    private val previousCard: Card? = null
     val deck: MutableList<Card> = mutableListOf()
-    private val isJokersEnabled: Boolean = false
+    var previousCard: Card? = null
 
+    private val isJokersEnabled: Boolean = false
     private val jokerRules: List<Rule>
         get() = listOf(
             Jokers.Viking,
@@ -25,6 +26,10 @@ class DealerRepository {
             Jokers.LeftHand,
             Jokers.Toilet
         )
+
+    init {
+        buildDeck()
+    }
 
     fun buildDeck() {
         val normalDeck: List<Card> = Card.SuitType.entries
@@ -59,5 +64,10 @@ class DealerRepository {
             normalDeck
         }.shuffled()
         deck.addAll(shuffledDeck)
+    }
+
+    fun drawCard(id: String) {
+        val index = deck.indexOfFirst { it.rule.id == id }
+        previousCard = deck.popOrNull(index)
     }
 }

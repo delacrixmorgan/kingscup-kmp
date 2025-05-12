@@ -26,7 +26,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 
 fun viewModelModule() = module {
     viewModel { BoardViewModel(get()) }
-    viewModel { CardViewModel() }
+    viewModel { CardViewModel(get()) }
     viewModel { LoadingViewModel() }
     viewModel { RulesViewModel() }
     viewModel { SetupViewModel() }

@@ -33,17 +33,22 @@ class BoardViewModel(
         )
 
     private fun loadData() {
-        dealerRepository.buildDeck()
         logDebug()
     }
 
     fun onAction(navHostController: NavHostController, action: BoardAction) {
         when (action) {
             is BoardAction.OnCardClicked -> {
-                // TODO (Save action.id to CardRepository)
+                // TODO (Use drawCard(action.id))
                 action.id
-                navHostController.navigate(Routes.Card)
+
+                val randomCard = dealerRepository.deck.random()
+                dealerRepository.drawCard(randomCard.rule.id)
+
                 logDebug()
+                navHostController.navigate(Routes.Card)
+
+
             }
             BoardAction.OnPauseClicked -> {
                 _state.update { it.copy(showPauseBottomSheet = true) }
