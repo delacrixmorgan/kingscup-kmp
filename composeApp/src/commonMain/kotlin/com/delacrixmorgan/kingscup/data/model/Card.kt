@@ -10,7 +10,15 @@ data class Card(
         Heart,
         Club,
         Diamond,
-        Joker
+        Joker;
+
+        override fun toString(): String = when (this) {
+            Spade -> "♠\uFE0F"
+            Heart -> "♥\uFE0F"
+            Club -> "♣\uFE0F"
+            Diamond -> "♦\uFE0F"
+            Joker -> "\uD83C\uDCCF"
+        }
     }
 
     enum class RankType {

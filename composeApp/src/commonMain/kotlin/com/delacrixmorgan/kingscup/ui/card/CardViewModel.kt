@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import org.jetbrains.compose.resources.StringResource
 
 class CardViewModel(
     private val dealerRepository: DealerRepository
@@ -33,7 +34,13 @@ class CardViewModel(
     private fun loadData() {
         val card = dealerRepository.previousCard
         _state.update {
-            it.copy(debugText = "ID: ${card?.rule?.id} (${card?.suit?.name} - ${card?.rank?.name})")
+            it.copy(
+                suit = card?.suit?.toString() ?: "",
+                rank = card?.rank?.toString() ?: "",
+                emoji = card?.rule?.emoji,
+                label = card?.rule?.label,
+                description = card?.rule?.description,
+            )
         }
     }
 
@@ -47,7 +54,12 @@ class CardViewModel(
 }
 
 data class CardUiState(
-    val debugText: String = "",
+    val suit: String = "",
+    val rank: String = "",
+    val emoji: StringResource? = null,
+    val label: StringResource? = null,
+    val description: StringResource? = null,
+
     val closeScreen: Boolean = false,
 )
 

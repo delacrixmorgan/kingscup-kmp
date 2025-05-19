@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">King\'s Cup</string>
+    <string name="app_name">King's Cup</string>
     <string name="rules_kingEmoji">👑</string>
-    <string name="rules_kingLabel">King\'s Cup</string>
-    <string name="rules_kingDescription">Set a new rule. Fill the King\'s Cup!</string>
+    <string name="rules_kingLabel">King's Cup</string>
+    <string name="rules_kingDescription">Set a new rule. Fill the King's Cup!</string>
     <string name="rules_kingInfo"></string>
     <string name="rules_questionMasterEmoji">❓</string>
     <string name="rules_questionMasterLabel">Question Master</string>
@@ -15,7 +15,7 @@
     <string name="rules_neverHaveIEverInfo"></string>
     <string name="rules_categoriesEmoji">📚</string>
     <string name="rules_categoriesLabel">Categories</string>
-    <string name="rules_categoriesDescription">Choose a category. Say something that fits until whoever can\'t think of any, drink!</string>
+    <string name="rules_categoriesDescription">Choose a category. Say something that fits until whoever can't think of any, drink!</string>
     <string name="rules_categoriesInfo"></string>
     <string name="rules_snakeEyesEmoji">🐍</string>
     <string name="rules_snakeEyesLabel">Snake Eyes</string>
@@ -82,7 +82,7 @@
     <string name="rules_noPointingDescription">If you point at someone, you drink!</string>
     <string name="rules_noPointingInfo"></string>
     <string name="rules_tRexArmsEmoji">🦖</string>
-    <string name="rules_tRexArmsLabel">T-Rex\'s Arms Rule</string>
+    <string name="rules_tRexArmsLabel">T-Rex's Arms Rule</string>
     <string name="rules_tRexArmsDescription">Feeling thirsty? Drink only with your best T-Rex’s arms.</string>
     <string name="rules_tRexArmsInfo"></string>
     <string name="rules_beLikeBillyEmoji">🧢</string>
@@ -121,7 +121,7 @@
     <string name="taunt_two">Coming Up</string>
     <string name="taunt_three">Just One More</string>
     <string name="taunt_four">This Is It</string>
-    <string name="taunt_five">Don\'t Think</string>
+    <string name="taunt_five">Don't Think</string>
     <string name="taunt_six">Drink Me</string>
     <string name="taunt_seven">Faster Mate</string>
     <string name="taunt_eight">You Sure?</string>

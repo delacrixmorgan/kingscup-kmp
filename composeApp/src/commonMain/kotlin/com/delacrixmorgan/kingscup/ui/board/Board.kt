@@ -37,6 +37,8 @@ fun BoardScreen(
     state: BoardUiState,
     onAction: (BoardAction) -> Unit,
 ) {
+    onAction(BoardAction.OnCardClicked(""))
+    return
     Scaffold(
         content = {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
