@@ -5,13 +5,13 @@ android-compileSdk = "35"
 android-minSdk = "23"
 android-targetSdk = "35"
 
-androidx-lifecycle = "2.8.4"
-androidx-navigation-compose = "2.9.0-beta01" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
+androidx-lifecycle = "2.9.0"
+androidx-navigation-compose = "2.9.0-beta02" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
 
 compose-multiplatform = "1.8.0"
 composeBoM = "2025.05.01" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 
-koinBoM = "4.0.3" # https://insert-koin.io/docs/setup/koin/
+koinBoM = "4.0.4" # https://github.com/InsertKoinIO/koin/releases
 
 [libraries]
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
