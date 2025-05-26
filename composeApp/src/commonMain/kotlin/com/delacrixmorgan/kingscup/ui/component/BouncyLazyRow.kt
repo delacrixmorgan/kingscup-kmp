@@ -37,13 +37,14 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
+import com.delacrixmorgan.kingscup.data.model.Card
 
 @Composable
 fun BouncyLazyRow(
     modifier: Modifier = Modifier,
     state: LazyListState,
-    cards: List<String>,
-    onItemClicked: () -> Unit,
+    cards: List<Card>,
+    onItemClicked: (String) -> Unit,
     initialVisible: Boolean = false,
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
@@ -113,7 +114,7 @@ fun BouncyLazyRow(
                                 },
                                 onTap = {
                                     haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
-                                    onItemClicked()
+                                    onItemClicked(card.rule.id)
                                 }
                             )
                         },
@@ -125,7 +126,7 @@ fun BouncyLazyRow(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
-                        Text(card, color = MaterialTheme.colorScheme.onPrimary)
+                        Text(card.rule.id, color = MaterialTheme.colorScheme.onPrimary)
                     }
                 }
             }

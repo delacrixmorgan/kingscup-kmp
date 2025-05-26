@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
@@ -37,9 +38,7 @@ fun BoardScreen(
     val cards: List<String> = (1..52).map { it.toString() }
     val lazyListState = rememberLazyListState()
 
-    Column(
-        modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())
-    ) {
+    Column(modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())) {
         FilledIconButton(
             modifier = Modifier.align(Alignment.End).padding(16.dp).size(64.dp),
             onClick = { onAction(BoardAction.OnPauseClicked) }
@@ -51,12 +50,13 @@ fun BoardScreen(
         }
         Spacer(Modifier.weight(1F))
         BouncyLazyRow(
-            modifier = Modifier.padding(bottom = 72.dp),
+            modifier = Modifier.padding(vertical = 32.dp),
             state = lazyListState,
-            cards = cards,
+            cards = state.cards,
             initialVisible = state.initialVisible,
-            onItemClicked = { onAction(BoardAction.OnCardClicked("")) }
+            onItemClicked = { onAction(BoardAction.OnCardClicked(it)) }
         )
+        Spacer(Modifier.height(56.dp))
     }
 }
 

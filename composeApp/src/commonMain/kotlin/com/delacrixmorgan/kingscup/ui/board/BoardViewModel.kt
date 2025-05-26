@@ -3,6 +3,7 @@ package com.delacrixmorgan.kingscup.ui.board
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.data.model.Card
 import com.delacrixmorgan.kingscup.data.repository.DealerRepository
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,22 +34,15 @@ class BoardViewModel(
         )
 
     private fun loadData() {
+        _state.update { it.copy(cards = dealerRepository.deck) }
         logDebug()
     }
 
     fun onAction(navHostController: NavHostController, action: BoardAction) {
         when (action) {
             is BoardAction.OnCardClicked -> {
-                // TODO (Use drawCard(action.id))
-                action.id
-
-                val randomCard = dealerRepository.deck.random()
-                dealerRepository.drawCard(randomCard.rule.id)
-
-                logDebug()
+                dealerRepository.drawCard(action.id)
                 navHostController.navigate(Routes.Card)
-
-
             }
             BoardAction.OnPauseClicked -> {
                 _state.update { it.copy(showPauseBottomSheet = true) }
@@ -80,6 +74,9 @@ class BoardViewModel(
 data class BoardUiState(
     val debugText: String = "",
     val initialVisible: Boolean = false,
+
+    val cards: List<Card> = emptyList(),
+
     val closeScreen: Boolean = false,
     val showPauseBottomSheet: Boolean = false,
 )
