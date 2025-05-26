@@ -44,6 +44,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -85,9 +86,19 @@ fun BoardScreen(
             ),
         ) {
             LazyRow(
-                modifier = Modifier.align(Alignment.BottomCenter),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .layout { measurable, constraints ->
+                        val width = constraints.maxWidth + 150.dp.roundToPx()
+                        val forcedConstraints = constraints.copy(minWidth = width, maxWidth = width)
+                        val placeable = measurable.measure(forcedConstraints)
+                        layout(placeable.width, placeable.height) {
+                            val xPos = (placeable.width - constraints.maxWidth) / 2
+                            placeable.placeRelative(xPos, 0)
+                        }
+                    },
                 state = lazyListState,
-                contentPadding = PaddingValues(16.dp),
+                contentPadding = PaddingValues(start = 16.dp, end = 150.dp + 16.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 flingBehavior = ScrollableDefaults.flingBehavior(),
             ) {
