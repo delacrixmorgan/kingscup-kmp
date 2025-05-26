@@ -79,6 +79,7 @@ class BoardViewModel(
 
 data class BoardUiState(
     val debugText: String = "",
+    val initialVisible: Boolean = false,
     val closeScreen: Boolean = false,
     val showPauseBottomSheet: Boolean = false,
 )
