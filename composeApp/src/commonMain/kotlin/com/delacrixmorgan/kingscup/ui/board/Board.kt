@@ -31,7 +31,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
@@ -104,7 +103,7 @@ private fun ColumnScope.StatusSection(state: BoardUiState) {
                 .width(cardWidth)
                 .aspectRatio(cardRatio)
                 .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     shape = RoundedCornerShape(12.dp)
                 )
 
@@ -112,7 +111,7 @@ private fun ColumnScope.StatusSection(state: BoardUiState) {
                 .width(cardWidth)
                 .aspectRatio(cardRatio)
                 .dashedBorder(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    color = MaterialTheme.colorScheme.onSecondaryContainer,
                     shape = RoundedCornerShape(12.dp)
                 )
 
