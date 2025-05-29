@@ -63,7 +63,7 @@ fun BoardScreen(
             modifier = Modifier.padding(vertical = 32.dp),
             state = lazyListState,
             cards = state.cards,
-            initialVisible = state.initialVisible,
+            animateBounce = state.gameInSession,
             onItemClicked = { onAction(BoardAction.OnCardClicked(it)) }
         )
         Spacer(Modifier.height(56.dp))

@@ -17,6 +17,9 @@ class DealerRepository {
         private set
     private var activeIndex: Int? = null
 
+    private val _gameInSession = MutableStateFlow(false)
+    val gameInSession: StateFlow<Boolean> = _gameInSession.asStateFlow()
+
     private val isJokersEnabled: Boolean = false
     private val jokerRules: List<Rule>
         get() = listOf(
@@ -72,11 +75,13 @@ class DealerRepository {
             normalDeck
         }.shuffled()
         _cards.value = shuffledDeck
+        _gameInSession.value = false
     }
 
     fun drawCard(index: Int) {
         activeCard = cards.value.getOrNull(index)
         activeIndex = index
+        _gameInSession.value = true
     }
 
     fun discardCard() {

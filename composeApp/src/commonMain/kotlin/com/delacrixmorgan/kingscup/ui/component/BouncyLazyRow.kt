@@ -1,11 +1,10 @@
 package com.delacrixmorgan.kingscup.ui.component
 
-import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
@@ -36,21 +36,38 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.data.model.Card
+import kotlinx.coroutines.delay
 
 @Composable
 fun BouncyLazyRow(
     modifier: Modifier = Modifier,
     state: LazyListState,
     cards: List<Card>,
+    animateBounce: Boolean = false,
     onItemClicked: (Int) -> Unit,
-    initialVisible: Boolean = false,
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
     val cardWidth = 150.dp
+    val offsetX = remember { Animatable(if (animateBounce) 0F else 1_000F) }
+
+    LaunchedEffect(animateBounce) {
+        if (!animateBounce) {
+            delay(100)
+            offsetX.animateTo(
+                targetValue = 0f,
+                animationSpec = spring(
+                    dampingRatio = Spring.DampingRatioMediumBouncy,
+                    stiffness = Spring.StiffnessLow
+                )
+            )
+        }
+    }
     LazyRow(
         modifier = modifier
+            .offset { IntOffset(offsetX.value.toInt(), 0) }
             .layout { measurable, constraints ->
                 val width = constraints.maxWidth + cardWidth.roundToPx()
                 val forcedConstraints = constraints.copy(minWidth = width, maxWidth = width)
@@ -73,7 +90,7 @@ fun BouncyLazyRow(
             )
 
             val animatedScale by animateFloatAsState(
-                targetValue = if (isPressed) 1.05f else 1f,
+                targetValue = if (isPressed) 1.05F else 1F,
                 label = "CardScale"
             )
 
@@ -118,22 +135,5 @@ fun BouncyLazyRow(
                 }
             }
         }
-    }
-    return
-
-    var visible by remember { mutableStateOf(initialVisible) }
-    LaunchedEffect(Unit) { visible = true }
-
-    AnimatedVisibility(
-        visible = visible,
-        enter = slideInHorizontally(
-            initialOffsetX = { it },
-            animationSpec = spring(
-                dampingRatio = Spring.DampingRatioMediumBouncy,
-                stiffness = Spring.StiffnessLow
-            )
-        ),
-    ) {
-
     }
 }

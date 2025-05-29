@@ -18,16 +18,9 @@ class BoardViewModel(
     private val dealerRepository: DealerRepository
 ) : ViewModel(), KoinComponent {
 
-    private var hasLoadedInitialData = false
-
     private val _state = MutableStateFlow(BoardUiState())
     val state = _state
-        .onStart {
-            if (!hasLoadedInitialData) {
-                hasLoadedInitialData = true
-                loadData()
-            }
-        }
+        .onStart { loadData() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000L),
@@ -36,9 +29,16 @@ class BoardViewModel(
 
     private fun loadData() {
         viewModelScope.launch {
-            dealerRepository.cards.collect { cards ->
-                _state.update { it.copy(cards = cards) }
-                logDebug()
+            launch {
+                dealerRepository.cards.collect { cards ->
+                    _state.update { it.copy(cards = cards) }
+                    logDebug()
+                }
+            }
+            launch {
+                dealerRepository.gameInSession.collect { gameInSession ->
+                    _state.update { it.copy(gameInSession = gameInSession) }
+                }
             }
         }
     }
@@ -81,9 +81,9 @@ class BoardViewModel(
 
 data class BoardUiState(
     val debugText: String = "",
-    val initialVisible: Boolean = false,
 
     val cards: List<Card> = emptyList(),
+    val gameInSession: Boolean = false,
 
     val closeScreen: Boolean = false,
     val showPauseBottomSheet: Boolean = false,
