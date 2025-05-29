@@ -20,17 +20,22 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.FreeBreakfast
+import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
@@ -79,6 +84,42 @@ fun BoardScreen(
             onItemClicked = { onAction(BoardAction.OnCardClicked(it)) }
         )
         Spacer(Modifier.height(56.dp))
+    }
+
+    if (state.showPauseBottomSheet) {
+        Dialog(
+            onDismissRequest = { onAction(BoardAction.OnPauseBottomSheetDismissed) },
+            content = {
+                Column(Modifier.background(MaterialTheme.colorScheme.primaryContainer, shape = RoundedCornerShape(24.dp)).padding(16.dp)) {
+                    Text(
+                        "Toilet Break",
+                        modifier = Modifier.fillMaxWidth(),
+                        style = MaterialTheme.typography.headlineMedium,
+                        textAlign = TextAlign.Center
+                    )
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        OutlinedButton(
+                            modifier = Modifier.weight(1F),
+                            onClick = { onAction(BoardAction.OnPauseBottomSheetRestartClicked) }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.RestartAlt,
+                                contentDescription = "Restart game",
+                            )
+                        }
+                        FilledIconButton(
+                            modifier = Modifier.weight(1F),
+                            onClick = { onAction(BoardAction.OnPauseBottomSheetQuitClicked) }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Rounded.Close,
+                                contentDescription = "Quit game",
+                            )
+                        }
+                    }
+                }
+            }
+        )
     }
 }
 
