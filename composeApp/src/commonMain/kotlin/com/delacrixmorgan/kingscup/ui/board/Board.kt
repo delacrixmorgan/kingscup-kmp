@@ -14,6 +14,7 @@ import androidx.compose.material.icons.rounded.FreeBreakfast
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
+import com.delacrixmorgan.kingscup.ui.card.CardViewModel
 import com.delacrixmorgan.kingscup.ui.component.BouncyLazyRow
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -28,6 +30,15 @@ import org.jetbrains.compose.ui.tooling.preview.Preview
 fun BoardRoot(viewModel: BoardViewModel, navHostController: NavHostController) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     BoardScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
+
+    val onCardDismissed = navHostController.currentBackStackEntry
+        ?.savedStateHandle
+        ?.getStateFlow(CardViewModel.ON_CARD_DISMISSED, false)
+    LaunchedEffect(onCardDismissed?.value) {
+        if (onCardDismissed?.value == true) {
+            viewModel.onAction(navHostController, BoardAction.OnCardDismissed)
+        }
+    }
 }
 
 @Composable
@@ -35,9 +46,7 @@ fun BoardScreen(
     state: BoardUiState,
     onAction: (BoardAction) -> Unit,
 ) {
-    val cards: List<String> = (1..52).map { it.toString() }
     val lazyListState = rememberLazyListState()
-
     Column(modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())) {
         FilledIconButton(
             modifier = Modifier.align(Alignment.End).padding(16.dp).size(64.dp),

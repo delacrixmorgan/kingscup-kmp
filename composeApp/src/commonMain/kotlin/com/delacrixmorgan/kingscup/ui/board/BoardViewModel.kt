@@ -41,8 +41,11 @@ class BoardViewModel(
     fun onAction(navHostController: NavHostController, action: BoardAction) {
         when (action) {
             is BoardAction.OnCardClicked -> {
-                dealerRepository.drawCard(action.id)
+                dealerRepository.drawCard(action.index)
                 navHostController.navigate(Routes.Card)
+            }
+            BoardAction.OnCardDismissed -> {
+                dealerRepository.discardCard()
             }
             BoardAction.OnPauseClicked -> {
                 _state.update { it.copy(showPauseBottomSheet = true) }
@@ -82,7 +85,9 @@ data class BoardUiState(
 )
 
 sealed interface BoardAction {
-    data class OnCardClicked(val id: String) : BoardAction
+    data class OnCardClicked(val index: Int) : BoardAction
+    data object OnCardDismissed : BoardAction
+
     data object OnPauseClicked : BoardAction
     data object OnPauseBottomSheetRestartClicked : BoardAction
     data object OnPauseBottomSheetQuitClicked : BoardAction

@@ -19,7 +19,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -29,10 +31,12 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CardRoot(viewModel: CardViewModel, navHostController: NavHostController) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     CardScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
+    BackHandler { viewModel.onAction(navHostController, CardAction.OnCloseScreen) }
 }
 
 @Composable

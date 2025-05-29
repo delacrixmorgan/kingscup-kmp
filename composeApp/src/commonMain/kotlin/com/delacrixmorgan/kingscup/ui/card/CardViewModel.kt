@@ -15,6 +15,10 @@ class CardViewModel(
     private val dealerRepository: DealerRepository
 ) : ViewModel() {
 
+    companion object {
+        const val ON_CARD_DISMISSED = "onCardDismissed"
+    }
+
     private var hasLoadedInitialData = false
 
     private val _state = MutableStateFlow(CardUiState())
@@ -32,7 +36,7 @@ class CardViewModel(
         )
 
     private fun loadData() {
-        val card = dealerRepository.previousCard
+        val card = dealerRepository.activeCard
         _state.update {
             it.copy(
                 suit = card?.suit?.toString() ?: "",
@@ -47,7 +51,10 @@ class CardViewModel(
     fun onAction(navHostController: NavHostController, action: CardAction) {
         when (action) {
             CardAction.OnCloseScreen -> {
-                navHostController.popBackStack()
+                navHostController.previousBackStackEntry
+                    ?.savedStateHandle
+                    ?.set(ON_CARD_DISMISSED, true)
+                navHostController.navigateUp()
             }
         }
     }

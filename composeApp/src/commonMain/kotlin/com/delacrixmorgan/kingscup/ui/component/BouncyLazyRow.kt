@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -44,7 +45,7 @@ fun BouncyLazyRow(
     modifier: Modifier = Modifier,
     state: LazyListState,
     cards: List<Card>,
-    onItemClicked: (String) -> Unit,
+    onItemClicked: (Int) -> Unit,
     initialVisible: Boolean = false,
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
@@ -78,7 +79,7 @@ fun BouncyLazyRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             flingBehavior = ScrollableDefaults.flingBehavior(),
         ) {
-            items(cards) { card ->
+            itemsIndexed(cards) { index, card ->
                 var isPressed by remember { mutableStateOf(false) }
                 val animatedElevation by animateDpAsState(
                     targetValue = if (isPressed) 8.dp else 2.dp,
@@ -114,7 +115,8 @@ fun BouncyLazyRow(
                                 },
                                 onTap = {
                                     haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
-                                    onItemClicked(card.rule.id)
+                                    card.suit
+                                    onItemClicked(index)
                                 }
                             )
                         },
