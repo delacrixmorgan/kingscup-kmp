@@ -4,9 +4,15 @@ import com.delacrixmorgan.kingscup.data.model.Card
 import com.delacrixmorgan.kingscup.data.model.Jokers
 import com.delacrixmorgan.kingscup.data.model.Normal
 import com.delacrixmorgan.kingscup.data.model.Rule
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 class DealerRepository {
-    val deck: MutableList<Card> = mutableListOf()
+    private val _cards = MutableStateFlow(emptyList<Card>())
+    val cards: StateFlow<List<Card>> = _cards.asStateFlow()
     var activeCard: Card? = null
         private set
     private var activeIndex: Int? = null
@@ -32,6 +38,7 @@ class DealerRepository {
         buildDeck()
     }
 
+    @OptIn(ExperimentalUuidApi::class)
     fun buildDeck() {
         val normalDeck: List<Card> = Card.SuitType.entries
             .filterNot { it == Card.SuitType.Joker }
@@ -53,27 +60,28 @@ class DealerRepository {
                         Card.RankType.Ace -> Normal.Waterfall
                         else -> null
                     }
-                    rule?.let { Card(suit = suitType, rank = rank, rule = it) }
+                    rule?.let { Card(uuid = Uuid.random().toString(), suit = suitType, rank = rank, rule = it) }
                 }
             }
         val shuffledDeck = if (isJokersEnabled) {
             val jokerDeck: List<Card> = jokerRules.shuffled().take(4).map { rule ->
-                Card(suit = Card.SuitType.Joker, rank = Card.RankType.Joker, rule = rule)
+                Card(uuid = Uuid.random().toString(), suit = Card.SuitType.Joker, rank = Card.RankType.Joker, rule = rule)
             }
             normalDeck + jokerDeck
         } else {
             normalDeck
         }.shuffled()
-        deck.addAll(shuffledDeck)
+        _cards.value = shuffledDeck
     }
 
     fun drawCard(index: Int) {
-        activeCard = deck[index]
+        activeCard = cards.value.getOrNull(index)
         activeIndex = index
     }
 
     fun discardCard() {
-        activeIndex?.let { deck.removeAt(it) }
+        if (activeCard == null || activeIndex == null) return
+        activeIndex?.let { _cards.value -= cards.value[it] }
         activeCard = null
         activeIndex = null
     }

@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -50,6 +49,78 @@ fun BouncyLazyRow(
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
     val cardWidth = 150.dp
+    LazyRow(
+        modifier = modifier
+            .layout { measurable, constraints ->
+                val width = constraints.maxWidth + cardWidth.roundToPx()
+                val forcedConstraints = constraints.copy(minWidth = width, maxWidth = width)
+                val placeable = measurable.measure(forcedConstraints)
+                layout(placeable.width, placeable.height) {
+                    val xPos = (placeable.width - constraints.maxWidth) / 2
+                    placeable.placeRelative(xPos, 0)
+                }
+            },
+        state = state,
+        contentPadding = PaddingValues(start = 16.dp, end = cardWidth + 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        flingBehavior = ScrollableDefaults.flingBehavior(),
+    ) {
+        itemsIndexed(items = cards, key = { _, card -> card.uuid }) { index, card ->
+            var isPressed by remember { mutableStateOf(false) }
+            val animatedElevation by animateDpAsState(
+                targetValue = if (isPressed) 8.dp else 2.dp,
+                label = "CardElevation"
+            )
+
+            val animatedScale by animateFloatAsState(
+                targetValue = if (isPressed) 1.05f else 1f,
+                label = "CardScale"
+            )
+
+            Card(
+                modifier = Modifier
+                    .width(cardWidth)
+                    .aspectRatio(63F / 88F)
+                    .animateItem()
+                    .graphicsLayer {
+                        scaleX = animatedScale
+                        scaleY = animatedScale
+                        shadowElevation = animatedElevation.toPx()
+                        shape = RoundedCornerShape(12.dp)
+                        clip = false
+                    }
+                    .pointerInput(Unit) {
+                        detectTapGestures(
+                            onPress = {
+                                isPressed = true
+                                try {
+                                    this.awaitRelease()
+                                } finally {
+                                    isPressed = false
+                                }
+                            },
+                            onTap = {
+                                haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
+                                card.suit
+                                onItemClicked(index)
+                            }
+                        )
+                    },
+                shape = RoundedCornerShape(8.dp),
+                elevation = CardDefaults.cardElevation(defaultElevation = animatedElevation),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
+            ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(card.rule.id, color = MaterialTheme.colorScheme.onPrimary)
+                }
+            }
+        }
+    }
+    return
+
     var visible by remember { mutableStateOf(initialVisible) }
     LaunchedEffect(Unit) { visible = true }
 
@@ -63,75 +134,6 @@ fun BouncyLazyRow(
             )
         ),
     ) {
-        LazyRow(
-            modifier = modifier
-                .layout { measurable, constraints ->
-                    val width = constraints.maxWidth + cardWidth.roundToPx()
-                    val forcedConstraints = constraints.copy(minWidth = width, maxWidth = width)
-                    val placeable = measurable.measure(forcedConstraints)
-                    layout(placeable.width, placeable.height) {
-                        val xPos = (placeable.width - constraints.maxWidth) / 2
-                        placeable.placeRelative(xPos, 0)
-                    }
-                },
-            state = state,
-            contentPadding = PaddingValues(start = 16.dp, end = cardWidth + 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(12.dp),
-            flingBehavior = ScrollableDefaults.flingBehavior(),
-        ) {
-            itemsIndexed(cards) { index, card ->
-                var isPressed by remember { mutableStateOf(false) }
-                val animatedElevation by animateDpAsState(
-                    targetValue = if (isPressed) 8.dp else 2.dp,
-                    label = "CardElevation"
-                )
 
-                val animatedScale by animateFloatAsState(
-                    targetValue = if (isPressed) 1.05f else 1f,
-                    label = "CardScale"
-                )
-
-                Card(
-                    modifier = Modifier
-                        .width(cardWidth)
-                        .aspectRatio(63F / 88F)
-                        .animateItem()
-                        .graphicsLayer {
-                            scaleX = animatedScale
-                            scaleY = animatedScale
-                            shadowElevation = animatedElevation.toPx()
-                            shape = RoundedCornerShape(12.dp)
-                            clip = false
-                        }
-                        .pointerInput(Unit) {
-                            detectTapGestures(
-                                onPress = {
-                                    isPressed = true
-                                    try {
-                                        this.awaitRelease()
-                                    } finally {
-                                        isPressed = false
-                                    }
-                                },
-                                onTap = {
-                                    haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
-                                    card.suit
-                                    onItemClicked(index)
-                                }
-                            )
-                        },
-                    shape = RoundedCornerShape(8.dp),
-                    elevation = CardDefaults.cardElevation(defaultElevation = animatedElevation),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
-                ) {
-                    Box(
-                        modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(card.rule.id, color = MaterialTheme.colorScheme.onPrimary)
-                    }
-                }
-            }
-        }
     }
 }

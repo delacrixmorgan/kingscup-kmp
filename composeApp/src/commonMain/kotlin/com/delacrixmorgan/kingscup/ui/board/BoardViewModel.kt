@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 
 class BoardViewModel(
@@ -34,8 +35,12 @@ class BoardViewModel(
         )
 
     private fun loadData() {
-        _state.update { it.copy(cards = dealerRepository.deck) }
-        logDebug()
+        viewModelScope.launch {
+            dealerRepository.cards.collect { cards ->
+                _state.update { it.copy(cards = cards) }
+                logDebug()
+            }
+        }
     }
 
     fun onAction(navHostController: NavHostController, action: BoardAction) {
@@ -69,7 +74,7 @@ class BoardViewModel(
 
     private fun logDebug() {
         _state.update {
-            it.copy(debugText = "Deck Size: ${dealerRepository.deck.size}")
+            it.copy(debugText = "Deck Size: ${dealerRepository.cards.value.size}")
         }
     }
 }

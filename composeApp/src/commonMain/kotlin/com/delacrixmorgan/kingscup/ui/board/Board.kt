@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -47,7 +48,7 @@ fun BoardScreen(
     onAction: (BoardAction) -> Unit,
 ) {
     val lazyListState = rememberLazyListState()
-    Column(modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())) {
+    Column(modifier = Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
         FilledIconButton(
             modifier = Modifier.align(Alignment.End).padding(16.dp).size(64.dp),
             onClick = { onAction(BoardAction.OnPauseClicked) }

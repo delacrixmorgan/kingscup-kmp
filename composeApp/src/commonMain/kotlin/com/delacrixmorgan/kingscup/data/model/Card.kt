@@ -1,6 +1,7 @@
 package com.delacrixmorgan.kingscup.data.model
 
 data class Card(
+    val uuid: String,
     val suit: SuitType,
     val rank: RankType,
     val rule: Rule
