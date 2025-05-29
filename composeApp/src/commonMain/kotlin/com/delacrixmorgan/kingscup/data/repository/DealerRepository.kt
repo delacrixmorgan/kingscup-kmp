@@ -20,6 +20,9 @@ class DealerRepository {
     private val _gameInSession = MutableStateFlow(false)
     val gameInSession: StateFlow<Boolean> = _gameInSession.asStateFlow()
 
+    private val _kingCounter = MutableStateFlow(0)
+    val kingCounter: StateFlow<Int> = _kingCounter.asStateFlow()
+
     private val isJokersEnabled: Boolean = false
     private val jokerRules: List<Rule>
         get() = listOf(
@@ -86,8 +89,17 @@ class DealerRepository {
 
     fun discardCard() {
         if (activeCard == null || activeIndex == null) return
-        activeIndex?.let { _cards.value -= cards.value[it] }
+        activeIndex?.let {
+            if (cards.value[it].rule == Normal.King) _kingCounter.value += 1
+            _cards.value -= cards.value[it]
+        }
         activeCard = null
         activeIndex = null
+    }
+
+    fun restart() {
+        buildDeck()
+        _gameInSession.value = false
+        _kingCounter.value = 0
     }
 }

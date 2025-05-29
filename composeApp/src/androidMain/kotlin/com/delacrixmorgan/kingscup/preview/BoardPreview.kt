@@ -40,7 +40,11 @@ private fun BoardPreview() {
             }
 
         BoardScreen(
-            state = BoardUiState(cards = cards, gameInSession = true),
+            state = BoardUiState(
+                cards = cards,
+                gameInSession = true,
+                kingCounter = 2
+            ),
             onAction = {}
         )
     }

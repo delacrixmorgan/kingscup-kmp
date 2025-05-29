@@ -40,6 +40,11 @@ class BoardViewModel(
                     _state.update { it.copy(gameInSession = gameInSession) }
                 }
             }
+            launch {
+                dealerRepository.kingCounter.collect { kingCounter ->
+                    _state.update { it.copy(kingCounter = kingCounter) }
+                }
+            }
         }
     }
 
@@ -84,6 +89,7 @@ data class BoardUiState(
 
     val cards: List<Card> = emptyList(),
     val gameInSession: Boolean = false,
+    val kingCounter: Int = 0,
 
     val closeScreen: Boolean = false,
     val showPauseBottomSheet: Boolean = false,

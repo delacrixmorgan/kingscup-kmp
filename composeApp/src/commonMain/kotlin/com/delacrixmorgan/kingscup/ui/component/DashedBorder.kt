@@ -1,7 +1,5 @@
 package com.delacrixmorgan.kingscup.ui.component
 
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -20,14 +18,6 @@ import androidx.compose.ui.unit.dp
 
 /**
  * https://medium.com/@kappdev/dashed-borders-in-jetpack-compose-a-comprehensive-guide-de990a944c4c
- */
-@Composable
-fun Modifier.dashedCard() = this
-    .width(64.dp)
-    .aspectRatio(63F / 88F)
-    .dashedBorder(color = MaterialTheme.colorScheme.secondaryContainer, shape = RoundedCornerShape(12.dp))
-
-/**
  * Adds a dashed border around a Composable component.
  *
  * @param color The color of the dashed border.
@@ -39,7 +29,7 @@ fun Modifier.dashedCard() = this
  *
  * @return A Modifier with the dashed border applied.
  */
-private fun Modifier.dashedBorder(
+fun Modifier.dashedBorder(
     color: Color,
     shape: Shape,
     strokeWidth: Dp = 2.dp,
