@@ -8,6 +8,7 @@ import com.delacrixmorgan.kingscup.data.repository.DealerRepository
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -30,18 +31,17 @@ class BoardViewModel(
     private fun loadData() {
         viewModelScope.launch {
             launch {
-                dealerRepository.cards.collect { cards ->
+                dealerRepository.cards.collectLatest { cards ->
                     _state.update { it.copy(cards = cards) }
-                    logDebug()
                 }
             }
             launch {
-                dealerRepository.gameInSession.collect { gameInSession ->
+                dealerRepository.gameInSession.collectLatest { gameInSession ->
                     _state.update { it.copy(gameInSession = gameInSession) }
                 }
             }
             launch {
-                dealerRepository.kingCounter.collect { kingCounter ->
+                dealerRepository.kingCounter.collectLatest { kingCounter ->
                     _state.update { it.copy(kingCounter = kingCounter) }
                 }
             }
@@ -76,17 +76,9 @@ class BoardViewModel(
             }
         }
     }
-
-    private fun logDebug() {
-        _state.update {
-            it.copy(debugText = "Deck Size: ${dealerRepository.cards.value.size}")
-        }
-    }
 }
 
 data class BoardUiState(
-    val debugText: String = "",
-
     val cards: List<Card> = emptyList(),
     val gameInSession: Boolean = false,
     val kingCounter: Int = 0,
