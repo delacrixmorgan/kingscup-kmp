@@ -25,6 +25,7 @@ import androidx.compose.material.icons.rounded.FreeBreakfast
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -97,6 +98,7 @@ fun BoardScreen(
                         style = MaterialTheme.typography.headlineMedium,
                         textAlign = TextAlign.Center
                     )
+                    Spacer(Modifier.height(48.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         OutlinedButton(
                             modifier = Modifier.weight(1F),
@@ -109,6 +111,10 @@ fun BoardScreen(
                         }
                         FilledIconButton(
                             modifier = Modifier.weight(1F),
+                            colors = IconButtonDefaults.filledIconButtonColors(
+                                containerColor = MaterialTheme.colorScheme.error,
+                                contentColor = MaterialTheme.colorScheme.onError
+                            ),
                             onClick = { onAction(BoardAction.OnPauseBottomSheetQuitClicked) }
                         ) {
                             Icon(
