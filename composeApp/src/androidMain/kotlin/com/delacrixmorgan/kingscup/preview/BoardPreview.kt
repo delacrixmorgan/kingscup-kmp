@@ -11,7 +11,7 @@ import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 @OptIn(ExperimentalUuidApi::class)
-@Preview(showBackground = true)
+@Preview
 @Composable
 private fun BoardPreview() {
     AppTheme {

@@ -66,7 +66,7 @@ fun BoardScreen(
     onAction: (BoardAction) -> Unit,
 ) {
     val lazyListState = rememberLazyListState()
-    Column(modifier = Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
+    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primaryContainer).padding(WindowInsets.systemBars.asPaddingValues())) {
         FilledIconButton(
             modifier = Modifier.padding(16.dp).size(64.dp).align(Alignment.End),
             onClick = { onAction(BoardAction.OnPauseClicked) }
