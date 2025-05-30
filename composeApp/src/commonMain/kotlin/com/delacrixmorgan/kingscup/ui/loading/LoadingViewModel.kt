@@ -11,33 +11,18 @@ import kotlinx.coroutines.flow.stateIn
 
 class LoadingViewModel : ViewModel() {
 
-    private var hasLoadedInitialData = false
-
     private val _state = MutableStateFlow(LoadingUiState())
     val state = _state
-        .onStart {
-            if (!hasLoadedInitialData) {
-                hasLoadedInitialData = true
-                loadData()
-            }
-        }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000L),
             initialValue = LoadingUiState()
         )
 
-    private fun loadData() {
-
-    }
-
     fun onAction(navHostController: NavHostController, action: LoadingAction) {
         when (action) {
             LoadingAction.OpenBoardScreen -> {
-                navHostController.navigate(Routes.Board)
-            }
-            LoadingAction.OnCloseScreen -> {
-                navHostController.navigateUp()
+                navHostController.navigate(Routes.Board) { popUpTo(Routes.Start) { inclusive = true } }
             }
         }
     }
@@ -49,5 +34,4 @@ data class LoadingUiState(
 
 sealed interface LoadingAction {
     data object OpenBoardScreen : LoadingAction
-    data object OnCloseScreen : LoadingAction
 }

@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class SetupViewModel : ViewModel() {
 
@@ -33,6 +34,9 @@ class SetupViewModel : ViewModel() {
 
     fun onAction(navHostController: NavHostController, action: SetupAction) {
         when (action) {
+            is SetupAction.OnJokerSettingsToggled -> {
+                _state.update { it.copy(jokersEnabled = action.enabled) }
+            }
             SetupAction.OnStartClicked -> {
                 navHostController.navigate(Routes.Loading)
             }
@@ -50,13 +54,15 @@ class SetupViewModel : ViewModel() {
 }
 
 data class SetupUiState(
+    val jokersEnabled: Boolean = true,
     val closeScreen: Boolean = false,
 )
 
 sealed interface SetupAction {
-    data object OnStartClicked : SetupAction
+    data class OnJokerSettingsToggled(val enabled: Boolean) : SetupAction
     data object OnThemeSelected : SetupAction
     data object OnRulesClicked : SetupAction
 
+    data object OnStartClicked : SetupAction
     data object OnBackClicked : SetupAction
 }

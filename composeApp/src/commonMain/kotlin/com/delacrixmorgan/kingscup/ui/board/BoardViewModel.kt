@@ -66,8 +66,11 @@ class BoardViewModel(
             }
             BoardAction.OnPauseBottomSheetRestartClicked -> {
                 // TODO (Restart)
-                _state.update { it.copy(showPauseBottomSheet = false) }
-                navHostController.navigate(Routes.Loading) { popUpTo(Routes.Loading) { inclusive = false } }
+                viewModelScope.launch {
+                    _state.update { it.copy(showPauseBottomSheet = false) }
+                    delay(100)
+                    navHostController.navigate(Routes.Loading) { popUpTo(Routes.Loading) { inclusive = false } }
+                }
             }
             BoardAction.OnPauseBottomSheetQuitClicked -> {
                 viewModelScope.launch {

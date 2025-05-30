@@ -33,7 +33,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -45,10 +47,12 @@ import com.delacrixmorgan.kingscup.ui.component.BouncyLazyRow
 import com.delacrixmorgan.kingscup.ui.component.dashedBorder
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun BoardRoot(viewModel: BoardViewModel, navHostController: NavHostController) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     BoardScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
+    BackHandler { viewModel.onAction(navHostController, BoardAction.OnPauseClicked) }
 
     val onCardDismissed = navHostController.currentBackStackEntry
         ?.savedStateHandle
