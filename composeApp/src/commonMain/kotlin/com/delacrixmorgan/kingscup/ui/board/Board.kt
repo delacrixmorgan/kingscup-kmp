@@ -73,7 +73,7 @@ fun BoardScreen(
         ) {
             Icon(
                 imageVector = Icons.Rounded.FreeBreakfast,
-                contentDescription = "Go back",
+                contentDescription = "Pause game",
             )
         }
         StatusSection(state)

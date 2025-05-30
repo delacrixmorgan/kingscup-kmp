@@ -33,13 +33,16 @@ class SetupViewModel : ViewModel() {
 
     fun onAction(navHostController: NavHostController, action: SetupAction) {
         when (action) {
+            SetupAction.OnStartClicked -> {
+                navHostController.navigate(Routes.Loading)
+            }
+            SetupAction.OnThemeSelected -> {
+
+            }
             SetupAction.OnRulesClicked -> {
                 navHostController.navigate(Routes.Rules)
             }
-            SetupAction.OnPlayClicked -> {
-                navHostController.navigate(Routes.Loading)
-            }
-            SetupAction.OnCloseScreen -> {
+            SetupAction.OnBackClicked -> {
                 navHostController.navigateUp()
             }
         }
@@ -51,7 +54,9 @@ data class SetupUiState(
 )
 
 sealed interface SetupAction {
+    data object OnStartClicked : SetupAction
+    data object OnThemeSelected : SetupAction
     data object OnRulesClicked : SetupAction
-    data object OnPlayClicked : SetupAction
-    data object OnCloseScreen : SetupAction
+
+    data object OnBackClicked : SetupAction
 }
