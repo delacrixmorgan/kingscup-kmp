@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.model.Card
 import com.delacrixmorgan.kingscup.data.repository.DealerRepository
 import com.delacrixmorgan.kingscup.nav.Routes
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.collectLatest
@@ -69,7 +70,11 @@ class BoardViewModel(
                 navHostController.navigate(Routes.Loading) { popUpTo(Routes.Loading) { inclusive = false } }
             }
             BoardAction.OnPauseBottomSheetQuitClicked -> {
-                navHostController.navigate(Routes.Start) { popUpTo(Routes.Start) { inclusive = true } }
+                viewModelScope.launch {
+                    _state.update { it.copy(showPauseBottomSheet = false) }
+                    delay(100)
+                    navHostController.navigate(Routes.Start) { popUpTo(Routes.Start) { inclusive = true } }
+                }
             }
             BoardAction.OnCloseScreen -> {
                 navHostController.navigateUp()

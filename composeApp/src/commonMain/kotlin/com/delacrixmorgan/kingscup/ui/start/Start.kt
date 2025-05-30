@@ -31,11 +31,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.delacrixmorgan.kingscup.theme.AppTheme
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun StartRoot(viewModel: StartViewModel, navHostController: NavHostController) {
@@ -79,19 +77,19 @@ fun StartScreen(
             Spacer(Modifier.height(16.dp))
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                OutlinedButton(onClick = { }) {
+                OutlinedButton(onClick = { onAction(StartAction.OnLocalisationClicked) }) {
                     Icon(
                         imageVector = Icons.Rounded.Public,
                         contentDescription = "Change language",
                     )
                 }
-                OutlinedButton(onClick = { }) {
+                OutlinedButton(onClick = { onAction(StartAction.OnSupportClicked) }) {
                     Icon(
                         imageVector = Icons.Rounded.Star,
                         contentDescription = "Support and credits",
                     )
                 }
-                OutlinedButton(onClick = { }) {
+                OutlinedButton(onClick = { onAction(StartAction.OnShareClicked) }) {
                     Icon(
                         imageVector = Icons.Rounded.Share,
                         contentDescription = "Share with friends",
@@ -108,16 +106,5 @@ fun StartScreen(
             Spacer(Modifier.height(220.dp))
             // TODO (Banner - Translation Request)
         }
-    }
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    AppTheme {
-        StartScreen(
-            state = StartUiState(),
-            onAction = {}
-        )
     }
 }

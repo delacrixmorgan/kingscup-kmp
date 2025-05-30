@@ -7,9 +7,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 
 @Composable
 fun SupportRoot(viewModel: SupportViewModel, navHostController: NavHostController) {
@@ -24,16 +23,5 @@ fun SupportScreen(
 ) {
     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
         Text(text = "Support")
-    }
-}
-
-@Preview
-@Composable
-private fun Preview() {
-    AppTheme {
-        SupportScreen(
-            state = SupportUiState(),
-            onAction = {}
-        )
     }
 }

@@ -18,6 +18,8 @@ import com.delacrixmorgan.kingscup.ui.setup.SetupRoot
 import com.delacrixmorgan.kingscup.ui.setup.SetupViewModel
 import com.delacrixmorgan.kingscup.ui.start.StartRoot
 import com.delacrixmorgan.kingscup.ui.start.StartViewModel
+import com.delacrixmorgan.kingscup.ui.support.SupportRoot
+import com.delacrixmorgan.kingscup.ui.support.SupportViewModel
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -32,7 +34,7 @@ fun AppNavHost(navHostController: NavHostController = rememberNavController()) {
 
 fun NavGraphBuilder.formGraph(navHostController: NavHostController) {
     composable<Routes.Start> { StartRoot(viewModel = koinViewModel<StartViewModel>(), navHostController) }
-    composable<Routes.Support> { StartRoot(viewModel = koinViewModel<StartViewModel>(), navHostController) }
+    composable<Routes.Support> { SupportRoot(viewModel = koinViewModel<SupportViewModel>(), navHostController) }
     composable<Routes.Setup> { SetupRoot(viewModel = koinViewModel<SetupViewModel>(), navHostController) }
     composable<Routes.Rules> { RulesRoot(viewModel = koinViewModel<RulesViewModel>(), navHostController) }
     composable<Routes.Loading> { LoadingRoot(viewModel = koinViewModel<LoadingViewModel>(), navHostController) }

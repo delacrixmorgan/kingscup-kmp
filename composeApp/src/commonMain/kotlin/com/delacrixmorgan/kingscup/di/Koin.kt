@@ -8,6 +8,7 @@ import com.delacrixmorgan.kingscup.ui.loading.LoadingViewModel
 import com.delacrixmorgan.kingscup.ui.rules.RulesViewModel
 import com.delacrixmorgan.kingscup.ui.setup.SetupViewModel
 import com.delacrixmorgan.kingscup.ui.start.StartViewModel
+import com.delacrixmorgan.kingscup.ui.support.SupportViewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.KoinAppDeclaration
@@ -25,12 +26,13 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     }
 
 fun viewModelModule() = module {
-    viewModel { BoardViewModel(get()) }
-    viewModel { CardViewModel(get()) }
+    viewModel { StartViewModel() }
+    viewModel { SupportViewModel() }
+    viewModel { SetupViewModel() }
     viewModel { LoadingViewModel() }
     viewModel { RulesViewModel() }
-    viewModel { SetupViewModel() }
-    viewModel { StartViewModel() }
+    viewModel { BoardViewModel(get()) }
+    viewModel { CardViewModel(get()) }
 }
 
 fun serviceModule() = module {
