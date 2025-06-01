@@ -99,7 +99,7 @@ fun StartScreen(
             Spacer(Modifier.height(16.dp))
 
             Text(
-                "2025.1 (0)",
+                text = state.version,
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )

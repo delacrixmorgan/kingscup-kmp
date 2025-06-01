@@ -48,6 +48,7 @@ kotlin {
             implementation(compose.materialIconsExtended)
 
             // AndroidX
+            implementation(libs.androidx.datastore.preference)
             implementation(libs.androidx.lifecycle.viewmodel)
             implementation(libs.androidx.lifecycle.runtime.compose)
             implementation(libs.androidx.navigation.compose)
@@ -64,8 +65,8 @@ android {
         applicationId = "com.delacrixmorgan.kingscup"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 1
-        versionName = "2025.1"
+        versionCode = 72
+        versionName = "2025.72"
     }
     packaging {
         resources {
@@ -80,6 +81,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        buildConfig = true
     }
 }
 

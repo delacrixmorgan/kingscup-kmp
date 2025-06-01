@@ -36,7 +36,6 @@ fun viewModelModule() = module {
 }
 
 fun serviceModule() = module {
-
 }
 
 fun repositoryModule() = module {

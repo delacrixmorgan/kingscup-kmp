@@ -2,35 +2,23 @@ package com.delacrixmorgan.kingscup.ui.start
 
 import androidx.compose.ui.text.intl.Locale
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.getVersionCode
+import com.delacrixmorgan.kingscup.getVersionName
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.onStart
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 
 class StartViewModel : ViewModel() {
 
-    private var hasLoadedInitialData = false
-
     private val _state = MutableStateFlow(StartUiState())
-    val state = _state
-        .onStart {
-            if (!hasLoadedInitialData) {
-                hasLoadedInitialData = true
-                loadData()
-            }
-        }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5_000L),
-            initialValue = StartUiState()
-        )
+    val state: StateFlow<StartUiState>
+        get() = _state.asStateFlow()
 
-    private fun loadData() {
-
+    init {
+        _state.update { it.copy(version = "${getVersionName()} (${getVersionCode()})") }
     }
 
     fun onAction(navHostController: NavHostController, action: StartAction) {
@@ -61,6 +49,7 @@ class StartViewModel : ViewModel() {
 }
 
 data class StartUiState(
+    val version: String = "",
     val showLocalisationBottomSheet: Boolean = false,
     val closeScreen: Boolean = false,
 )
