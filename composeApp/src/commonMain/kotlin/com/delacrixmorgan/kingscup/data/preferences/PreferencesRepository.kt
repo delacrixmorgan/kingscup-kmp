@@ -11,38 +11,38 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.koin.core.component.KoinComponent
 
-internal class PreferencesRepository(
+class PreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) : KoinComponent {
     companion object {
-        const val KEY_SKIN = "hzYuGtNdgwJTBrCPspAP"
-        const val KEY_THEME = "hzYuGtNdgwJTBrCPspAP"
-        const val KEY_JOKER_ENABLED = "ffhrUNfmCXujeNiwVrPH"
-        const val KEY_LOCALE = "GoqLZdFnasfFBnsgfQfm"
+        private val KEY_SKIN = stringPreferencesKey("hzYuGtNdgwJTBrCPspAP")
+        private val KEY_THEME = stringPreferencesKey("hzYuGtNdgwJTBrCPspAP")
+        private val KEY_JOKER_ENABLED = booleanPreferencesKey("ffhrUNfmCXujeNiwVrPH")
+        private val KEY_LOCALE = stringPreferencesKey("GoqLZdFnasfFBnsgfQfm")
     }
 
     val skinFlow: Flow<SkinPreference>
         get() = dataStore.data
-            .map { SkinPreference.valueOf(it[stringPreferencesKey(KEY_SKIN)] ?: SkinPreference.Default.name) }
+            .map { SkinPreference.valueOf(it[KEY_SKIN] ?: SkinPreference.Default.name) }
 
     suspend fun saveSkin(value: SkinPreference) {
-        dataStore.edit { it[stringPreferencesKey(KEY_SKIN)] = value.name }
+        dataStore.edit { it[KEY_SKIN] = value.name }
     }
 
     val themeFlow: Flow<ThemePreference>
         get() = dataStore.data
-            .map { ThemePreference.valueOf(it[stringPreferencesKey(KEY_THEME)] ?: ThemePreference.Default.name) }
+            .map { ThemePreference.valueOf(it[KEY_THEME] ?: ThemePreference.Default.name) }
 
     suspend fun saveTheme(value: ThemePreference) {
-        dataStore.edit { it[stringPreferencesKey(KEY_THEME)] = value.name }
+        dataStore.edit { it[KEY_THEME] = value.name }
     }
 
     val jokerEnabledFlow: Flow<Boolean>
         get() = dataStore.data
-            .map { it[booleanPreferencesKey(KEY_JOKER_ENABLED)] ?: false }
+            .map { it[KEY_JOKER_ENABLED] ?: false }
 
     suspend fun saveJokerEnabled(value: Boolean) {
-        dataStore.edit { it[booleanPreferencesKey(KEY_JOKER_ENABLED)] = value }
+        dataStore.edit { it[KEY_JOKER_ENABLED] = value }
     }
 
     suspend fun clear() {
