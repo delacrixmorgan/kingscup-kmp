@@ -15,7 +15,7 @@ class PreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) : KoinComponent {
     companion object {
-        private val KEY_SKIN = stringPreferencesKey("hzYuGtNdgwJTBrCPspAP")
+        private val KEY_SKIN = stringPreferencesKey("BBiGXoLNpdXefpYqHRQq")
         private val KEY_THEME = stringPreferencesKey("hzYuGtNdgwJTBrCPspAP")
         private val KEY_JOKER_ENABLED = booleanPreferencesKey("ffhrUNfmCXujeNiwVrPH")
         private val KEY_LOCALE = stringPreferencesKey("GoqLZdFnasfFBnsgfQfm")
