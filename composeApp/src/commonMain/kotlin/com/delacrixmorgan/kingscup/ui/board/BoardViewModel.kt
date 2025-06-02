@@ -3,8 +3,8 @@ package com.delacrixmorgan.kingscup.ui.board
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
-import com.delacrixmorgan.kingscup.data.model.Card
-import com.delacrixmorgan.kingscup.data.repository.DealerRepository
+import com.delacrixmorgan.kingscup.data.card.model.Card
+import com.delacrixmorgan.kingscup.data.card.CardRepository
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 import org.koin.core.component.KoinComponent
 
 class BoardViewModel(
-    private val dealerRepository: DealerRepository
+    private val cardRepository: CardRepository
 ) : ViewModel(), KoinComponent {
 
     private val _state = MutableStateFlow(BoardUiState())
@@ -32,17 +32,17 @@ class BoardViewModel(
     private fun loadData() {
         viewModelScope.launch {
             launch {
-                dealerRepository.cards.collectLatest { cards ->
+                cardRepository.cards.collectLatest { cards ->
                     _state.update { it.copy(cards = cards) }
                 }
             }
             launch {
-                dealerRepository.gameInSession.collectLatest { gameInSession ->
+                cardRepository.gameInSession.collectLatest { gameInSession ->
                     _state.update { it.copy(gameInSession = gameInSession) }
                 }
             }
             launch {
-                dealerRepository.kingCounter.collectLatest { kingCounter ->
+                cardRepository.kingCounter.collectLatest { kingCounter ->
                     _state.update { it.copy(kingCounter = kingCounter) }
                 }
             }
@@ -52,11 +52,11 @@ class BoardViewModel(
     fun onAction(navHostController: NavHostController, action: BoardAction) {
         when (action) {
             is BoardAction.OnCardClicked -> {
-                dealerRepository.drawCard(action.index)
+                cardRepository.drawCard(action.index)
                 navHostController.navigate(Routes.Card)
             }
             BoardAction.OnCardDismissed -> {
-                dealerRepository.discardCard()
+                cardRepository.discardCard()
             }
             BoardAction.OnPauseClicked -> {
                 _state.update { it.copy(showPauseBottomSheet = true) }

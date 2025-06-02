@@ -38,7 +38,7 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import com.delacrixmorgan.kingscup.data.model.Card
+import com.delacrixmorgan.kingscup.data.card.model.Card
 import kotlinx.coroutines.delay
 
 @Composable

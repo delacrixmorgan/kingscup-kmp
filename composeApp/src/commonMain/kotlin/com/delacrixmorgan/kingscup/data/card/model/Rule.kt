@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.data.model
+package com.delacrixmorgan.kingscup.data.card.model
 
 import org.jetbrains.compose.resources.StringResource
 

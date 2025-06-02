@@ -3,7 +3,7 @@ package com.delacrixmorgan.kingscup.ui.card
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
-import com.delacrixmorgan.kingscup.data.repository.DealerRepository
+import com.delacrixmorgan.kingscup.data.card.CardRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.update
 import org.jetbrains.compose.resources.StringResource
 
 class CardViewModel(
-    private val dealerRepository: DealerRepository
+    private val cardRepository: CardRepository
 ) : ViewModel() {
 
     companion object {
@@ -36,7 +36,7 @@ class CardViewModel(
         )
 
     private fun loadData() {
-        val card = dealerRepository.activeCard
+        val card = cardRepository.activeCard
         _state.update {
             it.copy(
                 suit = card?.suit?.toString() ?: "",

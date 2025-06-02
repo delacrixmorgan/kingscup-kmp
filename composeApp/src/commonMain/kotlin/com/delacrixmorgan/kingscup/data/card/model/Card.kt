@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.data.model
+package com.delacrixmorgan.kingscup.data.card.model
 
 data class Card(
     val uuid: String,

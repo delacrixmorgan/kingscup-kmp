@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.data.model
+package com.delacrixmorgan.kingscup.data.card.model
 
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.rules_beLikeBillyDescription

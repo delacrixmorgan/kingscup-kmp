@@ -1,16 +1,16 @@
-package com.delacrixmorgan.kingscup.data.repository
+package com.delacrixmorgan.kingscup.data.card
 
-import com.delacrixmorgan.kingscup.data.model.Card
-import com.delacrixmorgan.kingscup.data.model.Jokers
-import com.delacrixmorgan.kingscup.data.model.Normal
-import com.delacrixmorgan.kingscup.data.model.Rule
+import com.delacrixmorgan.kingscup.data.card.model.Card
+import com.delacrixmorgan.kingscup.data.card.model.Jokers
+import com.delacrixmorgan.kingscup.data.card.model.Normal
+import com.delacrixmorgan.kingscup.data.card.model.Rule
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-class DealerRepository {
+class CardRepository {
     private val _cards = MutableStateFlow(emptyList<Card>())
     val cards: StateFlow<List<Card>> = _cards.asStateFlow()
     var activeCard: Card? = null
