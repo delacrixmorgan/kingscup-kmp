@@ -2,7 +2,7 @@ package com.delacrixmorgan.kingscup.theme.color
 
 import androidx.compose.ui.graphics.Color
 
-data object BoraThemPreference : ColorPreference(
+data object BoraColorPreference : ColorPreference(
     // Light
     primaryLight = Color(0xFF5E6143),
     onPrimaryLight = Color(0xFFFFFFFF),

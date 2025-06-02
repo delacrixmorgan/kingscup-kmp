@@ -3,7 +3,7 @@ package com.delacrixmorgan.kingscup
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import com.delacrixmorgan.kingscup.data.local.LocalDataStore
+import com.delacrixmorgan.kingscup.core.local.LocalDataStore
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
