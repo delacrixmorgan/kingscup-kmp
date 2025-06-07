@@ -172,7 +172,7 @@ fun SetupScreen(
                     if (state.selectedSkin?.name == it.name) {
                         Icon(
                             imageVector = Icons.Rounded.CheckCircleOutline,
-                            tint = MaterialTheme.colorScheme.primaryContainer,
+                            tint = MaterialTheme.colorScheme.onPrimary,
                             contentDescription = "${it.name} skin selected",
                         )
                     }
