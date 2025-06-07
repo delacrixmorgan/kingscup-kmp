@@ -38,9 +38,6 @@ import androidx.compose.material3.ToggleButton
 import androidx.compose.material3.ToggleButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
+import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.theme.color.BoraColorPreference
 import com.delacrixmorgan.kingscup.theme.color.EmeraldColorPreference
@@ -115,34 +113,31 @@ fun SetupScreen(
             modifier = Modifier.clickable { onAction(SetupAction.OnRulesClicked) },
             headlineContent = { Text("Theme") },
         )
-
-        val options = listOf("System", "Light", "Dark")
-        val icons = listOf(Icons.Rounded.SettingsSuggest, Icons.Rounded.WbSunny, Icons.Rounded.Bedtime)
-        var selectedIndex by remember { mutableIntStateOf(0) }
-
         Row(
             Modifier
                 .background(ListItemDefaults.containerColor)
                 .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween),
         ) {
-            options.forEachIndexed { index, label ->
+            ThemePreference.entries.forEach { theme ->
+                val (icon, name) = when (theme) {
+                    ThemePreference.System -> Icons.Rounded.SettingsSuggest to "System"
+                    ThemePreference.Light -> Icons.Rounded.WbSunny to "Light"
+                    ThemePreference.Dark -> Icons.Rounded.Bedtime to "Dark"
+                }
                 ToggleButton(
                     modifier = Modifier.weight(1F).semantics { role = Role.RadioButton },
-                    checked = selectedIndex == index,
-                    onCheckedChange = { selectedIndex = index },
-                    shapes = when (index) {
+                    checked = state.selectedTheme == theme,
+                    onCheckedChange = { onAction(SetupAction.OnThemeSelected(theme)) },
+                    shapes = when (theme.ordinal) {
                         0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
-                        options.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()
+                        ThemePreference.entries.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()
                         else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
                     }
                 ) {
-                    Icon(
-                        if (selectedIndex == index) icons[index] else icons[index],
-                        contentDescription = "Localized description"
-                    )
+                    Icon(imageVector = icon, contentDescription = name)
                     Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
-                    Text(label)
+                    Text(name)
                 }
             }
         }

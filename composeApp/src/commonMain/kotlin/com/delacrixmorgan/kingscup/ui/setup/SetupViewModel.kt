@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.preferences.PreferencesRepository
 import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
+import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -34,6 +35,11 @@ class SetupViewModel(
                 }
             }
             launch {
+                preferencesRepository.themeFlow.collect { theme ->
+                    _state.update { it.copy(selectedTheme = theme) }
+                }
+            }
+            launch {
                 preferencesRepository.skinFlow.collect { skin ->
                     _state.update { it.copy(selectedSkin = skin) }
                 }
@@ -50,6 +56,11 @@ class SetupViewModel(
             }
             SetupAction.OnStartClicked -> {
                 navHostController.navigate(Routes.Loading)
+            }
+            is SetupAction.OnThemeSelected -> {
+                viewModelScope.launch {
+                    preferencesRepository.saveTheme(action.theme)
+                }
             }
             is SetupAction.OnSkinSelected -> {
                 viewModelScope.launch {
@@ -68,12 +79,14 @@ class SetupViewModel(
 
 data class SetupUiState(
     val jokersEnabled: Boolean = true,
+    val selectedTheme: ThemePreference? = null,
     val selectedSkin: SkinPreference? = null,
     val closeScreen: Boolean = false,
 )
 
 sealed interface SetupAction {
     data class OnJokerSettingsToggled(val enabled: Boolean) : SetupAction
+    data class OnThemeSelected(val theme: ThemePreference) : SetupAction
     data class OnSkinSelected(val skin: SkinPreference) : SetupAction
     data object OnRulesClicked : SetupAction
 
