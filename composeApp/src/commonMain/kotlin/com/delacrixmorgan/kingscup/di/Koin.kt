@@ -11,6 +11,7 @@ import com.delacrixmorgan.kingscup.ui.rules.RulesViewModel
 import com.delacrixmorgan.kingscup.ui.setup.SetupViewModel
 import com.delacrixmorgan.kingscup.ui.start.StartViewModel
 import com.delacrixmorgan.kingscup.ui.support.SupportViewModel
+import com.delacrixmorgan.kingscup.usecase.BuildCardDeckUseCase
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -23,7 +24,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         modules(
             platformModule(),
             viewModelModule(),
-            serviceModule(),
+            useCaseModule(),
             repositoryModule(),
         )
     }
@@ -32,13 +33,14 @@ fun viewModelModule() = module {
     viewModel { StartViewModel() }
     viewModel { SupportViewModel() }
     viewModel { SetupViewModel(get()) }
-    viewModel { LoadingViewModel() }
+    viewModel { LoadingViewModel(get()) }
     viewModel { RulesViewModel() }
     viewModel { BoardViewModel(get()) }
     viewModel { CardViewModel(get()) }
 }
 
-fun serviceModule() = module {
+fun useCaseModule() = module {
+    single<BuildCardDeckUseCase> { BuildCardDeckUseCase(get(), get()) }
 }
 
 fun repositoryModule() = module {

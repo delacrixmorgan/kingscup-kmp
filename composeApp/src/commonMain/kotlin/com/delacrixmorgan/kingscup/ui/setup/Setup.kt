@@ -100,7 +100,7 @@ fun SetupScreen(
         ListItem(
             modifier = Modifier.clickable { onAction(SetupAction.OnRulesClicked) },
             headlineContent = { Text("Rules") },
-            supportingContent = { Text("Refresh your memory or customise them") },
+            supportingContent = { Text("Refresh your memory or customise them (soon)") },
             trailingContent = {
                 Icon(
                     imageVector = Icons.Rounded.ChevronRight,

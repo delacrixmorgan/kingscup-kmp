@@ -3,8 +3,8 @@ package com.delacrixmorgan.kingscup.ui.board
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
-import com.delacrixmorgan.kingscup.data.card.model.Card
 import com.delacrixmorgan.kingscup.data.card.CardRepository
+import com.delacrixmorgan.kingscup.data.card.model.Card
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow

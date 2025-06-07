@@ -23,7 +23,6 @@ class CardRepository {
     private val _kingCounter = MutableStateFlow(0)
     val kingCounter: StateFlow<Int> = _kingCounter.asStateFlow()
 
-    private val isJokersEnabled: Boolean = false
     private val jokerRules: List<Rule>
         get() = listOf(
             Jokers.Viking,
@@ -40,12 +39,8 @@ class CardRepository {
             Jokers.Toilet
         )
 
-    init {
-        buildDeck()
-    }
-
     @OptIn(ExperimentalUuidApi::class)
-    fun buildDeck() {
+    fun buildDeck(jokerEnabled: Boolean) {
         val normalDeck: List<Card> = Card.SuitType.entries
             .filterNot { it == Card.SuitType.Joker }
             .flatMap { suitType ->
@@ -69,7 +64,7 @@ class CardRepository {
                     rule?.let { Card(uuid = Uuid.random().toString(), suit = suitType, rank = rank, rule = it) }
                 }
             }
-        val shuffledDeck = if (isJokersEnabled) {
+        val shuffledDeck = if (jokerEnabled) {
             val jokerDeck: List<Card> = jokerRules.shuffled().take(4).map { rule ->
                 Card(uuid = Uuid.random().toString(), suit = Card.SuitType.Joker, rank = Card.RankType.Joker, rule = rule)
             }
@@ -78,6 +73,7 @@ class CardRepository {
             normalDeck
         }.shuffled()
         _cards.value = shuffledDeck
+        _kingCounter.value = 0
         _gameInSession.value = false
     }
 
@@ -95,11 +91,5 @@ class CardRepository {
         }
         activeCard = null
         activeIndex = null
-    }
-
-    fun restart() {
-        buildDeck()
-        _gameInSession.value = false
-        _kingCounter.value = 0
     }
 }
