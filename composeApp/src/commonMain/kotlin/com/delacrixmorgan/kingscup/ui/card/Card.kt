@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
+import com.delacrixmorgan.kingscup.ui.component.AnimatedEmoji
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -62,7 +63,7 @@ fun CardScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(Modifier.weight(1F), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                state.emoji?.let { Text(text = stringResource(it), style = MaterialTheme.typography.displayLarge, color = MaterialTheme.colorScheme.onPrimary) }
+                state.emoji?.let { AnimatedEmoji(stringResource(it)) }
                 Spacer(Modifier.height(16.dp))
                 state.label?.let { Text(text = stringResource(it), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary) }
                 Spacer(Modifier.height(8.dp))

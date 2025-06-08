@@ -36,6 +36,7 @@ kotlin {
             implementation(project.dependencies.platform(libs.koin.bom))
             implementation(libs.koin.core)
             implementation(libs.koin.composeVM)
+            implementation(libs.compottie)
 
             // Compose
             implementation(project.dependencies.platform(libs.compose.bom))

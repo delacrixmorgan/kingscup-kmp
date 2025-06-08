@@ -21,7 +21,7 @@
     <string name="rules_snakeEyesLabel">Snake Eyes</string>
     <string name="rules_snakeEyesDescription">Nobody can make eye contact with you. If caught, drink!</string>
     <string name="rules_snakeEyesInfo"></string>
-    <string name="rules_mateEmoji">🔗</string>
+    <string name="rules_mateEmoji">🍻</string>
     <string name="rules_mateLabel">Mate </string>
     <string name="rules_mateDescription">Choose a partner and drink whenever that player drinks!</string>
     <string name="rules_mateInfo"></string>
