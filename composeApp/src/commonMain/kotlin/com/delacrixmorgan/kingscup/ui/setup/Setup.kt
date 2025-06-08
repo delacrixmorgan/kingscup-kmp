@@ -54,6 +54,7 @@ import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.theme.color.BoraColorPreference
+import com.delacrixmorgan.kingscup.theme.color.ClassicColorPreference
 import com.delacrixmorgan.kingscup.theme.color.EmeraldColorPreference
 import com.delacrixmorgan.kingscup.theme.color.MadderColorPreference
 import com.delacrixmorgan.kingscup.theme.color.SandColorPreference
@@ -149,6 +150,7 @@ fun SetupScreen(
         ) {
             SkinPreference.entries.forEach {
                 val backgroundColor = when (it) {
+                    SkinPreference.Classic -> ClassicColorPreference.onPrimaryContainerLight
                     SkinPreference.Bora -> BoraColorPreference.onPrimaryContainerLight
                     SkinPreference.Emerald -> EmeraldColorPreference.onPrimaryContainerLight
                     SkinPreference.Madder -> MadderColorPreference.onPrimaryContainerLight

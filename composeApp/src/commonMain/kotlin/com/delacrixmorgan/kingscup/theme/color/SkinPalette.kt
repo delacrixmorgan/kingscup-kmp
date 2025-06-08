@@ -6,6 +6,11 @@ sealed class SkinPalette(
     val light: ColorScheme,
     val dark: ColorScheme
 ) {
+    object Classic : SkinPalette(
+        light = ClassicColorPreference.lightScheme,
+        dark = ClassicColorPreference.darkScheme,
+    )
+
     object Bora : SkinPalette(
         light = BoraColorPreference.lightScheme,
         dark = BoraColorPreference.darkScheme,

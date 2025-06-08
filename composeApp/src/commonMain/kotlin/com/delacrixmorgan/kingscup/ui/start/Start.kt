@@ -32,9 +32,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.theme.AppTheme
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun StartRoot(viewModel: StartViewModel, navHostController: NavHostController) {
@@ -49,8 +51,8 @@ fun StartScreen(
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
-            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.secondaryContainer).weight(1.35F))
-            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.tertiaryContainer).weight(1F))
+            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.primaryContainer).weight(1.36F))
+            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.secondaryContainer).weight(1F))
         }
 
         Column(
@@ -62,11 +64,13 @@ fun StartScreen(
             Text(
                 stringResource(Res.string.app_name),
                 style = MaterialTheme.typography.displayMedium,
-                color = MaterialTheme.colorScheme.onSecondaryContainer
+                color = MaterialTheme.colorScheme.onPrimary
             )
-            Spacer(Modifier.height(48.dp))
+            Spacer(Modifier.height(36.dp))
 
             LargeFloatingActionButton(
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.onSurface,
                 onClick = { onAction(StartAction.OnSetupClicked) },
             ) {
                 Icon(
@@ -81,18 +85,21 @@ fun StartScreen(
                 OutlinedButton(onClick = { onAction(StartAction.OnLocalisationClicked) }) {
                     Icon(
                         imageVector = Icons.Rounded.Public,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
                         contentDescription = "Change language",
                     )
                 }
                 OutlinedButton(onClick = { onAction(StartAction.OnSupportClicked) }) {
                     Icon(
                         imageVector = Icons.Rounded.Star,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
                         contentDescription = "Support and credits",
                     )
                 }
                 OutlinedButton(onClick = { onAction(StartAction.OnShareClicked) }) {
                     Icon(
                         imageVector = Icons.Rounded.Share,
+                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
                         contentDescription = "Share with friends",
                     )
                 }
@@ -106,10 +113,21 @@ fun StartScreen(
                 ),
                 text = state.version,
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onPrimaryContainer
+                color = MaterialTheme.colorScheme.onSecondaryContainer
             )
             Spacer(Modifier.height(220.dp))
             // TODO (Banner - Translation Request)
         }
+    }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    AppTheme {
+        StartScreen(
+            state = StartUiState(),
+            onAction = {}
+        )
     }
 }

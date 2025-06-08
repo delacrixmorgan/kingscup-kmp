@@ -5,13 +5,14 @@ import androidx.compose.runtime.Composable
 import com.delacrixmorgan.kingscup.theme.color.SkinPalette
 
 enum class SkinPreference(val palette: SkinPalette) {
+    Classic(SkinPalette.Classic),
     Bora(SkinPalette.Bora),
     Emerald(SkinPalette.Emerald),
     Madder(SkinPalette.Madder),
     Sand(SkinPalette.Sand);
 
     companion object {
-        val Default = Bora
+        val Default = Classic
     }
 
     @Composable
