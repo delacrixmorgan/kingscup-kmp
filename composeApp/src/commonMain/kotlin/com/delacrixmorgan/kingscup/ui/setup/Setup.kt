@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,7 +27,6 @@ import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -53,11 +51,7 @@ import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
-import com.delacrixmorgan.kingscup.theme.color.BoraColorPreference
-import com.delacrixmorgan.kingscup.theme.color.ClassicColorPreference
-import com.delacrixmorgan.kingscup.theme.color.EmeraldColorPreference
-import com.delacrixmorgan.kingscup.theme.color.MadderColorPreference
-import com.delacrixmorgan.kingscup.theme.color.SandColorPreference
+import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -66,24 +60,55 @@ fun SetupRoot(viewModel: SetupViewModel, navHostController: NavHostController) {
     SetupScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
 }
 
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun SetupScreen(
     state: SetupUiState,
     onAction: (SetupAction) -> Unit,
+) {
+    BoxBackground {
+        Column(modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())) {
+            Row {
+                FilledIconButton(
+                    modifier = Modifier.padding(16.dp).size(64.dp),
+                    onClick = { onAction(SetupAction.OnBackClicked) }
+                ) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                        contentDescription = "Go back",
+                    )
+                }
+                Spacer(Modifier.weight(1F))
+                FilledIconButton(
+                    modifier = Modifier.padding(16.dp).size(64.dp),
+                    onClick = { onAction(SetupAction.OnStartClicked) }
+                ) {
+                    Icon(
+                        imageVector = Icons.Rounded.PlayArrow,
+                        contentDescription = "Setup game"
+                    )
+                }
+            }
+            Spacer(Modifier.weight(1F))
+
+            ToggleSection(state, onAction)
+            Spacer(Modifier.height(32.dp))
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun ToggleSection(
+    state: SetupUiState,
+    onAction: (SetupAction) -> Unit,
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
-    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primaryContainer).padding(WindowInsets.systemBars.asPaddingValues())) {
-        FilledIconButton(
-            modifier = Modifier.padding(16.dp).size(64.dp).align(Alignment.Start),
-            onClick = { onAction(SetupAction.OnBackClicked) }
-        ) {
-            Icon(
-                imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                contentDescription = "Go back",
-            )
-        }
-
+    Column(
+        Modifier
+            .padding(horizontal = 16.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surface)
+    ) {
         ListItem(
             headlineContent = { Text("Jokers") },
             supportingContent = { Text("Just to spice things up a bit") },
@@ -149,18 +174,11 @@ fun SetupScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             SkinPreference.entries.forEach {
-                val backgroundColor = when (it) {
-                    SkinPreference.Classic -> ClassicColorPreference.onPrimaryContainerLight
-                    SkinPreference.Bora -> BoraColorPreference.onPrimaryContainerLight
-                    SkinPreference.Emerald -> EmeraldColorPreference.onPrimaryContainerLight
-                    SkinPreference.Madder -> MadderColorPreference.onPrimaryContainerLight
-                    SkinPreference.Sand -> SandColorPreference.onPrimaryContainerLight
-                }
                 Box(
                     Modifier
                         .weight(1F)
                         .aspectRatio(63F / 88F)
-                        .background(backgroundColor, RoundedCornerShape(12.dp))
+                        .background(it.getCardColor(), RoundedCornerShape(12.dp))
                         .clip(RoundedCornerShape(12.dp))
                         .clickable {
                             haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
@@ -171,28 +189,13 @@ fun SetupScreen(
                     if (state.selectedSkin?.name == it.name) {
                         Icon(
                             imageVector = Icons.Rounded.CheckCircleOutline,
-                            tint = MaterialTheme.colorScheme.onPrimary,
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
                             contentDescription = "${it.name} skin selected",
                         )
                     }
                 }
             }
         }
-
-        Spacer(Modifier.weight(1F))
-
-        LargeFloatingActionButton(
-            modifier = Modifier.align(Alignment.CenterHorizontally),
-            onClick = { onAction(SetupAction.OnStartClicked) },
-        ) {
-            Icon(
-                modifier = Modifier.size(40.dp),
-                imageVector = Icons.Rounded.PlayArrow,
-                contentDescription = "Setup game"
-            )
-        }
-
-        Spacer(Modifier.height(32.dp))
     }
 }
 

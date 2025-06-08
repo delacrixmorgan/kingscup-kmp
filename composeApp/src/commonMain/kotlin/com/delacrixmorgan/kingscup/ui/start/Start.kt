@@ -1,16 +1,12 @@
 package com.delacrixmorgan.kingscup.ui.start
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -33,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
+import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.app_name
 import org.jetbrains.compose.resources.stringResource
@@ -49,12 +46,7 @@ fun StartScreen(
     state: StartUiState,
     onAction: (StartAction) -> Unit,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(Modifier.fillMaxSize()) {
-            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.primaryContainer).weight(1.36F))
-            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.secondaryContainer).weight(1F))
-        }
-
+    BoxBackground {
         Column(
             modifier = Modifier
                 .align(Alignment.BottomCenter)

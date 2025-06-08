@@ -42,11 +42,6 @@ import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
-import com.delacrixmorgan.kingscup.theme.color.BoraColorPreference
-import com.delacrixmorgan.kingscup.theme.color.ClassicColorPreference
-import com.delacrixmorgan.kingscup.theme.color.EmeraldColorPreference
-import com.delacrixmorgan.kingscup.theme.color.MadderColorPreference
-import com.delacrixmorgan.kingscup.theme.color.SandColorPreference
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -105,18 +100,11 @@ fun ThemeScreen(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             SkinPreference.entries.forEach {
-                val backgroundColor = when (it) {
-                    SkinPreference.Classic -> ClassicColorPreference.onPrimaryContainerLight
-                    SkinPreference.Bora -> BoraColorPreference.onPrimaryContainerLight
-                    SkinPreference.Emerald -> EmeraldColorPreference.onPrimaryContainerLight
-                    SkinPreference.Madder -> MadderColorPreference.onPrimaryContainerLight
-                    SkinPreference.Sand -> SandColorPreference.onPrimaryContainerLight
-                }
                 Box(
                     Modifier
                         .weight(1F)
                         .aspectRatio(63F / 88F)
-                        .background(backgroundColor, RoundedCornerShape(12.dp))
+                        .background(it.getCardColor(), RoundedCornerShape(12.dp))
                         .clip(RoundedCornerShape(12.dp))
                         .clickable {
                             haptic.performHapticFeedback(HapticFeedbackType.ContextClick)

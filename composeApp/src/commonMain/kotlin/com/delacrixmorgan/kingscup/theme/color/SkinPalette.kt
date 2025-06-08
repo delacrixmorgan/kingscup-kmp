@@ -21,11 +21,6 @@ sealed class SkinPalette(
         dark = EmeraldColorPreference.darkScheme,
     )
 
-    object Madder : SkinPalette(
-        light = MadderColorPreference.lightScheme,
-        dark = MadderColorPreference.darkScheme,
-    )
-
     object Sand : SkinPalette(
         light = SandColorPreference.lightScheme,
         dark = SandColorPreference.darkScheme,

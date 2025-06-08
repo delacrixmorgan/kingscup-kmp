@@ -1,8 +1,5 @@
 package com.delacrixmorgan.kingscup.ui.component
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Brush
@@ -58,9 +55,7 @@ private fun Modifier.dashedBorder(
     gapLength: Dp = 4.dp,
     cap: StrokeCap = StrokeCap.Round
 ) = this.drawWithContent {
-
     val outline = shape.createOutline(size, layoutDirection, density = this)
-
     val dashedStroke = Stroke(
         cap = cap,
         width = strokeWidth.toPx(),
@@ -68,9 +63,7 @@ private fun Modifier.dashedBorder(
             intervals = floatArrayOf(dashLength.toPx(), gapLength.toPx())
         )
     )
-
     drawContent()
-
     drawOutline(
         outline = outline,
         style = dashedStroke,
