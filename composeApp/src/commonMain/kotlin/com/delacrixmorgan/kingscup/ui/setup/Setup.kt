@@ -109,10 +109,7 @@ fun SetupScreen(
             }
         )
 
-        ListItem(
-            modifier = Modifier.clickable { onAction(SetupAction.OnRulesClicked) },
-            headlineContent = { Text("Theme") },
-        )
+        ListItem(headlineContent = { Text("Theme") })
         Row(
             Modifier
                 .background(ListItemDefaults.containerColor)

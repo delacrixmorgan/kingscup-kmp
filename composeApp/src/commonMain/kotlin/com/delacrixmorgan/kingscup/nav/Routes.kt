@@ -7,6 +7,9 @@ sealed class Routes {
     data object Start : Routes()
 
     @Serializable
+    data object Style : Routes()
+
+    @Serializable
     data object Support : Routes()
 
     @Serializable
@@ -23,7 +26,4 @@ sealed class Routes {
 
     @Serializable
     data object Card : Routes()
-
-    @Serializable
-    data object Style : Routes()
 }

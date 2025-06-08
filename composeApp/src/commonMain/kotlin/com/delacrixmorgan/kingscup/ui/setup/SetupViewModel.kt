@@ -20,14 +20,14 @@ class SetupViewModel(
 
     private val _state = MutableStateFlow(SetupUiState())
     val state = _state
-        .onStart { loadData() }
+        .onStart { observeData() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000L),
             initialValue = SetupUiState()
         )
 
-    private fun loadData() {
+    private fun observeData() {
         viewModelScope.launch {
             launch {
                 preferencesRepository.jokerEnabledFlow.collect { enabled ->

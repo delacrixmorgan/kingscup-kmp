@@ -15,6 +15,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -22,10 +26,14 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.delacrixmorgan.kingscup.ui.style.color.ColorScreen
+import com.delacrixmorgan.kingscup.ui.style.font.FontScreen
+import com.delacrixmorgan.kingscup.ui.style.theme.ThemeScreen
+import com.delacrixmorgan.kingscup.ui.style.theme.ThemeViewModel
 import kotlinx.serialization.Serializable
+import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun StyleRoot() {
+fun StyleRoot(themeViewModel: ThemeViewModel) {
     val styleNavController = rememberNavController()
     Scaffold(
         bottomBar = { BottomNavigationBar(styleNavController) }
@@ -34,21 +42,24 @@ fun StyleRoot() {
             navController = styleNavController,
             startDestination = DashboardBottomNavItem.Color.route
         ) {
-            composable<StyleRoutes.Color> {
-                ColorScreen(Modifier.padding(innerPadding))
-            }
-            composable<StyleRoutes.Font> {
-                ColorScreen(Modifier.padding(innerPadding))
-            }
+            composable<StyleRoutes.Color> { ColorScreen(Modifier.padding(innerPadding)) }
+            composable<StyleRoutes.Font> { FontScreen(Modifier.padding(innerPadding)) }
             composable<StyleRoutes.Theme> {
-                ColorScreen(Modifier.padding(innerPadding))
+                ThemeScreen(
+                    modifier = Modifier.padding(innerPadding),
+                    state = themeViewModel.state.collectAsStateWithLifecycle().value,
+                    onAction = { themeViewModel.onAction(it) }
+                )
             }
         }
     }
 }
 
 @Composable
-private fun BottomNavigationBar(navHostController: NavHostController) {
+private fun BottomNavigationBar(
+    navHostController: NavHostController,
+    haptic: HapticFeedback = LocalHapticFeedback.current,
+) {
     val navBackStackEntry by navHostController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -61,6 +72,7 @@ private fun BottomNavigationBar(navHostController: NavHostController) {
                 icon = { Icon(navItem.icon, contentDescription = navItem.title) },
                 selected = selected,
                 onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
                     if (selected) return@NavigationBarItem
                     navHostController.navigate(navItem.route) {
                         popUpTo(navHostController.graph.findStartDestination().id)

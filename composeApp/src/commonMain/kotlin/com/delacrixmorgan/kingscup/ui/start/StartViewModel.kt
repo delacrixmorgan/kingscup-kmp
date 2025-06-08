@@ -41,6 +41,9 @@ class StartViewModel : ViewModel() {
             StartAction.OnShareClicked -> {
                 // TODO (Share Sheet)
             }
+            StartAction.OnVersionClicked -> {
+                navHostController.navigate(Routes.Style)
+            }
             StartAction.OnCloseScreen -> {
                 navHostController.navigateUp()
             }
@@ -62,6 +65,7 @@ sealed interface StartAction {
     data object OnLocalisationBottomSheetDismissed : StartAction
     data object OnSupportClicked : StartAction
     data object OnShareClicked : StartAction
+    data object OnVersionClicked : StartAction
 
     data object OnCloseScreen : StartAction
 }

@@ -1,6 +1,7 @@
 package com.delacrixmorgan.kingscup.ui.start
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -99,6 +100,10 @@ fun StartScreen(
             Spacer(Modifier.height(16.dp))
 
             Text(
+                modifier = Modifier.combinedClickable(
+                    onClick = {},
+                    onLongClick = { onAction(StartAction.OnVersionClicked) }
+                ),
                 text = state.version,
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
