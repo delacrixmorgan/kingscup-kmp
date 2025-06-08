@@ -125,7 +125,7 @@ fun BouncyLazyRow(
                     },
                 shape = RoundedCornerShape(12.dp),
                 elevation = CardDefaults.cardElevation(defaultElevation = animatedElevation),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.onPrimaryContainer)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
             ) {
                 Box(
                     modifier = Modifier.fillMaxSize(),

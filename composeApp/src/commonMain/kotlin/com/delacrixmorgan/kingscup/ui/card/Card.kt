@@ -1,5 +1,6 @@
 package com.delacrixmorgan.kingscup.ui.card
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -47,6 +48,7 @@ fun CardScreen(
     Row(
         Modifier
             .fillMaxSize()
+            .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(WindowInsets.safeDrawing.asPaddingValues())
     ) {
         RankSuit(suit = state.suit, rank = state.rank)
@@ -55,16 +57,16 @@ fun CardScreen(
             Modifier
                 .weight(1F)
                 .padding(vertical = 16.dp)
-                .border(1.dp, MaterialTheme.colorScheme.outlineVariant, shape = RoundedCornerShape(8.dp))
+                .border(1.dp, MaterialTheme.colorScheme.outline, shape = RoundedCornerShape(8.dp))
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Column(Modifier.weight(1F), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                state.emoji?.let { Text(text = stringResource(it), style = MaterialTheme.typography.displayLarge) }
+                state.emoji?.let { Text(text = stringResource(it), style = MaterialTheme.typography.displayLarge, color = MaterialTheme.colorScheme.onPrimary) }
                 Spacer(Modifier.height(16.dp))
-                state.label?.let { Text(text = stringResource(it), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center) }
+                state.label?.let { Text(text = stringResource(it), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary) }
                 Spacer(Modifier.height(8.dp))
-                state.description?.let { Text(text = stringResource(it), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center) }
+                state.description?.let { Text(text = stringResource(it), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary) }
             }
 
             Button(
@@ -88,8 +90,8 @@ private fun RankSuit(
         verticalArrangement = if (inverted) Arrangement.Bottom else Arrangement.Top
     ) {
         Column(Modifier.rotate(if (inverted) 180F else 0F), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = rank, style = MaterialTheme.typography.titleLarge)
-            Text(text = suit, style = MaterialTheme.typography.titleLarge)
+            Text(text = rank, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onPrimary)
+            Text(text = suit, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onPrimary)
         }
     }
 }

@@ -44,6 +44,7 @@ import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.card.CardViewModel
 import com.delacrixmorgan.kingscup.ui.component.BouncyLazyRow
+import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import com.delacrixmorgan.kingscup.ui.component.dashedBorder
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -70,37 +71,40 @@ fun BoardScreen(
     onAction: (BoardAction) -> Unit,
 ) {
     val lazyListState = rememberLazyListState()
-    Column(modifier = Modifier.fillMaxSize().background(MaterialTheme.colorScheme.primaryContainer).padding(WindowInsets.systemBars.asPaddingValues())) {
-        FilledIconButton(
-            modifier = Modifier.padding(16.dp).size(64.dp).align(Alignment.End),
-            onClick = { onAction(BoardAction.OnPauseClicked) }
-        ) {
-            Icon(
-                imageVector = Icons.Rounded.FreeBreakfast,
-                contentDescription = "Pause game",
+    BoxBackground {
+        Column(modifier = Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
+            FilledIconButton(
+                modifier = Modifier.padding(16.dp).size(64.dp).align(Alignment.End),
+                onClick = { onAction(BoardAction.OnPauseClicked) }
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.FreeBreakfast,
+                    contentDescription = "Pause game",
+                )
+            }
+            StatusSection(state)
+            BouncyLazyRow(
+                modifier = Modifier.padding(vertical = 32.dp),
+                state = lazyListState,
+                cards = state.cards,
+                animateBounce = state.gameInSession,
+                onItemClicked = { onAction(BoardAction.OnCardClicked(it)) }
             )
+            Spacer(Modifier.height(56.dp))
         }
-        StatusSection(state)
-        BouncyLazyRow(
-            modifier = Modifier.padding(vertical = 32.dp),
-            state = lazyListState,
-            cards = state.cards,
-            animateBounce = state.gameInSession,
-            onItemClicked = { onAction(BoardAction.OnCardClicked(it)) }
-        )
-        Spacer(Modifier.height(56.dp))
     }
 
     if (state.showPauseBottomSheet) {
         Dialog(
             onDismissRequest = { onAction(BoardAction.OnPauseBottomSheetDismissed) },
             content = {
-                Column(Modifier.background(MaterialTheme.colorScheme.primaryContainer, shape = RoundedCornerShape(24.dp)).padding(16.dp)) {
+                Column(Modifier.background(MaterialTheme.colorScheme.surfaceContainerHigh, shape = RoundedCornerShape(24.dp)).padding(16.dp)) {
                     Text(
                         "Toilet Break",
                         modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineMedium,
-                        textAlign = TextAlign.Center
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Spacer(Modifier.height(48.dp))
                     Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -141,6 +145,7 @@ private fun ColumnScope.StatusSection(state: BoardUiState) {
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 text = "${state.cards.size} cards left",
                 style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onPrimary
             )
             Spacer(Modifier.height(16.dp))
 
@@ -154,7 +159,7 @@ private fun ColumnScope.StatusSection(state: BoardUiState) {
                 .width(cardWidth)
                 .aspectRatio(cardRatio)
                 .background(
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    color = MaterialTheme.colorScheme.tertiaryContainer,
                     shape = RoundedCornerShape(12.dp)
                 )
 
@@ -162,7 +167,7 @@ private fun ColumnScope.StatusSection(state: BoardUiState) {
                 .width(cardWidth)
                 .aspectRatio(cardRatio)
                 .dashedBorder(
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                    color = MaterialTheme.colorScheme.onPrimary,
                     shape = RoundedCornerShape(12.dp)
                 )
 
