@@ -10,6 +10,7 @@ import com.delacrixmorgan.kingscup.ui.loading.LoadingViewModel
 import com.delacrixmorgan.kingscup.ui.rules.RulesViewModel
 import com.delacrixmorgan.kingscup.ui.setup.SetupViewModel
 import com.delacrixmorgan.kingscup.ui.start.StartViewModel
+import com.delacrixmorgan.kingscup.ui.style.StyleViewModel
 import com.delacrixmorgan.kingscup.ui.support.SupportViewModel
 import com.delacrixmorgan.kingscup.usecase.BuildCardDeckUseCase
 import org.koin.core.context.startKoin
@@ -37,6 +38,7 @@ fun viewModelModule() = module {
     viewModel { RulesViewModel() }
     viewModel { BoardViewModel(get()) }
     viewModel { CardViewModel(get()) }
+    viewModel { StyleViewModel() }
 }
 
 fun useCaseModule() = module {

@@ -23,4 +23,7 @@ sealed class Routes {
 
     @Serializable
     data object Card : Routes()
+
+    @Serializable
+    data object Style : Routes()
 }
