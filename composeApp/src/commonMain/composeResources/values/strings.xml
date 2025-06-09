@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">King's Cup</string>
-    <string name="rules_kingEmoji">👑</string>
+    <string name="rules_kingEmoji">🌟</string>
     <string name="rules_kingLabel">King's Cup</string>
     <string name="rules_kingDescription">Set a new rule. Fill the King's Cup!</string>
     <string name="rules_kingInfo"></string>
@@ -9,11 +9,11 @@
     <string name="rules_questionMasterLabel">Question Master</string>
     <string name="rules_questionMasterDescription">Ask a player a question. They must respond with another question to the next person. First to fail, drink!</string>
     <string name="rules_questionMasterInfo"></string>
-    <string name="rules_neverHaveIEverEmoji">💬</string>
+    <string name="rules_neverHaveIEverEmoji">🤔</string>
     <string name="rules_neverHaveIEverLabel">Never Have I Ever</string>
     <string name="rules_neverHaveIEverDescription">Complete the sentence, Never have I ever.. Anyone who has, drink!</string>
     <string name="rules_neverHaveIEverInfo"></string>
-    <string name="rules_categoriesEmoji">📚</string>
+    <string name="rules_categoriesEmoji">🔮</string>
     <string name="rules_categoriesLabel">Categories</string>
     <string name="rules_categoriesDescription">Choose a category. Say something that fits until whoever can't think of any, drink!</string>
     <string name="rules_categoriesInfo"></string>
@@ -21,7 +21,7 @@
     <string name="rules_snakeEyesLabel">Snake Eyes</string>
     <string name="rules_snakeEyesDescription">Nobody can make eye contact with you. If caught, drink!</string>
     <string name="rules_snakeEyesInfo"></string>
-    <string name="rules_mateEmoji">🍻</string>
+    <string name="rules_mateEmoji">🫶</string>
     <string name="rules_mateLabel">Mate </string>
     <string name="rules_mateDescription">Choose a partner and drink whenever that player drinks!</string>
     <string name="rules_mateInfo"></string>
@@ -29,11 +29,11 @@
     <string name="rules_heavenLabel">Heaven</string>
     <string name="rules_heavenDescription">Everyone reach for the sky with both hands. Last player drinks!</string>
     <string name="rules_heavenInfo"></string>
-    <string name="rules_chicksEmoji">👧</string>
+    <string name="rules_chicksEmoji">💃</string>
     <string name="rules_chicksLabel">Chicks</string>
     <string name="rules_chicksDescription">All ladies drink!</string>
     <string name="rules_chicksInfo"></string>
-    <string name="rules_dudesEmoji">👦</string>
+    <string name="rules_dudesEmoji">🤠</string>
     <string name="rules_dudesLabel">Dudes</string>
     <string name="rules_dudesDescription">All guys drink!</string>
     <string name="rules_dudesInfo"></string>
@@ -45,19 +45,19 @@
     <string name="rules_meLabel">Me</string>
     <string name="rules_meDescription">Only you. Drink!</string>
     <string name="rules_meInfo"></string>
-    <string name="rules_youEmoji">🧑‍🤝‍🧑</string>
+    <string name="rules_youEmoji">🤝</string>
     <string name="rules_youLabel">You</string>
     <string name="rules_youDescription">Choose a mate And drink together!</string>
     <string name="rules_youInfo"></string>
-    <string name="rules_waterfallEmoji">💦</string>
+    <string name="rules_waterfallEmoji">🌊</string>
     <string name="rules_waterfallLabel">Waterfall</string>
     <string name="rules_waterfallDescription">Everyone starts drinking until the person who drew the card has stopped.</string>
     <string name="rules_waterfallInfo"></string>
-    <string name="rules_countdownEmoji">🕰️</string>
+    <string name="rules_countdownEmoji">⏰</string>
     <string name="rules_countdownLabel">Final Countdown</string>
     <string name="rules_countdownDescription">Start counting, people who says the same number twice, drinks!</string>
     <string name="rules_countdownInfo"></string>
-    <string name="rules_rhymeEmoji">💭</string>
+    <string name="rules_rhymeEmoji">🫳</string>
     <string name="rules_rhymeLabel">Bust A Rhyme</string>
     <string name="rules_rhymeDescription">Say a word, the player to your left must say a rhyming word.\n\nGo around the circle until someone hesitates or repeats. They must drink!</string>
     <string name="rules_rhymeInfo"></string>
@@ -77,7 +77,7 @@
     <string name="rules_noFirstNamesLabel">No First Names Rule</string>
     <string name="rules_noFirstNamesDescription">It’s Bond, James Bond.  Oops! Just call me Bond, godammit.</string>
     <string name="rules_noFirstNamesInfo"></string>
-    <string name="rules_noPointingEmoji">👈🏻</string>
+    <string name="rules_noPointingEmoji">🫵</string>
     <string name="rules_noPointingLabel">No Pointing Rule</string>
     <string name="rules_noPointingDescription">If you point at someone, you drink!</string>
     <string name="rules_noPointingInfo"></string>
@@ -85,7 +85,7 @@
     <string name="rules_tRexArmsLabel">T-Rex's Arms Rule</string>
     <string name="rules_tRexArmsDescription">Feeling thirsty? Drink only with your best T-Rex’s arms.</string>
     <string name="rules_tRexArmsInfo"></string>
-    <string name="rules_beLikeBillyEmoji">🧢</string>
+    <string name="rules_beLikeBillyEmoji">🤓</string>
     <string name="rules_beLikeBillyLabel">Billy Rule</string>
     <string name="rules_beLikeBillyDescription">Now, everyone must be called Billy. Be like Billy.</string>
     <string name="rules_beLikeBillyInfo"></string>
@@ -93,7 +93,7 @@
     <string name="rules_iWillTellYouWhatLabel">“I will tell you what” Rule</string>
     <string name="rules_iWillTellYouWhatDescription">Must say this phrase before you speak!</string>
     <string name="rules_iWillTellYouWhatInfo"></string>
-    <string name="rules_noPhonesEmoji">📱</string>
+    <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">No Phone Rule</string>
     <string name="rules_noPhonesDescription">If you touch your phone, or someone else’s phone. Drink!</string>
     <string name="rules_noPhonesInfo"></string>
@@ -113,7 +113,7 @@
     <string name="rules_leftHandLabel">Left Hand Rule</string>
     <string name="rules_leftHandDescription">Drink only with your left hand!</string>
     <string name="rules_leftHandInfo"></string>
-    <string name="rules_toiletEmoji">🚽</string>
+    <string name="rules_toiletEmoji">☣️</string>
     <string name="rules_toiletLabel">Toilet Rule</string>
     <string name="rules_toiletDescription">Before anyone goes to pee pee or poo poo, everyone has to drink!</string>
     <string name="rules_toiletInfo"></string>
