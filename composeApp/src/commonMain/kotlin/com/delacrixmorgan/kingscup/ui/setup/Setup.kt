@@ -16,16 +16,13 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.rounded.Bedtime
 import androidx.compose.material.icons.rounded.CheckCircleOutline
 import androidx.compose.material.icons.rounded.ChevronRight
-import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.SettingsSuggest
 import androidx.compose.material.icons.rounded.WbSunny
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.ListItemDefaults
@@ -52,6 +49,8 @@ import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.BoxBackground
+import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
+import com.delacrixmorgan.kingscup.ui.component.NavigationStartIcon
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -68,25 +67,9 @@ fun SetupScreen(
     BoxBackground {
         Column(modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())) {
             Row {
-                FilledIconButton(
-                    modifier = Modifier.padding(16.dp).size(64.dp),
-                    onClick = { onAction(SetupAction.OnBackClicked) }
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                        contentDescription = "Go back",
-                    )
-                }
+                NavigationBackIcon { onAction(SetupAction.OnBackClicked) }
                 Spacer(Modifier.weight(1F))
-                FilledIconButton(
-                    modifier = Modifier.padding(16.dp).size(64.dp),
-                    onClick = { onAction(SetupAction.OnStartClicked) }
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.PlayArrow,
-                        contentDescription = "Setup game"
-                    )
-                }
+                NavigationStartIcon { onAction(SetupAction.OnStartClicked) }
             }
             Spacer(Modifier.weight(1F))
 

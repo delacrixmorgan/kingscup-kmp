@@ -14,14 +14,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.FreeBreakfast
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
@@ -45,6 +43,7 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.card.CardViewModel
 import com.delacrixmorgan.kingscup.ui.component.BouncyLazyRow
 import com.delacrixmorgan.kingscup.ui.component.BoxBackground
+import com.delacrixmorgan.kingscup.ui.component.NavigationPauseIcon
 import com.delacrixmorgan.kingscup.ui.component.dashedBorder
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -73,15 +72,10 @@ fun BoardScreen(
     val lazyListState = rememberLazyListState()
     BoxBackground {
         Column(modifier = Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
-            FilledIconButton(
-                modifier = Modifier.padding(16.dp).size(64.dp).align(Alignment.End),
-                onClick = { onAction(BoardAction.OnPauseClicked) }
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.FreeBreakfast,
-                    contentDescription = "Pause game",
-                )
-            }
+            NavigationPauseIcon(
+                modifier = Modifier.align(Alignment.End),
+                onClicked = { onAction(BoardAction.OnPauseClicked) }
+            )
             StatusSection(state)
             BouncyLazyRow(
                 modifier = Modifier.padding(vertical = 32.dp),

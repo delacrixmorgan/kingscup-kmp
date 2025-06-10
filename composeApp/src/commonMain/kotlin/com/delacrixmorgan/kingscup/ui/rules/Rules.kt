@@ -1,15 +1,19 @@
 package com.delacrixmorgan.kingscup.ui.rules
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
+import com.delacrixmorgan.kingscup.ui.component.BoxBackground
+import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -23,8 +27,12 @@ fun RulesScreen(
     state: RulesUiState,
     onAction: (RulesAction) -> Unit,
 ) {
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = "Rules")
+    BoxBackground {
+        Column(modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())) {
+            Row {
+                NavigationBackIcon { onAction(RulesAction.OnBackClicked) }
+            }
+        }
     }
 }
 

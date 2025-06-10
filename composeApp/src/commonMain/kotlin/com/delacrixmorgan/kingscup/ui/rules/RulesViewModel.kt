@@ -31,7 +31,11 @@ class RulesViewModel : ViewModel() {
     }
 
     fun onAction(navHostController: NavHostController, action: RulesAction) {
-
+        when (action) {
+            RulesAction.OnBackClicked -> {
+                navHostController.navigateUp()
+            }
+        }
     }
 }
 
@@ -40,5 +44,5 @@ data class RulesUiState(
 )
 
 sealed interface RulesAction {
-    data object OnCloseScreen : RulesAction
+    data object OnBackClicked : RulesAction
 }
