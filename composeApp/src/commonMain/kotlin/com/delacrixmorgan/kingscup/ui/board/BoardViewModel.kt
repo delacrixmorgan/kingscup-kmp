@@ -53,7 +53,10 @@ class BoardViewModel(
         when (action) {
             is BoardAction.OnCardClicked -> {
                 cardRepository.drawCard(action.index)
-                navHostController.navigate(Routes.Card)
+                navHostController.navigate(Routes.Card) {
+                    launchSingleTop = true
+                    popUpTo(Routes.Card) { inclusive = true }
+                }
             }
             BoardAction.OnCardDismissed -> {
                 cardRepository.discardCard()

@@ -12,7 +12,7 @@ androidx-navigation-compose = "2.9.0-beta02" # https://mvnrepository.com/artifac
 compose-multiplatform = "1.9.0-alpha02" # https://github.com/JetBrains/compose-multiplatform/releases
 composeBoM = "2025.06.00" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
 
-koinBoM = "4.0.4" # https://github.com/InsertKoinIO/koin/releases
+koinBoM = "4.1.0" # https://github.com/InsertKoinIO/koin/releases
 compottie = "2.0.0-rc04"
 
 [libraries]

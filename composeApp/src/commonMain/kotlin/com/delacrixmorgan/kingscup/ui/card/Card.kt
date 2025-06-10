@@ -1,7 +1,6 @@
 package com.delacrixmorgan.kingscup.ui.card
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,8 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Done
+import androidx.compose.material3.Icon
+import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,6 +27,9 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -45,6 +51,7 @@ fun CardRoot(viewModel: CardViewModel, navHostController: NavHostController) {
 fun CardScreen(
     state: CardUiState,
     onAction: (CardAction) -> Unit,
+    haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
     Row(
         Modifier
@@ -58,7 +65,6 @@ fun CardScreen(
             Modifier
                 .weight(1F)
                 .padding(vertical = 16.dp)
-                .border(1.dp, MaterialTheme.colorScheme.outline, shape = RoundedCornerShape(8.dp))
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -70,10 +76,22 @@ fun CardScreen(
                 state.description?.let { Text(text = stringResource(it), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary) }
             }
 
-            Button(
-                content = { Text("Done") },
-                onClick = { onAction(CardAction.OnCloseScreen) }
-            )
+            LargeFloatingActionButton(
+                containerColor = MaterialTheme.colorScheme.surface,
+                contentColor = MaterialTheme.colorScheme.onSurface,
+                shape = CircleShape,
+                onClick = {
+                    haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
+                    onAction(CardAction.OnCloseScreen)
+                },
+            ) {
+                Icon(
+                    modifier = Modifier.size(40.dp),
+                    imageVector = Icons.Rounded.Done,
+                    contentDescription = "Done"
+                )
+            }
+            Spacer(Modifier.height(64.dp))
         }
 
         RankSuit(suit = state.suit, rank = state.rank, inverted = true)
