@@ -31,7 +31,11 @@ class SupportViewModel : ViewModel() {
     }
 
     fun onAction(navHostController: NavHostController, action: SupportAction) {
-
+        when (action) {
+            SupportAction.OnBackClicked -> {
+                navHostController.navigateUp()
+            }
+        }
     }
 }
 
@@ -40,5 +44,5 @@ data class SupportUiState(
 )
 
 sealed interface SupportAction {
-    data object OnCloseScreen : SupportAction
+    data object OnBackClicked : SupportAction
 }
