@@ -94,7 +94,7 @@ private fun ToggleSection(
     ) {
         ListItem(
             headlineContent = { Text("Jokers") },
-            supportingContent = { Text("Just to spice things up a bit") },
+            supportingContent = { Text("Spice things up a bit") },
             trailingContent = {
                 Switch(
                     checked = state.jokersEnabled,
@@ -109,7 +109,7 @@ private fun ToggleSection(
         ListItem(
             modifier = Modifier.clickable { onAction(SetupAction.OnRulesClicked) },
             headlineContent = { Text("Rules") },
-            supportingContent = { Text("Refresh your memory or customise them (soon)") },
+            supportingContent = { Text("Refresh your memory") },
             trailingContent = {
                 Icon(
                     imageVector = Icons.Rounded.ChevronRight,
