@@ -3,17 +3,18 @@ package com.delacrixmorgan.kingscup.ui.card
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
 import androidx.compose.material3.Icon
@@ -53,27 +54,30 @@ fun CardScreen(
     onAction: (CardAction) -> Unit,
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
-    Row(
+    Column(
         Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.primaryContainer)
             .padding(WindowInsets.safeDrawing.asPaddingValues())
+            .padding(vertical = 16.dp)
     ) {
-        RankSuit(suit = state.suit, rank = state.rank)
+        RankSuit(modifier = Modifier.align(Alignment.Start), suit = state.suit, rank = state.rank)
 
         Column(
             Modifier
+                .fillMaxWidth()
                 .weight(1F)
-                .padding(vertical = 16.dp)
-                .padding(16.dp),
+                .aspectRatio(63f / 88f)
+                .padding(16.dp)
+                .background(MaterialTheme.colorScheme.secondaryContainer, RoundedCornerShape(24.dp)),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(Modifier.weight(1F), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(Modifier.weight(1F).padding(horizontal = 16.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                 state.emoji?.let { AnimatedEmoji(stringResource(it)) }
                 Spacer(Modifier.height(16.dp))
-                state.label?.let { Text(text = stringResource(it), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary) }
+                state.label?.let { Text(text = stringResource(it), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary) }
                 Spacer(Modifier.height(8.dp))
-                state.description?.let { Text(text = stringResource(it), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onPrimary) }
+                state.description?.let { Text(text = stringResource(it), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary) }
             }
 
             LargeFloatingActionButton(
@@ -94,18 +98,19 @@ fun CardScreen(
             Spacer(Modifier.height(64.dp))
         }
 
-        RankSuit(suit = state.suit, rank = state.rank, inverted = true)
+        RankSuit(modifier = Modifier.align(Alignment.End), suit = state.suit, rank = state.rank, inverted = true)
     }
 }
 
 @Composable
 private fun RankSuit(
+    modifier: Modifier,
     suit: String,
     rank: String,
     inverted: Boolean = false
 ) {
     Column(
-        modifier = Modifier.fillMaxHeight().padding(horizontal = 16.dp),
+        modifier = modifier.padding(horizontal = 16.dp),
         verticalArrangement = if (inverted) Arrangement.Bottom else Arrangement.Top
     ) {
         Column(Modifier.rotate(if (inverted) 180F else 0F), horizontalAlignment = Alignment.CenterHorizontally) {

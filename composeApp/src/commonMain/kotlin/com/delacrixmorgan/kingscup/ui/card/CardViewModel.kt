@@ -51,10 +51,13 @@ class CardViewModel(
     fun onAction(navHostController: NavHostController, action: CardAction) {
         when (action) {
             CardAction.OnCloseScreen -> {
-                navHostController.previousBackStackEntry
-                    ?.savedStateHandle
-                    ?.set(ON_CARD_DISMISSED, true)
-                navHostController.navigateUp()
+                if (!state.value.hasNavigateUp) {
+                    _state.update { it.copy(hasNavigateUp = true) }
+                    navHostController.previousBackStackEntry
+                        ?.savedStateHandle
+                        ?.set(ON_CARD_DISMISSED, true)
+                    navHostController.navigateUp()
+                }
             }
         }
     }
@@ -66,6 +69,7 @@ data class CardUiState(
     val emoji: StringResource? = null,
     val label: StringResource? = null,
     val description: StringResource? = null,
+    val hasNavigateUp: Boolean = false,
 
     val closeScreen: Boolean = false,
 )

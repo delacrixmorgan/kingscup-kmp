@@ -93,7 +93,6 @@ fun BouncyLazyRow(
                 targetValue = if (isPressed) 1.05F else 1F,
                 label = "CardScale"
             )
-
             Card(
                 modifier = Modifier
                     .width(cardWidth)
@@ -118,7 +117,6 @@ fun BouncyLazyRow(
                             },
                             onTap = {
                                 haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
-                                card.suit
                                 onItemClicked(index)
                             }
                         )

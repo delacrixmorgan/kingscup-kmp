@@ -52,10 +52,17 @@ class BoardViewModel(
     fun onAction(navHostController: NavHostController, action: BoardAction) {
         when (action) {
             is BoardAction.OnCardClicked -> {
-                cardRepository.drawCard(action.index)
-                navHostController.navigate(Routes.Card) {
-                    launchSingleTop = true
-                    popUpTo(Routes.Card) { inclusive = true }
+                viewModelScope.launch {
+                    if (!state.value.hasCardClicked) {
+                        _state.update { it.copy(hasCardClicked = true) }
+                        cardRepository.drawCard(action.index)
+                        navHostController.navigate(Routes.Card) {
+                            launchSingleTop = true
+                            popUpTo(Routes.Card) { inclusive = true }
+                        }
+                        delay(300)
+                        _state.update { it.copy(hasCardClicked = false) }
+                    }
                 }
             }
             BoardAction.OnCardDismissed -> {
@@ -68,7 +75,6 @@ class BoardViewModel(
                 _state.update { it.copy(showPauseBottomSheet = false) }
             }
             BoardAction.OnPauseBottomSheetRestartClicked -> {
-                // TODO (Restart)
                 viewModelScope.launch {
                     _state.update { it.copy(showPauseBottomSheet = false) }
                     delay(100)
@@ -94,6 +100,7 @@ data class BoardUiState(
     val gameInSession: Boolean = false,
     val kingCounter: Int = 0,
 
+    val hasCardClicked: Boolean = false,
     val closeScreen: Boolean = false,
     val showPauseBottomSheet: Boolean = false,
 )
