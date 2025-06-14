@@ -18,7 +18,7 @@ fun NavigationBackIcon(
     onClicked: () -> Unit
 ) {
     FilledIconButton(
-        modifier = Modifier.padding(16.dp).size(64.dp).then(modifier),
+        modifier = Modifier.padding(16.dp).size(48.dp).then(modifier),
         onClick = onClicked
     ) {
         Icon(
