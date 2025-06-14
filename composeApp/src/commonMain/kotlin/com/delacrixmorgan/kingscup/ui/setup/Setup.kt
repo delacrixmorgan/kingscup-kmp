@@ -7,30 +7,34 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bedtime
 import androidx.compose.material.icons.rounded.CheckCircleOutline
 import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.SettingsSuggest
 import androidx.compose.material.icons.rounded.WbSunny
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonGroupDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
-import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
 import androidx.compose.material3.ToggleButtonDefaults
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -38,19 +42,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
-import com.delacrixmorgan.kingscup.ui.component.BoxBackground
+import com.delacrixmorgan.kingscup.theme.appListItemColors
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
-import com.delacrixmorgan.kingscup.ui.component.NavigationStartIcon
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -59,24 +64,47 @@ fun SetupRoot(viewModel: SetupViewModel, navHostController: NavHostController) {
     SetupScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
 }
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun SetupScreen(
     state: SetupUiState,
     onAction: (SetupAction) -> Unit,
 ) {
-    BoxBackground {
-        Column(modifier = Modifier.padding(WindowInsets.systemBars.asPaddingValues())) {
-            Row {
-                NavigationBackIcon { onAction(SetupAction.OnBackClicked) }
+    val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
+    Scaffold(
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+        topBar = {
+            CenterAlignedTopAppBar(
+                title = { Text("Setup", maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                navigationIcon = { NavigationBackIcon { onAction(SetupAction.OnBackClicked) } },
+                scrollBehavior = scrollBehavior,
+            )
+        },
+        content = { innerPadding ->
+            Column(Modifier.padding(innerPadding)) {
+                ToggleSection(state, onAction)
                 Spacer(Modifier.weight(1F))
-                NavigationStartIcon { onAction(SetupAction.OnStartClicked) }
+                val size = ButtonDefaults.ExtraLargeContainerHeight
+                Button(
+                    onClick = { onAction(SetupAction.OnStartClicked) },
+                    modifier = Modifier
+                        .heightIn(size)
+                        .padding(horizontal = 16.dp)
+                        .align(Alignment.CenterHorizontally),
+                    contentPadding = ButtonDefaults.contentPaddingFor(size)
+                ) {
+                    Icon(
+                        Icons.Rounded.PlayArrow,
+                        contentDescription = "Localized description",
+                        modifier = Modifier.size(ButtonDefaults.iconSizeFor(size))
+                    )
+                    Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
+                    Text("Play", style = ButtonDefaults.textStyleFor(size))
+                }
+                Spacer(Modifier.height(32.dp))
             }
-            Spacer(Modifier.weight(1F))
-
-            ToggleSection(state, onAction)
-            Spacer(Modifier.height(32.dp))
         }
-    }
+    )
 }
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -90,9 +118,10 @@ private fun ToggleSection(
         Modifier
             .padding(horizontal = 16.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(MaterialTheme.colorScheme.surface)
+            .background(MaterialTheme.colorScheme.surfaceContainerLow)
     ) {
         ListItem(
+            colors = appListItemColors(),
             headlineContent = { Text("Jokers") },
             supportingContent = { Text("Spice things up a bit") },
             trailingContent = {
@@ -108,6 +137,7 @@ private fun ToggleSection(
 
         ListItem(
             modifier = Modifier.clickable { onAction(SetupAction.OnRulesClicked) },
+            colors = appListItemColors(),
             headlineContent = { Text("Rules") },
             supportingContent = { Text("Refresh your memory") },
             trailingContent = {
@@ -118,10 +148,13 @@ private fun ToggleSection(
             }
         )
 
-        ListItem(headlineContent = { Text("Theme") })
+        ListItem(
+            colors = appListItemColors(),
+            headlineContent = { Text("Theme") }
+        )
         Row(
             Modifier
-                .background(ListItemDefaults.containerColor)
+                .background(appListItemColors().containerColor)
                 .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween),
         ) {
@@ -148,10 +181,13 @@ private fun ToggleSection(
             }
         }
 
-        ListItem(headlineContent = { Text("Skin") })
+        ListItem(
+            colors = appListItemColors(),
+            headlineContent = { Text("Skin") }
+        )
         Row(
             Modifier
-                .background(ListItemDefaults.containerColor)
+                .background(appListItemColors().containerColor)
                 .padding(horizontal = 16.dp)
                 .padding(bottom = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp)
