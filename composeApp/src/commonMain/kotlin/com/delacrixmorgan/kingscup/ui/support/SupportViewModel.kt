@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.getVersionCode
 import com.delacrixmorgan.kingscup.getVersionName
+import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,7 +25,9 @@ class SupportViewModel : ViewModel() {
             SupportAction.OnBackClicked -> {
                 navHostController.navigateUp()
             }
-            SupportAction.OnAppInfoClicked -> TODO()
+            SupportAction.OnAppInfoClicked -> {
+                navHostController.navigate(Routes.AppInfo)
+            }
             SupportAction.OnPrivacyPolicyClicked -> TODO()
             SupportAction.OnSendFeedbackClicked -> TODO()
             SupportAction.OnRateUsClicked -> TODO()

@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.ui.style.font
+package com.delacrixmorgan.kingscup.ui.styleguide.font
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

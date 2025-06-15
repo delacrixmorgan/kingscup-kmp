@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.ui.style.theme
+package com.delacrixmorgan.kingscup.ui.styleguide.theme
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

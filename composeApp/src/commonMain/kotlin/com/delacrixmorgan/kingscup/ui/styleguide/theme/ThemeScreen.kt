@@ -1,4 +1,4 @@
-package com.delacrixmorgan.kingscup.ui.style.theme
+package com.delacrixmorgan.kingscup.ui.styleguide.theme
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

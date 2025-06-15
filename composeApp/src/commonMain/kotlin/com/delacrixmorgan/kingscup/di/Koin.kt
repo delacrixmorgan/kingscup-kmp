@@ -4,14 +4,14 @@ import com.delacrixmorgan.kingscup.core.local.LocalDataStore
 import com.delacrixmorgan.kingscup.data.card.CardRepository
 import com.delacrixmorgan.kingscup.data.preferences.PreferencesRepository
 import com.delacrixmorgan.kingscup.platformModule
+import com.delacrixmorgan.kingscup.ui.appinfo.AppInfoViewModel
 import com.delacrixmorgan.kingscup.ui.board.BoardViewModel
 import com.delacrixmorgan.kingscup.ui.card.CardViewModel
 import com.delacrixmorgan.kingscup.ui.loading.LoadingViewModel
 import com.delacrixmorgan.kingscup.ui.rules.RulesViewModel
 import com.delacrixmorgan.kingscup.ui.setup.SetupViewModel
 import com.delacrixmorgan.kingscup.ui.start.StartViewModel
-import com.delacrixmorgan.kingscup.ui.style.StyleViewModel
-import com.delacrixmorgan.kingscup.ui.style.theme.ThemeViewModel
+import com.delacrixmorgan.kingscup.ui.styleguide.theme.ThemeViewModel
 import com.delacrixmorgan.kingscup.ui.support.SupportViewModel
 import com.delacrixmorgan.kingscup.usecase.BuildCardDeckUseCase
 import org.koin.core.context.startKoin
@@ -34,13 +34,14 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
 fun viewModelModule() = module {
     viewModel { StartViewModel() }
     viewModel { SupportViewModel() }
+    viewModel { ThemeViewModel(get()) }
+    viewModel { AppInfoViewModel() }
+
     viewModel { SetupViewModel(get()) }
     viewModel { LoadingViewModel(get()) }
     viewModel { RulesViewModel() }
     viewModel { BoardViewModel(get()) }
     viewModel { CardViewModel(get()) }
-    viewModel { StyleViewModel() }
-    viewModel { ThemeViewModel(get()) }
 }
 
 fun useCaseModule() = module {

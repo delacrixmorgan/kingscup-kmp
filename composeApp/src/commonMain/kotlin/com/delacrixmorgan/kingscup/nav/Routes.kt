@@ -7,10 +7,13 @@ sealed class Routes {
     data object Start : Routes()
 
     @Serializable
-    data object Style : Routes()
+    data object Support : Routes()
 
     @Serializable
-    data object Support : Routes()
+    data object AppInfo : Routes()
+
+    @Serializable
+    data object StyleGuide : Routes()
 
     @Serializable
     data object Setup : Routes()
