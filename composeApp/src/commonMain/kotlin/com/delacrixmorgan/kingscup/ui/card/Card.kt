@@ -1,24 +1,22 @@
 package com.delacrixmorgan.kingscup.ui.card
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LargeFloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
@@ -35,8 +32,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.data.card.model.Card
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.AnimatedEmoji
+import com.delacrixmorgan.kingscup.ui.component.AppBar
+import com.delacrixmorgan.kingscup.ui.component.AppScaffold
+import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
+import com.delacrixmorgan.kingscup.ui.extensions.getMaterialShape
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.rules_kingDescription
+import kingscup.composeapp.generated.resources.rules_kingEmoji
+import kingscup.composeapp.generated.resources.rules_kingLabel
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -48,76 +54,83 @@ fun CardRoot(viewModel: CardViewModel, navHostController: NavHostController) {
     BackHandler { viewModel.onAction(navHostController, CardAction.OnCloseScreen) }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun CardScreen(
     state: CardUiState,
     onAction: (CardAction) -> Unit,
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
-    Column(
-        Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.primaryContainer)
-            .padding(WindowInsets.safeDrawing.asPaddingValues())
-            .padding(vertical = 16.dp)
-    ) {
-        RankSuit(modifier = Modifier.align(Alignment.Start), suit = state.suit, rank = state.rank)
-
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .weight(1F)
-                .aspectRatio(63f / 88f)
-                .padding(16.dp)
-                .background(MaterialTheme.colorScheme.secondaryContainer, RoundedCornerShape(24.dp)),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Column(Modifier.weight(1F).padding(horizontal = 16.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-                state.emoji?.let { AnimatedEmoji(stringResource(it)) }
+    AppScaffold(
+        topBar = { scrollBehavior ->
+            AppBar(
+                title = state.rank,
+                navigationIcon = { NavigationBackIcon { onAction(CardAction.OnCloseScreen) } },
+                scrollBehavior = scrollBehavior,
+            )
+        },
+        content = { innerPadding ->
+            Column(Modifier.padding(innerPadding)) {
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                        .aspectRatio(1F)
+                        .background(color = MaterialTheme.colorScheme.secondaryContainer, shape = state.suit.getMaterialShape()),
+                    contentAlignment = Alignment.Center
+                ) {
+                    state.emoji?.let { AnimatedEmoji(stringResource(it)) }
+                }
                 Spacer(Modifier.height(16.dp))
-                state.label?.let { Text(text = stringResource(it), style = MaterialTheme.typography.titleLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary) }
-                Spacer(Modifier.height(8.dp))
-                state.description?.let { Text(text = stringResource(it), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSecondary) }
+
+                Column(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    state.label?.let {
+                        Text(
+                            text = stringResource(it),
+                            style = MaterialTheme.typography.titleLarge,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                    Spacer(Modifier.height(8.dp))
+                    state.description?.let {
+                        Text(
+                            text = stringResource(it),
+                            style = MaterialTheme.typography.bodyLarge,
+                            textAlign = TextAlign.Center,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+
+                    Spacer(Modifier.weight(1F))
+                    val size = ButtonDefaults.ExtraLargeContainerHeight
+                    Button(
+                        modifier = Modifier
+                            .heightIn(size)
+                            .padding(horizontal = 16.dp)
+                            .align(Alignment.CenterHorizontally),
+                        contentPadding = ButtonDefaults.contentPaddingFor(size),
+                        onClick = {
+                            haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
+                            onAction(CardAction.OnCloseScreen)
+                        },
+                    ) {
+                        Icon(
+                            Icons.Rounded.Done,
+                            contentDescription = "Localized description",
+                            modifier = Modifier.size(ButtonDefaults.iconSizeFor(size))
+                        )
+                        Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
+                        Text("Done", style = ButtonDefaults.textStyleFor(size))
+                    }
+                    Spacer(Modifier.height(32.dp))
+                }
             }
-
-            LargeFloatingActionButton(
-                containerColor = MaterialTheme.colorScheme.surface,
-                contentColor = MaterialTheme.colorScheme.onSurface,
-                shape = CircleShape,
-                onClick = {
-                    haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
-                    onAction(CardAction.OnCloseScreen)
-                },
-            ) {
-                Icon(
-                    modifier = Modifier.size(40.dp),
-                    imageVector = Icons.Rounded.Done,
-                    contentDescription = "Done"
-                )
-            }
-            Spacer(Modifier.height(64.dp))
         }
-
-        RankSuit(modifier = Modifier.align(Alignment.End), suit = state.suit, rank = state.rank, inverted = true)
-    }
-}
-
-@Composable
-private fun RankSuit(
-    modifier: Modifier,
-    suit: String,
-    rank: String,
-    inverted: Boolean = false
-) {
-    Column(
-        modifier = modifier.padding(horizontal = 16.dp),
-        verticalArrangement = if (inverted) Arrangement.Bottom else Arrangement.Top
-    ) {
-        Column(Modifier.rotate(if (inverted) 180F else 0F), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = rank, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onPrimary)
-            Text(text = suit, style = MaterialTheme.typography.titleLarge, color = MaterialTheme.colorScheme.onPrimary)
-        }
-    }
+    )
 }
 
 @Preview
@@ -125,7 +138,13 @@ private fun RankSuit(
 private fun Preview() {
     AppTheme {
         CardScreen(
-            state = CardUiState(),
+            state = CardUiState(
+                suit = Card.SuitType.Joker,
+                rank = "K",
+                emoji = Res.string.rules_kingEmoji,
+                label = Res.string.rules_kingLabel,
+                description = Res.string.rules_kingDescription,
+            ),
             onAction = {}
         )
     }

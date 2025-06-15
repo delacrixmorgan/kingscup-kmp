@@ -81,12 +81,12 @@ fun SetupScreen(
                 Spacer(Modifier.weight(1F))
                 val size = ButtonDefaults.ExtraLargeContainerHeight
                 Button(
-                    onClick = { onAction(SetupAction.OnStartClicked) },
                     modifier = Modifier
                         .heightIn(size)
                         .padding(horizontal = 16.dp)
                         .align(Alignment.CenterHorizontally),
-                    contentPadding = ButtonDefaults.contentPaddingFor(size)
+                    contentPadding = ButtonDefaults.contentPaddingFor(size),
+                    onClick = { onAction(SetupAction.OnStartClicked) }
                 ) {
                     Icon(
                         Icons.Rounded.PlayArrow,

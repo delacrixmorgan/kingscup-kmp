@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.card.CardRepository
+import com.delacrixmorgan.kingscup.data.card.model.Card
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -39,7 +40,7 @@ class CardViewModel(
         val card = cardRepository.activeCard
         _state.update {
             it.copy(
-                suit = card?.suit?.toString() ?: "",
+                suit = card?.suit,
                 rank = card?.rank?.toString() ?: "",
                 emoji = card?.rule?.emoji,
                 label = card?.rule?.label,
@@ -64,7 +65,7 @@ class CardViewModel(
 }
 
 data class CardUiState(
-    val suit: String = "",
+    val suit: Card.SuitType? = null,
     val rank: String = "",
     val emoji: StringResource? = null,
     val label: StringResource? = null,
