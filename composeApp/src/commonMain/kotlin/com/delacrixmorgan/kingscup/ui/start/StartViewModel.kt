@@ -3,8 +3,6 @@ package com.delacrixmorgan.kingscup.ui.start
 import androidx.compose.ui.text.intl.Locale
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
-import com.delacrixmorgan.kingscup.getVersionCode
-import com.delacrixmorgan.kingscup.getVersionName
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,10 +15,6 @@ class StartViewModel : ViewModel() {
     val state: StateFlow<StartUiState>
         get() = _state.asStateFlow()
 
-    init {
-        _state.update { it.copy(version = "${getVersionName()} (${getVersionCode()})") }
-    }
-
     fun onAction(navHostController: NavHostController, action: StartAction) {
         when (action) {
             StartAction.OnSetupClicked -> {
@@ -30,19 +24,13 @@ class StartViewModel : ViewModel() {
                 _state.update { it.copy(showLocalisationBottomSheet = true) }
             }
             is StartAction.OnLocalisationChanged -> {
-
+                // TODO (Localisation)
             }
             StartAction.OnLocalisationBottomSheetDismissed -> {
                 _state.update { it.copy(showLocalisationBottomSheet = false) }
             }
             StartAction.OnSupportClicked -> {
                 navHostController.navigate(Routes.Support)
-            }
-            StartAction.OnShareClicked -> {
-                // TODO (Share Sheet)
-            }
-            StartAction.OnVersionClicked -> {
-                navHostController.navigate(Routes.Style)
             }
             StartAction.OnCloseScreen -> {
                 navHostController.navigateUp()
@@ -52,9 +40,7 @@ class StartViewModel : ViewModel() {
 }
 
 data class StartUiState(
-    val version: String = "",
     val showLocalisationBottomSheet: Boolean = false,
-    val closeScreen: Boolean = false,
 )
 
 sealed interface StartAction {
@@ -64,8 +50,6 @@ sealed interface StartAction {
     data class OnLocalisationChanged(val locale: Locale) : StartAction
     data object OnLocalisationBottomSheetDismissed : StartAction
     data object OnSupportClicked : StartAction
-    data object OnShareClicked : StartAction
-    data object OnVersionClicked : StartAction
 
     data object OnCloseScreen : StartAction
 }

@@ -1,17 +1,41 @@
 package com.delacrixmorgan.kingscup.ui.support
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.systemBars
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.Feedback
+import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Policy
+import androidx.compose.material.icons.rounded.ThumbUp
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.material3.carousel.HorizontalMultiBrowseCarousel
+import androidx.compose.material3.carousel.rememberCarouselState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
-import com.delacrixmorgan.kingscup.ui.component.BoxBackground
+import com.delacrixmorgan.kingscup.theme.appListItemColors
+import com.delacrixmorgan.kingscup.ui.component.AppBar
+import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -21,15 +45,129 @@ fun SupportRoot(viewModel: SupportViewModel, navHostController: NavHostControlle
     SupportScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SupportScreen(
     state: SupportUiState,
     onAction: (SupportAction) -> Unit,
 ) {
-    BoxBackground {
-        Column(modifier = Modifier.padding(top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding())) {
-            NavigationBackIcon { onAction(SupportAction.OnBackClicked) }
+    AppScaffold(
+        topBar = { scrollBehavior ->
+            AppBar(
+                title = "Support",
+                navigationIcon = { NavigationBackIcon { onAction(SupportAction.OnBackClicked) } },
+                scrollBehavior = scrollBehavior,
+            )
+        },
+        content = { innerPadding ->
+            Column(Modifier.padding(innerPadding)) {
+                OtherAppsSection(state, onAction)
+                Spacer(Modifier.height(16.dp))
+
+                DetailsSection(state, onAction)
+                Spacer(Modifier.weight(1F))
+
+                Text(
+                    modifier = Modifier.align(Alignment.CenterHorizontally),
+                    text = state.version,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+            }
         }
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun OtherAppsSection(
+    state: SupportUiState,
+    onAction: (SupportAction) -> Unit,
+) {
+    HorizontalMultiBrowseCarousel(
+        state = rememberCarouselState { 5 },
+        modifier = Modifier.width(412.dp),
+        preferredItemWidth = 186.dp,
+        itemSpacing = 8.dp,
+        contentPadding = PaddingValues(horizontal = 16.dp),
+    ) { i ->
+        Box(
+            modifier = Modifier
+                .width(202.dp)
+                .aspectRatio(63F / 88F)
+                .maskClip(shape = MaterialTheme.shapes.extraLarge)
+                .background(MaterialTheme.colorScheme.primaryContainer, shape = RoundedCornerShape(12.dp)),
+        )
+    }
+}
+
+@Composable
+private fun DetailsSection(
+    state: SupportUiState,
+    onAction: (SupportAction) -> Unit,
+) {
+    Column(
+        Modifier
+            .padding(horizontal = 16.dp)
+            .clip(RoundedCornerShape(16.dp))
+            .background(MaterialTheme.colorScheme.surfaceContainerLow)
+    ) {
+        ListItem(
+            modifier = Modifier.clickable { onAction(SupportAction.OnAppInfoClicked) },
+            colors = appListItemColors(),
+            leadingContent = {
+                Icon(
+                    imageVector = Icons.Rounded.Info,
+                    contentDescription = null,
+                )
+            },
+            headlineContent = { Text("App Info") },
+            trailingContent = {
+                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
+            }
+        )
+        ListItem(
+            modifier = Modifier.clickable { onAction(SupportAction.OnPrivacyPolicyClicked) },
+            colors = appListItemColors(),
+            leadingContent = {
+                Icon(
+                    imageVector = Icons.Rounded.Policy,
+                    contentDescription = null,
+                )
+            },
+            headlineContent = { Text("Privacy Policy") },
+            trailingContent = {
+                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
+            }
+        )
+        ListItem(
+            modifier = Modifier.clickable { onAction(SupportAction.OnSendFeedbackClicked) },
+            colors = appListItemColors(),
+            leadingContent = {
+                Icon(
+                    imageVector = Icons.Rounded.Feedback,
+                    contentDescription = null,
+                )
+            },
+            headlineContent = { Text("Send Feedback") },
+            trailingContent = {
+                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
+            }
+        )
+        ListItem(
+            modifier = Modifier.clickable { onAction(SupportAction.OnRateUsClicked) },
+            colors = appListItemColors(),
+            leadingContent = {
+                Icon(
+                    imageVector = Icons.Rounded.ThumbUp,
+                    contentDescription = null,
+                )
+            },
+            headlineContent = { Text("Rate Us") },
+            trailingContent = {
+                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
+            }
+        )
     }
 }
 
