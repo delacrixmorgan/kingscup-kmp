@@ -99,6 +99,11 @@ data class BoardUiState(
     val cards: List<Card> = emptyList(),
     val gameInSession: Boolean = false,
     val kingCounter: Int = 0,
+    val jokerEnabled: Boolean = true,
+    val jokerTopStartFilled: Boolean = true,
+    val jokerBottomStartFilled: Boolean = false,
+    val jokerTopEndFilled: Boolean = true,
+    val jokerBottomEndFilled: Boolean = false,
 
     val hasCardClicked: Boolean = false,
     val closeScreen: Boolean = false,

@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -21,12 +20,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Close
 import androidx.compose.material.icons.rounded.RestartAlt
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialShapes
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
+import androidx.compose.material3.toShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -41,10 +44,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.card.CardViewModel
+import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.BouncyLazyRow
-import com.delacrixmorgan.kingscup.ui.component.BoxBackground
+import com.delacrixmorgan.kingscup.ui.component.CrownList
+import com.delacrixmorgan.kingscup.ui.component.JokerList
 import com.delacrixmorgan.kingscup.ui.component.NavigationPauseIcon
-import com.delacrixmorgan.kingscup.ui.component.dashedBorder
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -64,29 +68,38 @@ fun BoardRoot(viewModel: BoardViewModel, navHostController: NavHostController) {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun BoardScreen(
     state: BoardUiState,
     onAction: (BoardAction) -> Unit,
 ) {
-    val lazyListState = rememberLazyListState()
-    BoxBackground {
-        Column(modifier = Modifier.fillMaxSize().padding(WindowInsets.systemBars.asPaddingValues())) {
-            NavigationPauseIcon(
-                modifier = Modifier.align(Alignment.End),
-                onClicked = { onAction(BoardAction.OnPauseClicked) }
-            )
-            StatusSection(state)
-            BouncyLazyRow(
-                modifier = Modifier.padding(vertical = 32.dp),
-                state = lazyListState,
-                cards = state.cards,
-                animateBounce = state.gameInSession,
-                onItemClicked = { onAction(BoardAction.OnCardClicked(it)) }
-            )
-            Spacer(Modifier.height(56.dp))
+    AppScaffold(
+        topBar = {
+            Row(
+                Modifier.padding(top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding()),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Spacer(Modifier.width(16.dp))
+                CrownList(counter = state.kingCounter)
+                Spacer(Modifier.weight(1F))
+                NavigationPauseIcon(onClicked = { onAction(BoardAction.OnPauseClicked) })
+            }
+        },
+        content = { innerPadding ->
+            Column(Modifier.padding(innerPadding)) {
+                StatusSection(state)
+                val lazyListState = rememberLazyListState()
+                BouncyLazyRow(
+                    modifier = Modifier.padding(vertical = 32.dp),
+                    state = lazyListState,
+                    cards = state.cards,
+                    animateBounce = state.gameInSession,
+                    onItemClicked = { onAction(BoardAction.OnCardClicked(it)) }
+                )
+            }
         }
-    }
+    )
 
     if (state.showPauseBottomSheet) {
         Dialog(
@@ -131,49 +144,32 @@ fun BoardScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun ColumnScope.StatusSection(state: BoardUiState) {
-    Box(Modifier.fillMaxWidth().weight(1F), contentAlignment = Alignment.Center) {
-        Column {
-            Text(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
-                text = "${state.cards.size} cards left",
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimary
+    Box(Modifier.fillMaxWidth().weight(1F)) {
+        if (state.jokerEnabled) {
+            JokerList(
+                topStartFilled = state.jokerTopStartFilled,
+                bottomStartFilled = state.jokerBottomStartFilled,
+                topEndFilled = state.jokerTopEndFilled,
+                bottomEndFilled = state.jokerBottomEndFilled,
             )
+        }
+        Column(Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
+            Box(Modifier.width(120.dp).aspectRatio(1F).background(MaterialTheme.colorScheme.secondaryContainer, MaterialShapes.Cookie12Sided.toShape()))
             Spacer(Modifier.height(16.dp))
-
-            val cardWidth = 64.dp
-            val cardRatio = 63f / 88f
-            val totalKings = 4
-            val activeKings = state.kingCounter.coerceIn(0, totalKings)
-            val remainingKings = totalKings - activeKings
-
-            val filledCardModifier = Modifier
-                .width(cardWidth)
-                .aspectRatio(cardRatio)
-                .background(
-                    color = MaterialTheme.colorScheme.tertiaryContainer,
-                    shape = RoundedCornerShape(12.dp)
-                )
-
-            val emptyCardModifier = Modifier
-                .width(cardWidth)
-                .aspectRatio(cardRatio)
-                .dashedBorder(
-                    color = MaterialTheme.colorScheme.onPrimary,
-                    shape = RoundedCornerShape(12.dp)
-                )
-
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                repeat(activeKings) {
-                    Box(filledCardModifier)
-                }
-                repeat(remainingKings) {
-                    Box(emptyCardModifier)
-                }
-            }
-
+            Text(
+                text = "Let's go!",
+                style = MaterialTheme.typography.titleLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
+            Spacer(Modifier.height(4.dp))
+            Text(
+                text = "${state.cards.size} cards left",
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface
+            )
         }
     }
 }
