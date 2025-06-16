@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.card.model.Card
 import com.delacrixmorgan.kingscup.data.card.model.Normal
+import com.delacrixmorgan.kingscup.ui.extensions.defaultRule
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
@@ -37,23 +38,7 @@ class RulesViewModel : ViewModel() {
         _state.update {
             it.copy(
                 cards = Card.RankType.entries.mapNotNull { rank ->
-                    val rule = when (rank) {
-                        Card.RankType.King -> Normal.King
-                        Card.RankType.Queen -> Normal.QuestionMaster
-                        Card.RankType.Jack -> Normal.NeverHaveIEver
-                        Card.RankType.Ten -> Normal.Categories
-                        Card.RankType.Nine -> Normal.SnakeEyes
-                        Card.RankType.Eight -> Normal.Mate
-                        Card.RankType.Seven -> Normal.Heaven
-                        Card.RankType.Six -> Normal.Chicks
-                        Card.RankType.Five -> Normal.Dudes
-                        Card.RankType.Four -> Normal.ThumbMaster
-                        Card.RankType.Three -> Normal.Me
-                        Card.RankType.Two -> Normal.You
-                        Card.RankType.Ace -> Normal.Waterfall
-                        else -> null
-                    }
-                    rule?.let { Card(uuid = Uuid.random().toString(), suit = Card.SuitType.Spade, rank = rank, rule = it) }
+                    rank.defaultRule()?.let { Card(uuid = Uuid.random().toString(), suit = Card.SuitType.Spade, rank = rank, rule = it) }
                 }
             )
         }
