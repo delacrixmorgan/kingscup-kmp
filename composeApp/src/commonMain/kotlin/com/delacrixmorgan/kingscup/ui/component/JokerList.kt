@@ -16,32 +16,38 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.delacrixmorgan.kingscup.data.card.model.Card
+import com.delacrixmorgan.kingscup.data.card.model.Joker
 import com.delacrixmorgan.kingscup.theme.AppTheme
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @Composable
 fun JokerList(
-    topStartFilled: Boolean = false,
-    bottomStartFilled: Boolean = false,
-    topEndFilled: Boolean = false,
-    bottomEndFilled: Boolean = false,
+    jokers: List<Card>,
+    onJokerClicked: (Card) -> Unit
 ) {
     Box(Modifier.fillMaxWidth()) {
         Column(
             Modifier.align(Alignment.CenterStart).padding(vertical = 32.dp),
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            JokerStartItem(Modifier.weight(1F), filled = topStartFilled)
-            JokerStartItem(Modifier.weight(1F), filled = bottomStartFilled)
+            JokerStartItem(Modifier.weight(1F), joker = jokers.getOrNull(0), onJokerClicked = onJokerClicked)
+            JokerStartItem(Modifier.weight(1F), joker = jokers.getOrNull(1), onJokerClicked = onJokerClicked)
         }
         Column(
             Modifier.align(Alignment.CenterEnd).padding(vertical = 32.dp),
             verticalArrangement = Arrangement.spacedBy(32.dp)
         ) {
-            JokerEndItem(Modifier.weight(1F), filled = topEndFilled)
-            JokerEndItem(Modifier.weight(1F), filled = bottomEndFilled)
+            JokerEndItem(Modifier.weight(1F), joker = jokers.getOrNull(2), onJokerClicked = onJokerClicked)
+            JokerEndItem(Modifier.weight(1F), joker = jokers.getOrNull(3), onJokerClicked = onJokerClicked)
         }
     }
 }
@@ -49,7 +55,9 @@ fun JokerList(
 @Composable
 private fun JokerStartItem(
     modifier: Modifier,
-    filled: Boolean
+    joker: Card? = null,
+    onJokerClicked: (Card) -> Unit,
+    haptic: HapticFeedback = LocalHapticFeedback.current
 ) {
     val shape = RoundedCornerShape(
         topStart = 0.dp,
@@ -61,10 +69,13 @@ private fun JokerStartItem(
         modifier
             .width(52.dp)
             .then(
-                if (filled) {
+                if (joker != null) {
                     Modifier.background(MaterialTheme.colorScheme.secondaryContainer, shape)
                         .clip(shape)
-                        .clickable { }
+                        .clickable {
+                            haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
+                            onJokerClicked(joker)
+                        }
                 } else {
                     Modifier
                         .offset((-2).dp)
@@ -73,10 +84,10 @@ private fun JokerStartItem(
             ),
         contentAlignment = Alignment.Center
     ) {
-        if (filled) {
+        if (joker != null) {
             Text(
-                text = "\uD83C\uDCCF",
-                style = MaterialTheme.typography.displayMedium,
+                text = stringResource(joker.rule.emoji),
+                style = MaterialTheme.typography.displaySmall,
                 textAlign = TextAlign.Center
             )
         }
@@ -86,7 +97,9 @@ private fun JokerStartItem(
 @Composable
 private fun JokerEndItem(
     modifier: Modifier,
-    filled: Boolean
+    joker: Card? = null,
+    onJokerClicked: (Card) -> Unit,
+    haptic: HapticFeedback = LocalHapticFeedback.current
 ) {
     val shape = RoundedCornerShape(
         topStart = 12.dp,
@@ -98,11 +111,14 @@ private fun JokerEndItem(
         modifier
             .width(52.dp)
             .then(
-                if (filled) {
+                if (joker != null) {
                     Modifier
                         .background(MaterialTheme.colorScheme.secondaryContainer, shape)
                         .clip(shape)
-                        .clickable { }
+                        .clickable {
+                            haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
+                            onJokerClicked(joker)
+                        }
                 } else {
                     Modifier
                         .offset(2.dp)
@@ -111,25 +127,30 @@ private fun JokerEndItem(
             ),
         contentAlignment = Alignment.Center
     ) {
-        if (filled) {
+        if (joker != null) {
             Text(
-                text = "\uD83C\uDCCF",
-                style = MaterialTheme.typography.displayMedium,
+                text = stringResource(joker.rule.emoji),
+                style = MaterialTheme.typography.displaySmall,
                 textAlign = TextAlign.Center
             )
         }
     }
 }
 
+@OptIn(ExperimentalUuidApi::class)
 @Preview
 @Composable
 private fun Preview() {
     AppTheme {
+
         JokerList(
-            topStartFilled = true,
-            bottomStartFilled = false,
-            topEndFilled = true,
-            bottomEndFilled = false,
+            jokers = listOf(
+                Joker.IWillTellYouWhat,
+                Joker.Toilet,
+            ).map {
+                Card(uuid = Uuid.random().toString(), suit = Card.SuitType.Joker, rank = Card.RankType.Joker, rule = it)
+            },
+            onJokerClicked = {}
         )
     }
 }

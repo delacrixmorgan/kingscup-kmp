@@ -1,10 +1,9 @@
 package com.delacrixmorgan.kingscup.data.card
 
 import com.delacrixmorgan.kingscup.data.card.model.Card
-import com.delacrixmorgan.kingscup.data.card.model.Jokers
 import com.delacrixmorgan.kingscup.data.card.model.Normal
-import com.delacrixmorgan.kingscup.data.card.model.Rule
 import com.delacrixmorgan.kingscup.ui.extensions.defaultRule
+import com.delacrixmorgan.kingscup.ui.extensions.jokerRules
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -16,6 +15,9 @@ class CardRepository {
     val cards: StateFlow<List<Card>> = _cards.asStateFlow()
     var activeCard: Card? = null
         private set
+    var activeJoker: Card? = null
+        private set
+
     private var activeIndex: Int? = null
 
     private val _gameInSession = MutableStateFlow(false)
@@ -24,21 +26,8 @@ class CardRepository {
     private val _kingCounter = MutableStateFlow(0)
     val kingCounter: StateFlow<Int> = _kingCounter.asStateFlow()
 
-    private val jokerRules: List<Rule>
-        get() = listOf(
-            Jokers.Viking,
-            Jokers.NoFirstNames,
-            Jokers.NoPointing,
-            Jokers.TRexArms,
-            Jokers.BeLikeBilly,
-            Jokers.IWillTellYouWhat,
-            Jokers.NoPhones,
-            Jokers.NoSwearing,
-            Jokers.Photographer,
-            Jokers.LastOneLaughing,
-            Jokers.LeftHand,
-            Jokers.Toilet
-        )
+    private val _jokers = MutableStateFlow(emptyList<Card>())
+    val jokers: StateFlow<List<Card>> = _jokers.asStateFlow()
 
     @OptIn(ExperimentalUuidApi::class)
     fun buildDeck(jokerEnabled: Boolean) {
@@ -59,7 +48,11 @@ class CardRepository {
         }.shuffled()
         _cards.value = shuffledDeck
         _kingCounter.value = 0
+        _jokers.value = emptyList()
         _gameInSession.value = false
+
+        activeCard = null
+        activeJoker = null
     }
 
     fun drawCard(index: Int) {
@@ -69,12 +62,25 @@ class CardRepository {
     }
 
     fun discardCard() {
-        if (activeCard == null || activeIndex == null) return
-        activeIndex?.let {
-            if (cards.value[it].rule == Normal.King) _kingCounter.value += 1
-            _cards.value -= cards.value[it]
+        activeCard?.let {
+            if (it.rule == Normal.King) _kingCounter.value += 1
+            if (it.suit == Card.SuitType.Joker) {
+                val currentList = _jokers.value.toMutableList()
+                currentList.add(it)
+                _jokers.value = currentList
+            }
+            _cards.value -= it
         }
+
         activeCard = null
         activeIndex = null
+    }
+
+    fun showJoker(card: Card) {
+        activeJoker = card
+    }
+
+    fun dismissJoker() {
+        activeJoker = null
     }
 }

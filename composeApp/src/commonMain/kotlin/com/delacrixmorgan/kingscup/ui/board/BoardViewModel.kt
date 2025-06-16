@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.card.CardRepository
 import com.delacrixmorgan.kingscup.data.card.model.Card
+import com.delacrixmorgan.kingscup.data.card.model.Rule
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -46,6 +47,11 @@ class BoardViewModel(
                     _state.update { it.copy(kingCounter = kingCounter) }
                 }
             }
+            launch {
+                cardRepository.jokers.collectLatest { jokers ->
+                    _state.update { it.copy(jokers = jokers) }
+                }
+            }
         }
     }
 
@@ -66,7 +72,26 @@ class BoardViewModel(
                 }
             }
             BoardAction.OnCardDismissed -> {
-                cardRepository.discardCard()
+                if (cardRepository.activeCard != null) {
+                    cardRepository.discardCard()
+                }
+                if (cardRepository.activeJoker != null) {
+                    cardRepository.dismissJoker()
+                }
+            }
+            is BoardAction.OnJokerClicked -> {
+                viewModelScope.launch {
+                    if (!state.value.hasCardClicked) {
+                        _state.update { it.copy(hasCardClicked = true) }
+                        cardRepository.showJoker(action.card)
+                        navHostController.navigate(Routes.Card) {
+                            launchSingleTop = true
+                            popUpTo(Routes.Card) { inclusive = true }
+                        }
+                        delay(300)
+                        _state.update { it.copy(hasCardClicked = false) }
+                    }
+                }
             }
             BoardAction.OnPauseClicked -> {
                 _state.update { it.copy(showPauseBottomSheet = true) }
@@ -100,10 +125,7 @@ data class BoardUiState(
     val gameInSession: Boolean = false,
     val kingCounter: Int = 0,
     val jokerEnabled: Boolean = true,
-    val jokerTopStartFilled: Boolean = true,
-    val jokerBottomStartFilled: Boolean = false,
-    val jokerTopEndFilled: Boolean = true,
-    val jokerBottomEndFilled: Boolean = false,
+    val jokers: List<Card> = emptyList(),
 
     val hasCardClicked: Boolean = false,
     val closeScreen: Boolean = false,
@@ -113,6 +135,7 @@ data class BoardUiState(
 sealed interface BoardAction {
     data class OnCardClicked(val index: Int) : BoardAction
     data object OnCardDismissed : BoardAction
+    data class OnJokerClicked(val card: Card) : BoardAction
 
     data object OnPauseClicked : BoardAction
     data object OnPauseBottomSheetRestartClicked : BoardAction

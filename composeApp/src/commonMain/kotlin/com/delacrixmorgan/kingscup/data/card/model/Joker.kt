@@ -51,7 +51,7 @@ import kingscup.composeapp.generated.resources.rules_vikingInfo
 import kingscup.composeapp.generated.resources.rules_vikingLabel
 import org.jetbrains.compose.resources.StringResource
 
-sealed class Jokers(
+sealed class Joker(
     id: String,
     emoji: StringResource,
     label: StringResource,

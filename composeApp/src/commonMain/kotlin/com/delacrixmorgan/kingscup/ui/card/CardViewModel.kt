@@ -37,7 +37,7 @@ class CardViewModel(
         )
 
     private fun loadData() {
-        val card = cardRepository.activeCard
+        val card = cardRepository.activeCard ?: cardRepository.activeJoker
         _state.update {
             it.copy(
                 suit = card?.suit,

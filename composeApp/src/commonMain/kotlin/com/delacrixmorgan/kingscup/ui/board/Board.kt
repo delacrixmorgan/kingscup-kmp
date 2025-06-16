@@ -88,7 +88,7 @@ fun BoardScreen(
         },
         content = { innerPadding ->
             Column(Modifier.padding(innerPadding)) {
-                StatusSection(state)
+                StatusSection(state, onAction)
                 val lazyListState = rememberLazyListState()
                 BouncyLazyRow(
                     modifier = Modifier.padding(vertical = 32.dp),
@@ -146,14 +146,12 @@ fun BoardScreen(
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-private fun ColumnScope.StatusSection(state: BoardUiState) {
+private fun ColumnScope.StatusSection(state: BoardUiState, onAction: (BoardAction) -> Unit) {
     Box(Modifier.fillMaxWidth().weight(1F)) {
         if (state.jokerEnabled) {
             JokerList(
-                topStartFilled = state.jokerTopStartFilled,
-                bottomStartFilled = state.jokerBottomStartFilled,
-                topEndFilled = state.jokerTopEndFilled,
-                bottomEndFilled = state.jokerBottomEndFilled,
+                jokers = state.jokers,
+                onJokerClicked = { onAction(BoardAction.OnJokerClicked(it)) },
             )
         }
         Column(Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
