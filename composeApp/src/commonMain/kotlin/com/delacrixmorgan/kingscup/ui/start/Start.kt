@@ -51,6 +51,7 @@ import com.composables.core.Sheet
 import com.composables.core.SheetDetent.Companion.FullyExpanded
 import com.composables.core.SheetDetent.Companion.Hidden
 import com.composables.core.rememberModalBottomSheetState
+import com.delacrixmorgan.kingscup.data.localemanager.rememberUrlLauncher
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import kingscup.composeapp.generated.resources.Res
@@ -71,6 +72,7 @@ fun StartScreen(
     onAction: (StartAction) -> Unit,
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
 ) {
+    val urlLauncher = rememberUrlLauncher()
     BoxBackground {
         Column(
             modifier = Modifier
@@ -119,7 +121,10 @@ fun StartScreen(
                     containerColor = MaterialTheme.colorScheme.surface,
                     contentColor = MaterialTheme.colorScheme.onSurface,
                     shape = CircleShape,
-                    onClick = { onAction(StartAction.OnLocalisationClicked) },
+                    onClick = {
+                        urlLauncher.openAppSettings()
+//                        onAction(StartAction.OnLocalisationClicked)
+                    },
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Public,

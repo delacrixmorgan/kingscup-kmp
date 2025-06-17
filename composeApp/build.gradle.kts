@@ -87,6 +87,9 @@ android {
     buildFeatures {
         buildConfig = true
     }
+    androidResources {
+        generateLocaleConfig = true
+    }
 }
 
 dependencies {
