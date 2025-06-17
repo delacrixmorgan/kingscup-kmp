@@ -1,8 +1,8 @@
 package com.delacrixmorgan.kingscup.ui.start
 
-import androidx.compose.ui.text.intl.Locale
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -24,6 +24,7 @@ class StartViewModel : ViewModel() {
                 _state.update { it.copy(showLocalisationBottomSheet = true) }
             }
             is StartAction.OnLocalisationChanged -> {
+                action.localePreference
                 // TODO (Localisation)
             }
             StartAction.OnLocalisationBottomSheetDismissed -> {
@@ -40,6 +41,7 @@ class StartViewModel : ViewModel() {
 }
 
 data class StartUiState(
+    val locale: List<LocalePreference> = LocalePreference.entries,
     val showLocalisationBottomSheet: Boolean = false,
 )
 
@@ -47,7 +49,7 @@ sealed interface StartAction {
     data object OnSetupClicked : StartAction
 
     data object OnLocalisationClicked : StartAction
-    data class OnLocalisationChanged(val locale: Locale) : StartAction
+    data class OnLocalisationChanged(val localePreference: LocalePreference) : StartAction
     data object OnLocalisationBottomSheetDismissed : StartAction
     data object OnSupportClicked : StartAction
 

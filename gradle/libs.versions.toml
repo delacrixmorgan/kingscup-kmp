@@ -3,7 +3,7 @@ kotlin = "2.1.21"
 agp = "8.8.2"
 android-compileSdk = "35"
 android-minSdk = "23"
-android-targetSdk = "35"
+android-targetSdk = "36"
 
 androidx-lifecycle = "2.9.0"
 androidx-datastore-preference = "1.1.7" # https://developer.android.com/jetpack/androidx/releases/datastore
@@ -11,6 +11,7 @@ androidx-navigation-compose = "2.9.0-beta02" # https://mvnrepository.com/artifac
 
 compose-multiplatform = "1.9.0-alpha02" # https://github.com/JetBrains/compose-multiplatform/releases
 composeBoM = "2025.06.00" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
+composables-core = "1.33.0"
 
 koinBoM = "4.1.0" # https://github.com/InsertKoinIO/koin/releases
 compottie = "2.0.0-rc04"
@@ -21,6 +22,7 @@ androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", nam
 androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
 androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
 compose-ui-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "compose-multiplatform" }
+composables-core = { module = "com.composables:core", version.ref = "composables-core" }
 
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBoM" }
 
