@@ -17,7 +17,6 @@ actual class UrlLauncher(private val context: Context) {
     }
 }
 
-
 @Composable
 actual fun rememberUrlLauncher(): UrlLauncher {
     val context = LocalContext.current

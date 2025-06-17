@@ -52,6 +52,8 @@ import com.composables.core.SheetDetent.Companion.FullyExpanded
 import com.composables.core.SheetDetent.Companion.Hidden
 import com.composables.core.rememberModalBottomSheetState
 import com.delacrixmorgan.kingscup.data.localemanager.rememberUrlLauncher
+import com.delacrixmorgan.kingscup.data.preferences.changeAppLanguage
+import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import kingscup.composeapp.generated.resources.Res
@@ -132,6 +134,10 @@ fun StartScreen(
                     )
                 }
             }
+
+            // TODO (This works)
+            changeAppLanguage(LocalePreference.Chinese.code)
+
             Spacer(Modifier.height(220.dp))
             // TODO (Banner - Translation Request)
         }
