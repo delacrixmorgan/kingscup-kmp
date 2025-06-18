@@ -1,6 +1,7 @@
 [versions]
 kotlin = "2.1.21"
 agp = "8.8.2"
+android-kmp-plugin = "8.10.1" # https://mvnrepository.com/artifact/com.android.kotlin.multiplatform.library/com.android.kotlin.multiplatform.library.gradle.plugin
 android-compileSdk = "35"
 android-minSdk = "23"
 android-targetSdk = "36"
@@ -34,8 +35,9 @@ compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "comp
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-androidLibrary = { id = "com.android.library", version.ref = "agp" }
-composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "android-kmp-plugin" }
+jetbrainsComposeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+jetbrainsKotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
