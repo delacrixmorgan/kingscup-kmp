@@ -49,23 +49,17 @@ class SetupViewModel(
 
     fun onAction(navHostController: NavHostController, action: SetupAction) {
         when (action) {
-            is SetupAction.OnJokerSettingsToggled -> {
-                viewModelScope.launch {
-                    preferencesRepository.saveJokerEnabled(action.enabled)
-                }
+            is SetupAction.OnJokerSettingsToggled -> viewModelScope.launch {
+                preferencesRepository.saveJokerEnabled(action.enabled)
             }
             SetupAction.OnStartClicked -> {
                 navHostController.navigate(Routes.Loading)
             }
-            is SetupAction.OnThemeSelected -> {
-                viewModelScope.launch {
-                    preferencesRepository.saveTheme(action.theme)
-                }
+            is SetupAction.OnThemeSelected -> viewModelScope.launch {
+                preferencesRepository.saveTheme(action.theme)
             }
-            is SetupAction.OnSkinSelected -> {
-                viewModelScope.launch {
-                    preferencesRepository.saveSkin(action.skin)
-                }
+            is SetupAction.OnSkinSelected -> viewModelScope.launch {
+                preferencesRepository.saveSkin(action.skin)
             }
             SetupAction.OnRulesClicked -> {
                 navHostController.navigate(Routes.Rules)

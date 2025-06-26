@@ -32,7 +32,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     }
 
 fun viewModelModule() = module {
-    viewModel { StartViewModel() }
+    viewModel { StartViewModel(get()) }
     viewModel { SupportViewModel() }
     viewModel { ThemeViewModel(get()) }
     viewModel { AppInfoViewModel() }

@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import kotlinx.coroutines.flow.Flow
@@ -15,10 +16,18 @@ class PreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) : KoinComponent {
     companion object {
+        private val KEY_LOCALE = stringPreferencesKey("GoqLZdFnasfFBnsgfQfm")
         private val KEY_SKIN = stringPreferencesKey("BBiGXoLNpdXefpYqHRQq")
         private val KEY_THEME = stringPreferencesKey("hzYuGtNdgwJTBrCPspAP")
         private val KEY_JOKER_ENABLED = booleanPreferencesKey("ffhrUNfmCXujeNiwVrPH")
-        private val KEY_LOCALE = stringPreferencesKey("GoqLZdFnasfFBnsgfQfm")
+    }
+
+    val localeFlow: Flow<LocalePreference>
+        get() = dataStore.data
+            .map { LocalePreference.valueOf(it[KEY_LOCALE] ?: LocalePreference.Default.name) }
+
+    suspend fun saveLocale(value: LocalePreference) {
+        dataStore.edit { it[KEY_LOCALE] = value.name }
     }
 
     val skinFlow: Flow<SkinPreference>

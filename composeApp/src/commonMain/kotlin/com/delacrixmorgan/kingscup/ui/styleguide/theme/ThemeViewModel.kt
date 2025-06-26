@@ -43,15 +43,11 @@ class ThemeViewModel(
 
     fun onAction(action: ThemeAction) {
         when (action) {
-            is ThemeAction.OnThemeSelected -> {
-                viewModelScope.launch {
-                    preferencesRepository.saveTheme(action.theme)
-                }
+            is ThemeAction.OnThemeSelected -> viewModelScope.launch {
+                preferencesRepository.saveTheme(action.theme)
             }
-            is ThemeAction.OnSkinSelected -> {
-                viewModelScope.launch {
-                    preferencesRepository.saveSkin(action.skin)
-                }
+            is ThemeAction.OnSkinSelected -> viewModelScope.launch {
+                preferencesRepository.saveSkin(action.skin)
             }
         }
     }

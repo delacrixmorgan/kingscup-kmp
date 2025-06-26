@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.card.CardRepository
 import com.delacrixmorgan.kingscup.data.card.model.Card
-import com.delacrixmorgan.kingscup.data.card.model.Rule
 import com.delacrixmorgan.kingscup.nav.Routes
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -57,18 +56,16 @@ class BoardViewModel(
 
     fun onAction(navHostController: NavHostController, action: BoardAction) {
         when (action) {
-            is BoardAction.OnCardClicked -> {
-                viewModelScope.launch {
-                    if (!state.value.hasCardClicked) {
-                        _state.update { it.copy(hasCardClicked = true) }
-                        cardRepository.drawCard(action.index)
-                        navHostController.navigate(Routes.Card) {
-                            launchSingleTop = true
-                            popUpTo(Routes.Card) { inclusive = true }
-                        }
-                        delay(300)
-                        _state.update { it.copy(hasCardClicked = false) }
+            is BoardAction.OnCardClicked -> viewModelScope.launch {
+                if (!state.value.hasCardClicked) {
+                    _state.update { it.copy(hasCardClicked = true) }
+                    cardRepository.drawCard(action.index)
+                    navHostController.navigate(Routes.Card) {
+                        launchSingleTop = true
+                        popUpTo(Routes.Card) { inclusive = true }
                     }
+                    delay(300)
+                    _state.update { it.copy(hasCardClicked = false) }
                 }
             }
             BoardAction.OnCardDismissed -> {
@@ -79,18 +76,16 @@ class BoardViewModel(
                     cardRepository.dismissJoker()
                 }
             }
-            is BoardAction.OnJokerClicked -> {
-                viewModelScope.launch {
-                    if (!state.value.hasCardClicked) {
-                        _state.update { it.copy(hasCardClicked = true) }
-                        cardRepository.showJoker(action.card)
-                        navHostController.navigate(Routes.Card) {
-                            launchSingleTop = true
-                            popUpTo(Routes.Card) { inclusive = true }
-                        }
-                        delay(300)
-                        _state.update { it.copy(hasCardClicked = false) }
+            is BoardAction.OnJokerClicked -> viewModelScope.launch {
+                if (!state.value.hasCardClicked) {
+                    _state.update { it.copy(hasCardClicked = true) }
+                    cardRepository.showJoker(action.card)
+                    navHostController.navigate(Routes.Card) {
+                        launchSingleTop = true
+                        popUpTo(Routes.Card) { inclusive = true }
                     }
+                    delay(300)
+                    _state.update { it.copy(hasCardClicked = false) }
                 }
             }
             BoardAction.OnPauseClicked -> {
@@ -99,19 +94,15 @@ class BoardViewModel(
             BoardAction.OnPauseBottomSheetDismissed -> {
                 _state.update { it.copy(showPauseBottomSheet = false) }
             }
-            BoardAction.OnPauseBottomSheetRestartClicked -> {
-                viewModelScope.launch {
-                    _state.update { it.copy(showPauseBottomSheet = false) }
-                    delay(100)
-                    navHostController.navigate(Routes.Loading) { popUpTo(Routes.Loading) { inclusive = false } }
-                }
+            BoardAction.OnPauseBottomSheetRestartClicked -> viewModelScope.launch {
+                _state.update { it.copy(showPauseBottomSheet = false) }
+                delay(100)
+                navHostController.navigate(Routes.Loading) { popUpTo(Routes.Loading) { inclusive = false } }
             }
-            BoardAction.OnPauseBottomSheetQuitClicked -> {
-                viewModelScope.launch {
-                    _state.update { it.copy(showPauseBottomSheet = false) }
-                    delay(100)
-                    navHostController.navigate(Routes.Start) { popUpTo(Routes.Start) { inclusive = true } }
-                }
+            BoardAction.OnPauseBottomSheetQuitClicked -> viewModelScope.launch {
+                _state.update { it.copy(showPauseBottomSheet = false) }
+                delay(100)
+                navHostController.navigate(Routes.Start) { popUpTo(Routes.Start) { inclusive = true } }
             }
             BoardAction.OnCloseScreen -> {
                 navHostController.navigateUp()

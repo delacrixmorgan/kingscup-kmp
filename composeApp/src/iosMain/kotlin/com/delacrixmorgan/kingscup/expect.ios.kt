@@ -3,6 +3,7 @@ package com.delacrixmorgan.kingscup
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.delacrixmorgan.kingscup.core.local.LocalDataStore
+import com.delacrixmorgan.kingscup.data.platform.Platform
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.koin.core.module.Module
 import org.koin.core.qualifier.named
@@ -12,6 +13,8 @@ import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
+
+actual val platform: Platform = Platform.iOS
 
 actual fun platformModule(): Module = module {
     single(named(LocalDataStore.Preferences.name)) { dataStore(LocalDataStore.Preferences.path) }

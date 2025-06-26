@@ -3,8 +3,11 @@ package com.delacrixmorgan.kingscup
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
+import com.delacrixmorgan.kingscup.data.platform.Platform
 import okio.Path.Companion.toPath
 import org.koin.core.module.Module
+
+expect val platform: Platform
 
 expect fun platformModule(): Module
 

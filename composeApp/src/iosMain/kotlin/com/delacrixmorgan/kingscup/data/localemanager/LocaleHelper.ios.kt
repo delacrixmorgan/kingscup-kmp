@@ -2,11 +2,22 @@ package com.delacrixmorgan.kingscup.data.localemanager
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import platform.Foundation.NSLocale
 import platform.Foundation.NSURL
+import platform.Foundation.currentLocale
+import platform.Foundation.languageCode
 import platform.UIKit.UIApplication
 import platform.UIKit.UIApplicationOpenSettingsURLString
 
-actual class UrlLauncher {
+actual class LocaleHelper {
+    // Not Available
+    actual fun setLanguage(languageCode: String) {}
+
+    actual fun getSystemLanguage(): String {
+        val nsLocale = NSLocale.currentLocale.languageCode
+        return nsLocale
+    }
+
     actual fun openAppSettings() {
         val url = NSURL(string = UIApplicationOpenSettingsURLString)
         if (UIApplication.sharedApplication.canOpenURL(url)) {
@@ -16,8 +27,6 @@ actual class UrlLauncher {
 }
 
 @Composable
-actual fun rememberUrlLauncher(): UrlLauncher {
-    return remember {
-        UrlLauncher()
-    }
+actual fun rememberLocaleHelper(): LocaleHelper {
+    return remember { LocaleHelper() }
 }

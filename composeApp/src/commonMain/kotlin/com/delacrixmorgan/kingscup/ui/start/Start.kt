@@ -51,9 +51,7 @@ import com.composables.core.Sheet
 import com.composables.core.SheetDetent.Companion.FullyExpanded
 import com.composables.core.SheetDetent.Companion.Hidden
 import com.composables.core.rememberModalBottomSheetState
-import com.delacrixmorgan.kingscup.data.localemanager.rememberUrlLauncher
-import com.delacrixmorgan.kingscup.data.preferences.changeAppLanguage
-import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
+import com.delacrixmorgan.kingscup.data.localemanager.rememberLocaleHelper
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import kingscup.composeapp.generated.resources.Res
@@ -74,7 +72,7 @@ fun StartScreen(
     onAction: (StartAction) -> Unit,
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
 ) {
-    val urlLauncher = rememberUrlLauncher()
+    val localeHelper = rememberLocaleHelper()
     BoxBackground {
         Column(
             modifier = Modifier
@@ -123,10 +121,7 @@ fun StartScreen(
                     containerColor = MaterialTheme.colorScheme.surface,
                     contentColor = MaterialTheme.colorScheme.onSurface,
                     shape = CircleShape,
-                    onClick = {
-                        urlLauncher.openAppSettings()
-//                        onAction(StartAction.OnLocalisationClicked)
-                    },
+                    onClick = { onAction(StartAction.OnLocalisationClicked) },
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Public,
@@ -134,10 +129,6 @@ fun StartScreen(
                     )
                 }
             }
-
-            // TODO (This works)
-            changeAppLanguage(LocalePreference.Chinese.code)
-
             Spacer(Modifier.height(220.dp))
             // TODO (Banner - Translation Request)
         }
@@ -205,6 +196,17 @@ fun StartScreen(
 
     LaunchedEffect(state, lifecycleOwner) {
         sheetState.targetDetent = if (state.showLocalisationBottomSheet) FullyExpanded else Hidden
+    }
+
+    LaunchedEffect(state.selectedLocale) {
+        localeHelper.setLanguage(state.selectedLocale.code)
+    }
+
+    LaunchedEffect(state.openAppSettings) {
+        if (state.openAppSettings) {
+            localeHelper.openAppSettings()
+            onAction(StartAction.OnLocalisationAppSettingsOpened)
+        }
     }
 }
 
