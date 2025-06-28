@@ -5,6 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.card.CardRepository
 import com.delacrixmorgan.kingscup.data.card.model.Card
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.rules_kingGameOverDescription
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -19,9 +21,8 @@ class CardViewModel(
 ) : ViewModel() {
 
     companion object {
-        const val DELAY_CARD_CLOSE = 700L
+        const val DELAY_CLOSE_BUTTON_ENABLED_IN_MS = 700L
         const val ON_CARD_DISMISSED = "onCardDismissed"
-
     }
 
     private var hasLoadedInitialData = false
@@ -41,18 +42,24 @@ class CardViewModel(
         )
 
     private fun loadData() {
+        val gameOver = cardRepository.gameOver.value
         val card = cardRepository.activeCard ?: cardRepository.activeJoker
         _state.update {
             it.copy(
+                hasGameEnded = gameOver,
                 suit = card?.suit,
                 rank = card?.rank?.toString() ?: "",
                 emoji = card?.rule?.emoji,
                 label = card?.rule?.label,
-                description = card?.rule?.description,
+                description = if (!gameOver) {
+                    card?.rule?.description
+                } else {
+                    Res.string.rules_kingGameOverDescription
+                },
             )
         }
         viewModelScope.launch {
-            delay(DELAY_CARD_CLOSE)
+            delay(DELAY_CLOSE_BUTTON_ENABLED_IN_MS)
             _state.update { it.copy(closeButtonEnabled = true) }
         }
     }
@@ -80,6 +87,7 @@ data class CardUiState(
     val description: StringResource? = null,
     val hasNavigateUp: Boolean = false,
 
+    val hasGameEnded: Boolean = false,
     val closeScreen: Boolean = false,
     val closeButtonEnabled: Boolean = false,
 )

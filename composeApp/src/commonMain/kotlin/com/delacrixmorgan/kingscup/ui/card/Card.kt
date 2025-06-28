@@ -1,9 +1,6 @@
 package com.delacrixmorgan.kingscup.ui.card
 
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.gestures.waitForUpOrCancellation
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Done
+import androidx.compose.material.icons.rounded.LocalDrink
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -24,18 +22,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
-import androidx.compose.ui.composed
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
-import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,6 +38,7 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.AnimatedEmoji
 import com.delacrixmorgan.kingscup.ui.component.AppBar
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
+import com.delacrixmorgan.kingscup.ui.component.Confetti
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
 import com.delacrixmorgan.kingscup.ui.component.bounceClickEffect
 import com.delacrixmorgan.kingscup.ui.extensions.getMaterialShape
@@ -131,18 +124,24 @@ fun CardScreen(
                         },
                     ) {
                         Icon(
-                            Icons.Rounded.Done,
-                            contentDescription = "Localized description",
-                            modifier = Modifier.size(ButtonDefaults.iconSizeFor(size))
+                            imageVector = if (!state.hasGameEnded) Icons.Rounded.Done else Icons.Rounded.LocalDrink,
+                            modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
+                            contentDescription = null
                         )
                         Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
-                        Text("Done", style = ButtonDefaults.textStyleFor(size))
+                        Text(
+                            text = if (!state.hasGameEnded) "Done" else "Game Over",
+                            style = ButtonDefaults.textStyleFor(size)
+                        )
                     }
                     Spacer(Modifier.height(32.dp))
                 }
             }
         }
     )
+    if (state.hasGameEnded) {
+        Confetti()
+    }
 }
 
 @Preview

@@ -30,7 +30,6 @@ fun Confetti() {
 private fun explode(colors: List<Int>): List<Party> {
     return listOf(
         Party(
-            delay = 500,
             speed = 0f,
             maxSpeed = 30f,
             damping = 0.9f,
@@ -44,7 +43,6 @@ private fun explode(colors: List<Int>): List<Party> {
 private fun parade(colors: List<Int>): List<Party> {
     val yPosition = 0.2
     val party = Party(
-        delay = 500,
         speed = 10f,
         maxSpeed = 30f,
         damping = 0.9f,

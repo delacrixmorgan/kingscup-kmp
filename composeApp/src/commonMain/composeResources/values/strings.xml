@@ -4,6 +4,7 @@
     <string name="rules_kingEmoji">🌟</string>
     <string name="rules_kingLabel">King's Cup</string>
     <string name="rules_kingDescription">Set a new rule. Fill the King's Cup!</string>
+    <string name="rules_kingGameOverDescription">Game over, you have to finish the King's Cup!</string>
     <string name="rules_kingInfo"></string>
     <string name="rules_questionMasterEmoji">❓</string>
     <string name="rules_questionMasterLabel">Question Master</string>
@@ -75,7 +76,7 @@
     <string name="rules_vikingInfo"></string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">No First Names Rule</string>
-    <string name="rules_noFirstNamesDescription">It’s Bond, James Bond.  Oops! Just call me Bond, godammit.</string>
+    <string name="rules_noFirstNamesDescription">It’s Bond, James Bond.\nOops! Just call me Bond, godammit.</string>
     <string name="rules_noFirstNamesInfo"></string>
     <string name="rules_noPointingEmoji">🫵</string>
     <string name="rules_noPointingLabel">No Pointing Rule</string>

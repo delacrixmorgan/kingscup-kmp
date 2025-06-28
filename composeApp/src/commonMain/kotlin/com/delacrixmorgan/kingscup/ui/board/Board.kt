@@ -25,7 +25,6 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.card.CardViewModel
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.BouncyLazyRow
-import com.delacrixmorgan.kingscup.ui.component.Confetti
 import com.delacrixmorgan.kingscup.ui.component.CrownList
 import com.delacrixmorgan.kingscup.ui.component.NavigationPauseIcon
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -81,9 +80,6 @@ fun BoardScreen(
             }
         }
     )
-    if (state.hasGameEnded) {
-        Confetti()
-    }
     if (state.showPauseBottomSheet) {
         BoardPauseDialog(onAction)
     }

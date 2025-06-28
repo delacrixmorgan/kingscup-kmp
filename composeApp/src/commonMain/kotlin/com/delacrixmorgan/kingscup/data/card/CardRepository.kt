@@ -29,6 +29,9 @@ class CardRepository {
     private val _jokers = MutableStateFlow(emptyList<Card>())
     val jokers: StateFlow<List<Card>> = _jokers.asStateFlow()
 
+    private val _gameOver = MutableStateFlow(false)
+    val gameOver: StateFlow<Boolean> = _gameOver.asStateFlow()
+
     @OptIn(ExperimentalUuidApi::class)
     fun buildDeck(jokerEnabled: Boolean) {
         val normalDeck: List<Card> = Card.SuitType.entries
@@ -53,6 +56,7 @@ class CardRepository {
         _kingCounter.value = 0
         _jokers.value = emptyList()
         _gameInSession.value = false
+        _gameOver.value = false
 
         activeCard = null
         activeJoker = null
@@ -76,6 +80,10 @@ class CardRepository {
         activeCard = cards.value.getOrNull(index)
         activeIndex = index
         _gameInSession.value = true
+
+        if (kingCounter.value == 3 && activeCard?.rank == Card.RankType.King) {
+            _gameOver.value = true
+        }
     }
 
     fun discardCard() {

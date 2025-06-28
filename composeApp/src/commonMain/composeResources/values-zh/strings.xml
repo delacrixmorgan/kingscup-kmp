@@ -4,6 +4,7 @@
     <string name="rules_kingEmoji">🌟</string>
     <string name="rules_kingLabel">国王杯</string>
     <string name="rules_kingDescription">制定新规则。填满国王杯！</string>
+    <string name="rules_kingGameOverDescription">游戏结束，你必须完成国王杯！</string>
     <string name="rules_questionMasterEmoji">❓</string>
     <string name="rules_questionMasterLabel">提问大师</string>
     <string name="rules_questionMasterDescription">向玩家提问。他们必须用另一个问题回答下一个人。第一个失败的人，喝！</string>
@@ -57,7 +58,7 @@
     <string name="rules_vikingDescription">“每当你发出‘摆动的维京号角’声时，每个人都必须像在船上一样划桨！\n\n最后一个这样做的人，喝酒！”</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">禁止名字规则</string>
-    <string name="rules_noFirstNamesDescription">我是邦德，詹姆斯邦德。哎呀！叫我邦德就行了，该死的。</string>
+    <string name="rules_noFirstNamesDescription">我是邦德，詹姆斯邦德。\n哎呀！叫我邦德就行了，该死的。</string>
     <string name="rules_noPointingEmoji">🫵</string>
     <string name="rules_noPointingLabel">禁止指点规则</string>
     <string name="rules_noPointingDescription">如果你指着某人，你就喝酒！</string>

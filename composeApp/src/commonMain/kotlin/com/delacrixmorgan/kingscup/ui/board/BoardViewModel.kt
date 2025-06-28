@@ -22,14 +22,14 @@ class BoardViewModel(
 
     private val _state = MutableStateFlow(BoardUiState())
     val state = _state
-        .onStart { loadData() }
+        .onStart { observeData() }
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5_000L),
             initialValue = BoardUiState()
         )
 
-    private fun loadData() {
+    private fun observeData() {
         viewModelScope.launch {
             launch {
                 cardRepository.cards.collectLatest { cards ->
@@ -87,7 +87,7 @@ class BoardViewModel(
                     cardRepository.showJoker(action.card)
                     navHostController.navigate(Routes.Card) {
                         launchSingleTop = true
-                        popUpTo(Routes.Card) { inclusive = true }
+                        popUpTo(Routes.Card) { inclusive = true  }
                     }
                     delay(300)
                     _state.update { it.copy(hasCardClicked = false) }
