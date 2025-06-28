@@ -42,13 +42,18 @@ class BoardViewModel(
                 }
             }
             launch {
-                cardRepository.kingCounter.collectLatest { kingCounter ->
-                    _state.update { it.copy(kingCounter = kingCounter) }
+                cardRepository.jokers.collectLatest { jokers ->
+                    _state.update { it.copy(jokers = jokers) }
                 }
             }
             launch {
-                cardRepository.jokers.collectLatest { jokers ->
-                    _state.update { it.copy(jokers = jokers) }
+                cardRepository.kingCounter.collectLatest { kingCounter ->
+                    _state.update {
+                        it.copy(
+                            kingCounter = kingCounter,
+                            hasGameEnded = kingCounter >= 4
+                        )
+                    }
                 }
             }
         }
@@ -57,7 +62,7 @@ class BoardViewModel(
     fun onAction(navHostController: NavHostController, action: BoardAction) {
         when (action) {
             is BoardAction.OnCardClicked -> viewModelScope.launch {
-                if (!state.value.hasCardClicked) {
+                if (!state.value.hasCardClicked && !state.value.hasGameEnded) {
                     _state.update { it.copy(hasCardClicked = true) }
                     cardRepository.drawCard(action.index)
                     navHostController.navigate(Routes.Card) {
@@ -77,7 +82,7 @@ class BoardViewModel(
                 }
             }
             is BoardAction.OnJokerClicked -> viewModelScope.launch {
-                if (!state.value.hasCardClicked) {
+                if (!state.value.hasCardClicked && !state.value.hasGameEnded) {
                     _state.update { it.copy(hasCardClicked = true) }
                     cardRepository.showJoker(action.card)
                     navHostController.navigate(Routes.Card) {
@@ -117,6 +122,7 @@ data class BoardUiState(
     val kingCounter: Int = 0,
     val jokerEnabled: Boolean = true,
     val jokers: List<Card> = emptyList(),
+    val hasGameEnded: Boolean = false,
 
     val hasCardClicked: Boolean = false,
     val closeScreen: Boolean = false,
