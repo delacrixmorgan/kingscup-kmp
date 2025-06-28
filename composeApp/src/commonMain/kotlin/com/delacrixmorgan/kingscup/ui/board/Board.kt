@@ -1,7 +1,6 @@
 package com.delacrixmorgan.kingscup.ui.board
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -16,18 +15,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilledIconButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialShapes
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.toShape
 import androidx.compose.runtime.Composable
@@ -37,9 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
@@ -107,45 +96,7 @@ fun BoardScreen(
     }
 
     if (state.showPauseBottomSheet) {
-        Dialog(
-            onDismissRequest = { onAction(BoardAction.OnPauseBottomSheetDismissed) },
-            content = {
-                Column(Modifier.background(MaterialTheme.colorScheme.surfaceContainerHigh, shape = RoundedCornerShape(24.dp)).padding(16.dp)) {
-                    Text(
-                        "Toilet Break",
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.headlineMedium,
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-                    Spacer(Modifier.height(48.dp))
-                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        OutlinedButton(
-                            modifier = Modifier.weight(1F),
-                            onClick = { onAction(BoardAction.OnPauseBottomSheetRestartClicked) }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.RestartAlt,
-                                contentDescription = "Restart game",
-                            )
-                        }
-                        FilledIconButton(
-                            modifier = Modifier.weight(1F),
-                            colors = IconButtonDefaults.filledIconButtonColors(
-                                containerColor = MaterialTheme.colorScheme.error,
-                                contentColor = MaterialTheme.colorScheme.onError
-                            ),
-                            onClick = { onAction(BoardAction.OnPauseBottomSheetQuitClicked) }
-                        ) {
-                            Icon(
-                                imageVector = Icons.Rounded.Close,
-                                contentDescription = "Quit game",
-                            )
-                        }
-                    }
-                }
-            }
-        )
+        BoardPauseDialog(onAction)
     }
 }
 
@@ -163,7 +114,7 @@ private fun ColumnScope.StatusSection(state: BoardUiState, onAction: (BoardActio
             Box(Modifier.width(120.dp).aspectRatio(1F).background(MaterialTheme.colorScheme.secondaryContainer, MaterialShapes.Cookie12Sided.toShape()))
             Spacer(Modifier.height(16.dp))
             Text(
-                text = "Let's go!",
+                text = if (!state.hasGameEnded) "Let's go!" else "Game over!",
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface
             )

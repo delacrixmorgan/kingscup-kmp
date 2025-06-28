@@ -20,6 +20,7 @@ import kingscup.composeapp.generated.resources.Res
 @Composable
 fun AnimatedEmoji(emoji: String) {
     val lottieFile = when (emoji) {
+        "\uD83D\uDE44" -> "rolling_eyes" // 🙄
         "\uD83C\uDF1F" -> "glowing_star" // 🌟
         "❓" -> "question" // ❓
         "\uD83E\uDD14" -> "thinking_face" // 🤔
