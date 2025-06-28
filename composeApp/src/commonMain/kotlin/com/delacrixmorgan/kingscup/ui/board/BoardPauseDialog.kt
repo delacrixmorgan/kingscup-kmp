@@ -61,7 +61,7 @@ fun BoardPauseDialog(
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     OutlinedButton(
                         modifier = Modifier.weight(1F),
-                        onClick = { onAction(BoardAction.OnPauseBottomSheetRestartClicked) }
+                        onClick = { onAction(BoardAction.OnRestartClicked) }
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.RestartAlt,
@@ -74,11 +74,11 @@ fun BoardPauseDialog(
                             containerColor = MaterialTheme.colorScheme.error,
                             contentColor = MaterialTheme.colorScheme.onError
                         ),
-                        onClick = { onAction(BoardAction.OnPauseBottomSheetQuitClicked) }
+                        onClick = { onAction(BoardAction.OnExitClicked) }
                     ) {
                         Icon(
                             imageVector = Icons.Rounded.Close,
-                            contentDescription = "Quit game",
+                            contentDescription = "Exit game",
                         )
                     }
                 }

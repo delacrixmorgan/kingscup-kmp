@@ -99,12 +99,12 @@ class BoardViewModel(
             BoardAction.OnPauseBottomSheetDismissed -> {
                 _state.update { it.copy(showPauseBottomSheet = false) }
             }
-            BoardAction.OnPauseBottomSheetRestartClicked -> viewModelScope.launch {
+            BoardAction.OnRestartClicked -> viewModelScope.launch {
                 _state.update { it.copy(showPauseBottomSheet = false) }
                 delay(100)
                 navHostController.navigate(Routes.Loading) { popUpTo(Routes.Loading) { inclusive = false } }
             }
-            BoardAction.OnPauseBottomSheetQuitClicked -> viewModelScope.launch {
+            BoardAction.OnExitClicked -> viewModelScope.launch {
                 _state.update { it.copy(showPauseBottomSheet = false) }
                 delay(100)
                 navHostController.navigate(Routes.Start) { popUpTo(Routes.Start) { inclusive = true } }
@@ -135,8 +135,8 @@ sealed interface BoardAction {
     data class OnJokerClicked(val card: Card) : BoardAction
 
     data object OnPauseClicked : BoardAction
-    data object OnPauseBottomSheetRestartClicked : BoardAction
-    data object OnPauseBottomSheetQuitClicked : BoardAction
     data object OnPauseBottomSheetDismissed : BoardAction
+    data object OnRestartClicked : BoardAction
+    data object OnExitClicked : BoardAction
     data object OnCloseScreen : BoardAction
 }

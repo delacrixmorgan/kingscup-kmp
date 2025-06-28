@@ -63,7 +63,9 @@ fun BoardScreen(
                 Spacer(Modifier.width(16.dp))
                 CrownList(counter = state.kingCounter)
                 Spacer(Modifier.weight(1F))
-                NavigationPauseIcon(onClicked = { onAction(BoardAction.OnPauseClicked) })
+                if (!state.hasGameEnded) {
+                    NavigationPauseIcon(onClicked = { onAction(BoardAction.OnPauseClicked) })
+                }
             }
         },
         content = { innerPadding ->
