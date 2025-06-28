@@ -70,7 +70,9 @@ private fun JokerStartItem(
             .width(52.dp)
             .then(
                 if (joker != null) {
-                    Modifier.background(MaterialTheme.colorScheme.secondaryContainer, shape)
+                    Modifier
+                        .bounceClickEffect()
+                        .background(MaterialTheme.colorScheme.secondaryContainer, shape)
                         .clip(shape)
                         .clickable {
                             haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
@@ -113,6 +115,7 @@ private fun JokerEndItem(
             .then(
                 if (joker != null) {
                     Modifier
+                        .bounceClickEffect()
                         .background(MaterialTheme.colorScheme.secondaryContainer, shape)
                         .clip(shape)
                         .clickable {
@@ -142,7 +145,6 @@ private fun JokerEndItem(
 @Composable
 private fun Preview() {
     AppTheme {
-
         JokerList(
             jokers = listOf(
                 Joker.IWillTellYouWhat,

@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.card.CardRepository
 import com.delacrixmorgan.kingscup.data.card.model.Card
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 
 class CardViewModel(
@@ -17,7 +19,9 @@ class CardViewModel(
 ) : ViewModel() {
 
     companion object {
+        const val DELAY_CARD_CLOSE = 700L
         const val ON_CARD_DISMISSED = "onCardDismissed"
+
     }
 
     private var hasLoadedInitialData = false
@@ -47,12 +51,16 @@ class CardViewModel(
                 description = card?.rule?.description,
             )
         }
+        viewModelScope.launch {
+            delay(DELAY_CARD_CLOSE)
+            _state.update { it.copy(closeButtonEnabled = true) }
+        }
     }
 
     fun onAction(navHostController: NavHostController, action: CardAction) {
         when (action) {
             CardAction.OnCloseScreen -> {
-                if (!state.value.hasNavigateUp) {
+                if (!state.value.hasNavigateUp && state.value.closeButtonEnabled) {
                     _state.update { it.copy(hasNavigateUp = true) }
                     navHostController.previousBackStackEntry
                         ?.savedStateHandle
@@ -73,6 +81,7 @@ data class CardUiState(
     val hasNavigateUp: Boolean = false,
 
     val closeScreen: Boolean = false,
+    val closeButtonEnabled: Boolean = false,
 )
 
 sealed interface CardAction {
