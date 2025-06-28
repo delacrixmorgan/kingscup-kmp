@@ -14,7 +14,9 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 
-actual val platform: Platform = Platform.iOS
+actual val platform: Platform by lazy { Platform.iOS }
+
+actual val rateUsStoreLink: String by lazy { "https://github.com/delacrixmorgan/kingscup-kmp" }
 
 actual fun platformModule(): Module = module {
     single(named(LocalDataStore.Preferences.name)) { dataStore(LocalDataStore.Preferences.path) }

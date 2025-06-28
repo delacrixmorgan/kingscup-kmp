@@ -9,7 +9,9 @@ import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-actual val platform: Platform = Platform.Android
+actual val platform: Platform by lazy { Platform.Android }
+
+actual val rateUsStoreLink: String by lazy { "https://play.google.com/store/apps/details?id=com.delacrixmorgan.kingscup.android" }
 
 actual fun platformModule(): Module = module {
     single(named(LocalDataStore.Preferences.name)) { dataStore(get(), LocalDataStore.Preferences.path) }

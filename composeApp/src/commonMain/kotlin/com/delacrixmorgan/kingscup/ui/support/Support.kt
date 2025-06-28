@@ -25,13 +25,19 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.carousel.HorizontalMultiBrowseCarousel
 import androidx.compose.material3.carousel.rememberCarouselState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.rateUsStoreLink
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.theme.appListItemColors
 import com.delacrixmorgan.kingscup.ui.component.AppBar
@@ -50,6 +56,8 @@ fun SupportRoot(viewModel: SupportViewModel, navHostController: NavHostControlle
 fun SupportScreen(
     state: SupportUiState,
     onAction: (SupportAction) -> Unit,
+    uriHandler: UriHandler = LocalUriHandler.current,
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
 ) {
     AppScaffold(
         topBar = { scrollBehavior ->
@@ -61,27 +69,43 @@ fun SupportScreen(
         },
         content = { innerPadding ->
             Column(Modifier.padding(innerPadding)) {
-                OtherAppsSection(state, onAction)
+                OtherAppsSection(onAction)
                 Spacer(Modifier.height(16.dp))
 
-                DetailsSection(state, onAction)
+                DetailsSection(onAction)
                 Spacer(Modifier.weight(1F))
 
                 Text(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     text = state.version,
-                    style = MaterialTheme.typography.labelLarge,
+                    style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }
     )
+
+    LaunchedEffect(state, lifecycleOwner) {
+        if (state.openPrivacyPolicy) {
+            uriHandler.openUri("https://github.com/delacrixmorgan/kingscup-kmp/blob/main/PRIVACY_POLICY.md")
+            onAction(SupportAction.OpenPrivacyPolicy(open = false))
+        }
+        if (state.openSendFeedback) {
+            val email = "delacrixmorgan@gmail.com"
+            val subject = "King's Cup - App Feedback"
+            uriHandler.openUri("mailto:$email?subject=$subject")
+            onAction(SupportAction.OpenSendFeedback(open = false))
+        }
+        if (state.openRateUs) {
+            uriHandler.openUri(rateUsStoreLink)
+            onAction(SupportAction.OpenRateUs(open = false))
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun OtherAppsSection(
-    state: SupportUiState,
     onAction: (SupportAction) -> Unit,
 ) {
     HorizontalMultiBrowseCarousel(
@@ -103,7 +127,6 @@ private fun OtherAppsSection(
 
 @Composable
 private fun DetailsSection(
-    state: SupportUiState,
     onAction: (SupportAction) -> Unit,
 ) {
     Column(
@@ -115,58 +138,32 @@ private fun DetailsSection(
         ListItem(
             modifier = Modifier.clickable { onAction(SupportAction.OnAppInfoClicked) },
             colors = appListItemColors(),
-            leadingContent = {
-                Icon(
-                    imageVector = Icons.Rounded.Info,
-                    contentDescription = null,
-                )
-            },
+            leadingContent = { Icon(imageVector = Icons.Rounded.Info, contentDescription = null) },
             headlineContent = { Text("App Info") },
             trailingContent = {
                 Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
             }
         )
         ListItem(
-            modifier = Modifier.clickable { onAction(SupportAction.OnPrivacyPolicyClicked) },
+            modifier = Modifier.clickable { onAction(SupportAction.OpenPrivacyPolicy(open = true)) },
             colors = appListItemColors(),
-            leadingContent = {
-                Icon(
-                    imageVector = Icons.Rounded.Policy,
-                    contentDescription = null,
-                )
-            },
+            leadingContent = { Icon(imageVector = Icons.Rounded.Policy, contentDescription = null) },
             headlineContent = { Text("Privacy Policy") },
-            trailingContent = {
-                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
-            }
+            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
         )
         ListItem(
-            modifier = Modifier.clickable { onAction(SupportAction.OnSendFeedbackClicked) },
+            modifier = Modifier.clickable { onAction(SupportAction.OpenSendFeedback(open = true)) },
             colors = appListItemColors(),
-            leadingContent = {
-                Icon(
-                    imageVector = Icons.Rounded.Feedback,
-                    contentDescription = null,
-                )
-            },
+            leadingContent = { Icon(imageVector = Icons.Rounded.Feedback, contentDescription = null) },
             headlineContent = { Text("Send Feedback") },
-            trailingContent = {
-                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
-            }
+            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
         )
         ListItem(
-            modifier = Modifier.clickable { onAction(SupportAction.OnRateUsClicked) },
+            modifier = Modifier.clickable { onAction(SupportAction.OpenRateUs(open = true)) },
             colors = appListItemColors(),
-            leadingContent = {
-                Icon(
-                    imageVector = Icons.Rounded.ThumbUp,
-                    contentDescription = null,
-                )
-            },
+            leadingContent = { Icon(imageVector = Icons.Rounded.ThumbUp, contentDescription = null) },
             headlineContent = { Text("Rate Us") },
-            trailingContent = {
-                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
-            }
+            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
         )
     }
 }
@@ -176,7 +173,9 @@ private fun DetailsSection(
 private fun Preview() {
     AppTheme {
         SupportScreen(
-            state = SupportUiState(),
+            state = SupportUiState(
+                version = "2025.1 (88)"
+            ),
             onAction = {}
         )
     }

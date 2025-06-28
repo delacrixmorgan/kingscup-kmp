@@ -28,23 +28,33 @@ class SupportViewModel : ViewModel() {
             SupportAction.OnAppInfoClicked -> {
                 navHostController.navigate(Routes.AppInfo)
             }
-            SupportAction.OnPrivacyPolicyClicked -> TODO()
-            SupportAction.OnSendFeedbackClicked -> TODO()
-            SupportAction.OnRateUsClicked -> TODO()
+            is SupportAction.OpenPrivacyPolicy -> {
+                _state.update { it.copy(openPrivacyPolicy = action.open) }
+            }
+            is SupportAction.OpenSendFeedback -> {
+                _state.update { it.copy(openSendFeedback = action.open) }
+            }
+            is SupportAction.OpenRateUs -> {
+                _state.update { it.copy(openRateUs = action.open) }
+            }
         }
     }
 }
 
 data class SupportUiState(
     val version: String = "",
+
+    val openPrivacyPolicy: Boolean = false,
+    val openSendFeedback: Boolean = false,
+    val openRateUs: Boolean = false,
     val closeScreen: Boolean = false,
 )
 
 sealed interface SupportAction {
     data object OnAppInfoClicked : SupportAction
-    data object OnPrivacyPolicyClicked : SupportAction
-    data object OnSendFeedbackClicked : SupportAction
-    data object OnRateUsClicked : SupportAction
+    data class OpenPrivacyPolicy(val open: Boolean) : SupportAction
+    data class OpenSendFeedback(val open: Boolean) : SupportAction
+    data class OpenRateUs(val open: Boolean) : SupportAction
 
     data object OnBackClicked : SupportAction
 }

@@ -9,6 +9,8 @@ import org.koin.core.module.Module
 
 expect val platform: Platform
 
+expect val rateUsStoreLink: String
+
 expect fun platformModule(): Module
 
 fun createDataStore(
