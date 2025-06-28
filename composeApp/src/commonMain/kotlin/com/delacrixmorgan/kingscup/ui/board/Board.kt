@@ -1,26 +1,16 @@
 package com.delacrixmorgan.kingscup.ui.board
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
-import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.MaterialShapes
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.toShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -37,7 +27,6 @@ import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.BouncyLazyRow
 import com.delacrixmorgan.kingscup.ui.component.Confetti
 import com.delacrixmorgan.kingscup.ui.component.CrownList
-import com.delacrixmorgan.kingscup.ui.component.JokerList
 import com.delacrixmorgan.kingscup.ui.component.NavigationPauseIcon
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -64,6 +53,7 @@ fun BoardScreen(
     state: BoardUiState,
     onAction: (BoardAction) -> Unit,
 ) {
+    val lazyListState = rememberLazyListState()
     AppScaffold(
         topBar = {
             Row(
@@ -78,8 +68,7 @@ fun BoardScreen(
         },
         content = { innerPadding ->
             Column(Modifier.padding(innerPadding)) {
-                StatusSection(state, onAction)
-                val lazyListState = rememberLazyListState()
+                BoardStatusSection(state, onAction)
                 BouncyLazyRow(
                     modifier = Modifier.padding(vertical = 32.dp),
                     state = lazyListState,
@@ -90,41 +79,11 @@ fun BoardScreen(
             }
         }
     )
-
     if (state.hasGameEnded) {
         Confetti()
     }
-
     if (state.showPauseBottomSheet) {
         BoardPauseDialog(onAction)
-    }
-}
-
-@OptIn(ExperimentalMaterial3ExpressiveApi::class)
-@Composable
-private fun ColumnScope.StatusSection(state: BoardUiState, onAction: (BoardAction) -> Unit) {
-    Box(Modifier.fillMaxWidth().weight(1F)) {
-        if (state.jokerEnabled) {
-            JokerList(
-                jokers = state.jokers,
-                onJokerClicked = { onAction(BoardAction.OnJokerClicked(it)) },
-            )
-        }
-        Column(Modifier.align(Alignment.Center), horizontalAlignment = Alignment.CenterHorizontally) {
-            Box(Modifier.width(120.dp).aspectRatio(1F).background(MaterialTheme.colorScheme.secondaryContainer, MaterialShapes.Cookie12Sided.toShape()))
-            Spacer(Modifier.height(16.dp))
-            Text(
-                text = if (!state.hasGameEnded) "Let's go!" else "Game over!",
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            Spacer(Modifier.height(4.dp))
-            Text(
-                text = "${state.cards.size} cards left",
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-        }
     }
 }
 
