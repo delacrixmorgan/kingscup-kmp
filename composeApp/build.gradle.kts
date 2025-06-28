@@ -38,6 +38,7 @@ kotlin {
             implementation(libs.koin.composeVM)
             implementation(libs.compottie)
             implementation(libs.composables.core)
+            implementation(libs.confetti.kit)
 
             // Compose
             implementation(project.dependencies.platform(libs.compose.bom))

@@ -16,6 +16,7 @@ composables-core = "1.36.0"
 
 koinBoM = "4.1.0" # https://github.com/InsertKoinIO/koin/releases
 compottie = "2.0.0-rc04"
+confetti-kit = "0.5.1"
 
 [libraries]
 androidx-datastore-preference = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-preference" }
@@ -32,6 +33,7 @@ koin-core = { module = "io.insert-koin:koin-core" }
 koin-android = { module = "io.insert-koin:koin-android" }
 koin-composeVM = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinBoM" }
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
+confetti-kit = { module = "io.github.vinceglb:confettikit", version.ref = "confetti-kit" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
