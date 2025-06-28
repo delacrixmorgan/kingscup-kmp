@@ -45,7 +45,10 @@ class CardRepository {
             normalDeck + jokerDeck
         } else {
             normalDeck
-        }.shuffled()
+        }.shuffledFirst(
+            kingsFirst = true,
+            jokersFirst = true
+        )
         _cards.value = shuffledDeck
         _kingCounter.value = 0
         _jokers.value = emptyList()
@@ -53,6 +56,20 @@ class CardRepository {
 
         activeCard = null
         activeJoker = null
+    }
+
+    private fun List<Card>.shuffledFirst(
+        kingsFirst: Boolean = false,
+        jokersFirst: Boolean = false,
+    ): List<Card> {
+        return this.shuffled()
+            .sortedWith(compareBy {
+                when {
+                    kingsFirst && it.rank == Card.RankType.King -> 0
+                    jokersFirst && it.rank == Card.RankType.Joker -> 1
+                    else -> 2
+                }
+            })
     }
 
     fun drawCard(index: Int) {
