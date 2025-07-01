@@ -3,6 +3,7 @@ package com.delacrixmorgan.kingscup
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.delacrixmorgan.kingscup.core.local.LocalDataStore
+import com.delacrixmorgan.kingscup.data.platform.Environment
 import com.delacrixmorgan.kingscup.data.platform.Platform
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.koin.core.module.Module
@@ -15,6 +16,8 @@ import platform.Foundation.NSURL
 import platform.Foundation.NSUserDomainMask
 
 actual val platform: Platform by lazy { Platform.iOS }
+
+actual val environment: Environment by lazy { if (NSBundle.mainBundle.infoDictionary?.get("Configuration")?.toString() == "Debug") Environment.Debug else Environment.Release }
 
 actual val rateUsStoreLink: String by lazy { "https://github.com/delacrixmorgan/kingscup-kmp" }
 

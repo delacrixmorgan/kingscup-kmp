@@ -1,5 +1,6 @@
 package com.delacrixmorgan.kingscup.ui.start
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,6 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -56,6 +58,8 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.app_name
+import kingscup.composeapp.generated.resources.img_logo
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -80,6 +84,13 @@ fun StartScreen(
                 .padding(bottom = WindowInsets.systemBars.asPaddingValues().calculateBottomPadding()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            Image(
+                modifier = Modifier.widthIn(max = 100.dp),
+                painter = painterResource(Res.drawable.img_logo),
+                contentDescription = null
+            )
+            Spacer(Modifier.height(36.dp))
+
             Text(
                 stringResource(Res.string.app_name),
                 style = MaterialTheme.typography.displayMedium,
@@ -194,7 +205,7 @@ fun StartScreen(
         }
     )
 
-    LaunchedEffect(state, lifecycleOwner) {
+    LaunchedEffect(state.showLocalisationBottomSheet, lifecycleOwner) {
         sheetState.targetDetent = if (state.showLocalisationBottomSheet) FullyExpanded else Hidden
     }
 

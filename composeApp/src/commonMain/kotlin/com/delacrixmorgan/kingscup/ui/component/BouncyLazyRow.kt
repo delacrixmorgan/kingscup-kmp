@@ -5,15 +5,18 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -36,10 +39,20 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.data.card.model.Card
+import com.delacrixmorgan.kingscup.data.platform.Environment
+import com.delacrixmorgan.kingscup.environment
+import com.delacrixmorgan.kingscup.theme.AppTheme
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.app_name
+import kingscup.composeapp.generated.resources.img_logo
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun BouncyLazyRow(
@@ -50,7 +63,7 @@ fun BouncyLazyRow(
     onItemClicked: (Int) -> Unit,
     haptic: HapticFeedback = LocalHapticFeedback.current,
 ) {
-    val cardWidth = 150.dp
+    val cardWidth = 180.dp
     val offsetX = remember { Animatable(if (animateBounce) 0F else 1_000F) }
 
     LaunchedEffect(animateBounce) {
@@ -125,13 +138,48 @@ fun BouncyLazyRow(
                 elevation = CardDefaults.cardElevation(defaultElevation = animatedElevation),
                 colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
             ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                PlayableCard(card.rule.id)
+            }
+        }
+    }
+}
+
+@Composable
+private fun PlayableCard(id: String) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        when (environment) {
+            Environment.Debug -> {
+                Text(id, color = MaterialTheme.colorScheme.onPrimary)
+            }
+            Environment.Release -> {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-                    Text(card.rule.id, color = MaterialTheme.colorScheme.onPrimary)
+                    Image(
+                        modifier = Modifier.widthIn(max = 36.dp),
+                        painter = painterResource(Res.drawable.img_logo),
+                        contentDescription = null
+                    )
+                    Text(
+                        stringResource(Res.string.app_name),
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        textAlign = TextAlign.Center
+                    )
                 }
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    AppTheme {
+        PlayableCard(id = "King")
     }
 }
