@@ -54,13 +54,13 @@ fun ColumnScope.BoardStatusSection(
             Text(
                 text = if (!state.hasGameEnded) "Let's go!" else "Game over!",
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onPrimaryFixed
             )
             Spacer(Modifier.height(4.dp))
             Text(
                 text = "${state.cards.size} cards left",
                 style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onPrimaryFixed
             )
             if (state.hasGameEnded) {
                 Spacer(Modifier.height(16.dp))

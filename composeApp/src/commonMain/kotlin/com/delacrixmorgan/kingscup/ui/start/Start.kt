@@ -94,7 +94,7 @@ fun StartScreen(
             Text(
                 stringResource(Res.string.app_name),
                 style = MaterialTheme.typography.displayMedium,
-                color = MaterialTheme.colorScheme.onPrimary
+                color = MaterialTheme.colorScheme.onPrimaryFixed
             )
             Spacer(Modifier.height(24.dp))
 
