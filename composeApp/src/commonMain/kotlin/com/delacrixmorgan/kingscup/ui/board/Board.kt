@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -54,6 +55,7 @@ fun BoardScreen(
 ) {
     val lazyListState = rememberLazyListState()
     AppScaffold(
+        containerColor = MaterialTheme.colorScheme.onPrimaryContainer,
         topBar = {
             Row(
                 Modifier.padding(top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding()),

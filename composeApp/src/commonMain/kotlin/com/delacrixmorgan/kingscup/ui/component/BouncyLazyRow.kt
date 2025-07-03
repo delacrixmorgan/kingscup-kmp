@@ -152,7 +152,7 @@ private fun PlayableCard(id: String) {
     ) {
         when (environment) {
             Environment.Debug -> {
-                Text(id, color = MaterialTheme.colorScheme.onPrimary)
+                Text(id, color = MaterialTheme.colorScheme.onPrimaryContainer)
             }
             Environment.Release -> {
                 Column(
@@ -167,7 +167,7 @@ private fun PlayableCard(id: String) {
                     Text(
                         stringResource(Res.string.app_name),
                         style = MaterialTheme.typography.headlineSmall,
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
                         textAlign = TextAlign.Center
                     )
                 }

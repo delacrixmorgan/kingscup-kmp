@@ -22,6 +22,7 @@ import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -49,7 +50,7 @@ fun RulesRoot(viewModel: RulesViewModel, navHostController: NavHostController) {
     RulesScreen(state = state, onAction = { viewModel.onAction(navHostController, it) })
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun RulesScreen(
     state: RulesUiState,
@@ -103,8 +104,8 @@ fun RulesScreen(
                             Text(
                                 modifier = Modifier.align(Alignment.CenterHorizontally),
                                 text = stringResource(card.rule.label),
-                                style = MaterialTheme.typography.bodyLarge,
-                                color = MaterialTheme.colorScheme.onPrimary,
+                                style = MaterialTheme.typography.bodyLargeEmphasized,
+                                color = MaterialTheme.colorScheme.onPrimaryContainer,
                                 textAlign = TextAlign.Center
 
                             )
@@ -112,7 +113,7 @@ fun RulesScreen(
                                 BasicText(
                                     modifier = Modifier.fillMaxWidth(),
                                     text = stringResource(card.rule.description),
-                                    style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onPrimary, textAlign = TextAlign.Center),
+                                    style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onPrimaryContainer, textAlign = TextAlign.Center),
                                     autoSize = TextAutoSize.StepBased(maxFontSize = MaterialTheme.typography.bodySmall.fontSize)
                                 )
                             }
