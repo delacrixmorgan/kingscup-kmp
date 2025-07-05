@@ -10,19 +10,4 @@ sealed class SkinPalette(
         light = ClassicColorPreference.lightScheme,
         dark = ClassicColorPreference.darkScheme,
     )
-
-    object Bora : SkinPalette(
-        light = BoraColorPreference.lightScheme,
-        dark = BoraColorPreference.darkScheme,
-    )
-
-    object Emerald : SkinPalette(
-        light = EmeraldColorPreference.lightScheme,
-        dark = EmeraldColorPreference.darkScheme,
-    )
-
-    object Sand : SkinPalette(
-        light = SandColorPreference.lightScheme,
-        dark = SandColorPreference.darkScheme,
-    )
 }

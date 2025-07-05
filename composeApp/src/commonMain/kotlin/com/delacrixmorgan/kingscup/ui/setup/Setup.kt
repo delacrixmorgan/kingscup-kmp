@@ -3,11 +3,9 @@ package com.delacrixmorgan.kingscup.ui.setup
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -15,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Bedtime
-import androidx.compose.material.icons.rounded.CheckCircleOutline
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.SettingsSuggest
@@ -46,7 +43,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.theme.appListItemColors
@@ -150,7 +146,8 @@ private fun ToggleSection(
         Row(
             Modifier
                 .background(appListItemColors().containerColor)
-                .padding(horizontal = 16.dp),
+                .padding(horizontal = 16.dp)
+                .padding(bottom = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween),
         ) {
             ThemePreference.entries.forEach { theme ->
@@ -172,41 +169,6 @@ private fun ToggleSection(
                     Icon(imageVector = icon, contentDescription = name)
                     Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
                     Text(name)
-                }
-            }
-        }
-
-        ListItem(
-            colors = appListItemColors(),
-            headlineContent = { Text("Skin") }
-        )
-        Row(
-            Modifier
-                .background(appListItemColors().containerColor)
-                .padding(horizontal = 16.dp)
-                .padding(bottom = 16.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            SkinPreference.entries.forEach {
-                Box(
-                    Modifier
-                        .weight(1F)
-                        .aspectRatio(63F / 88F)
-                        .background(it.getCardColor(), RoundedCornerShape(12.dp))
-                        .clip(RoundedCornerShape(12.dp))
-                        .clickable {
-                            haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
-                            onAction(SetupAction.OnSkinSelected(it))
-                        },
-                    contentAlignment = Alignment.Center
-                ) {
-                    if (state.selectedSkin?.name == it.name) {
-                        Icon(
-                            imageVector = Icons.Rounded.CheckCircleOutline,
-                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
-                            contentDescription = "${it.name} skin selected",
-                        )
-                    }
                 }
             }
         }
