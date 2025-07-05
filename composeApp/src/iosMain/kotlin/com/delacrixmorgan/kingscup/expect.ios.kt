@@ -1,6 +1,5 @@
 package com.delacrixmorgan.kingscup
 
-import androidx.compose.runtime.Composable
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.delacrixmorgan.kingscup.core.local.LocalDataStore
@@ -46,8 +45,4 @@ actual fun getVersionCode(): String {
 
 actual fun getVersionName(): String {
     return NSBundle.mainBundle.objectForInfoDictionaryKey("CFBundleShortVersionString") as? String ?: "Unknown"
-}
-
-@Composable
-actual fun LightStatusBar(enable: Boolean) {
 }

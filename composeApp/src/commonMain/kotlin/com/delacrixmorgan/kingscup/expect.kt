@@ -28,6 +28,3 @@ fun createDataStore(
 expect fun getVersionCode(): String
 
 expect fun getVersionName(): String
-
-@Composable
-expect fun LightStatusBar(enable: Boolean)

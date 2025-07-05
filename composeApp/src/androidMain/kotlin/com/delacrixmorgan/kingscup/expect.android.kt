@@ -35,10 +35,3 @@ actual fun getVersionCode(): String {
 actual fun getVersionName(): String {
     return BuildConfig.VERSION_NAME
 }
-
-@Composable
-actual fun LightStatusBar(enable: Boolean) {
-    LocalActivity.current?.let { activity ->
-        WindowInsetsControllerCompat(activity.window, activity.window.decorView).isAppearanceLightStatusBars = enable
-    }
-}
