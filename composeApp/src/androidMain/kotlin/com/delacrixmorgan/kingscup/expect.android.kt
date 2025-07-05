@@ -1,6 +1,9 @@
 package com.delacrixmorgan.kingscup
 
 import android.content.Context
+import androidx.activity.compose.LocalActivity
+import androidx.compose.runtime.Composable
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import com.delacrixmorgan.kingscup.core.local.LocalDataStore
@@ -31,4 +34,11 @@ actual fun getVersionCode(): String {
 
 actual fun getVersionName(): String {
     return BuildConfig.VERSION_NAME
+}
+
+@Composable
+actual fun LightStatusBar(enable: Boolean) {
+    LocalActivity.current?.let { activity ->
+        WindowInsetsControllerCompat(activity.window, activity.window.decorView).isAppearanceLightStatusBars = enable
+    }
 }

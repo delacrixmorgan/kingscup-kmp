@@ -56,6 +56,7 @@ fun BoardScreen(
     val lazyListState = rememberLazyListState()
     AppScaffold(
         containerColor = Color(0xFF1A2238),
+        isAppearanceLightStatusBars = false,
         topBar = {
             Row(
                 Modifier.padding(top = WindowInsets.systemBars.asPaddingValues().calculateTopPadding()),
