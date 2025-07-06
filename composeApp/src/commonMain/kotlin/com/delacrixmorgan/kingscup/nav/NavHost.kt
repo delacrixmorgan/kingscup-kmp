@@ -21,8 +21,7 @@ import org.koin.compose.viewmodel.koinViewModel
 fun AppNavHost(navHostController: NavHostController = rememberNavController()) {
     NavHost(
         navController = navHostController,
-        startDestination = Routes.Support,
-//        startDestination = Routes.Start,
+        startDestination = Routes.Start,
     ) {
         formGraph(navHostController)
     }

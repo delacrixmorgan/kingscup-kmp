@@ -132,7 +132,10 @@ private fun PortfolioSection(
                 .clickable { uriHandler.openUri(portfolio.url) },
             contentAlignment = Alignment.Center
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Column(
+                modifier = Modifier.padding(horizontal = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 Image(
                     modifier = Modifier.size(52.dp),
                     painter = painterResource(portfolio.logo),

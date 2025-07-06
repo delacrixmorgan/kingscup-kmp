@@ -152,7 +152,22 @@ private fun PlayableCard(id: String) {
     ) {
         when (environment) {
             Environment.Debug -> {
-                Text(id, color = MaterialTheme.colorScheme.onPrimaryContainer)
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                ) {
+                    Image(
+                        modifier = Modifier.widthIn(max = 36.dp),
+                        painter = painterResource(Res.drawable.img_logo),
+                        contentDescription = null
+                    )
+                    Text(
+                        id,
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onPrimaryContainer,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
             Environment.Release -> {
                 Column(

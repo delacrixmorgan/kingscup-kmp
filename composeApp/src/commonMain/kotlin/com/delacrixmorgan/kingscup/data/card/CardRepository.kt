@@ -2,6 +2,8 @@ package com.delacrixmorgan.kingscup.data.card
 
 import com.delacrixmorgan.kingscup.data.card.model.Card
 import com.delacrixmorgan.kingscup.data.card.model.Normal
+import com.delacrixmorgan.kingscup.data.platform.Environment
+import com.delacrixmorgan.kingscup.environment
 import com.delacrixmorgan.kingscup.ui.extensions.defaultRule
 import com.delacrixmorgan.kingscup.ui.extensions.jokerRules
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -49,8 +51,8 @@ class CardRepository {
         } else {
             normalDeck
         }.shuffledFirst(
-            kingsFirst = true,
-            jokersFirst = true
+            kingsFirst = environment == Environment.Debug,
+            jokersFirst = environment == Environment.Debug
         )
         _cards.value = shuffledDeck
         _kingCounter.value = 0
