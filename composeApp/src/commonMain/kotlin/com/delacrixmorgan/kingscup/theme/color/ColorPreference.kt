@@ -115,7 +115,8 @@ sealed class ColorPreference(
         outline = outlineLight,
         outlineVariant = outlineVariantLight,
         scrim = scrimLight,
-        onPrimaryFixed = onPrimaryLight
+        primaryFixed = primaryLight,
+        onPrimaryFixed = onPrimaryLight,
     )
 
     val darkScheme = darkColorScheme(
@@ -154,6 +155,7 @@ sealed class ColorPreference(
         outline = outlineDark,
         outlineVariant = outlineVariantDark,
         scrim = scrimDark,
+        primaryFixed = primaryLight,
         onPrimaryFixed = onPrimaryLight
     )
 }

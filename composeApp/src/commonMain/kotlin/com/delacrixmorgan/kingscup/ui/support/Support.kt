@@ -1,5 +1,6 @@
 package com.delacrixmorgan.kingscup.ui.support
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -8,7 +9,9 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -30,8 +33,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -43,6 +48,7 @@ import com.delacrixmorgan.kingscup.theme.appListItemColors
 import com.delacrixmorgan.kingscup.ui.component.AppBar
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -69,7 +75,7 @@ fun SupportScreen(
         },
         content = { innerPadding ->
             Column(Modifier.padding(innerPadding)) {
-                OtherAppsSection(onAction)
+                PortfolioSection(state)
                 Spacer(Modifier.height(16.dp))
 
                 DetailsSection(onAction)
@@ -105,23 +111,50 @@ fun SupportScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun OtherAppsSection(
-    onAction: (SupportAction) -> Unit,
+private fun PortfolioSection(
+    state: SupportUiState,
+    uriHandler: UriHandler = LocalUriHandler.current,
 ) {
     HorizontalMultiBrowseCarousel(
-        state = rememberCarouselState { 5 },
+        state = rememberCarouselState { state.portfolio.size },
         modifier = Modifier.width(412.dp),
         preferredItemWidth = 186.dp,
         itemSpacing = 8.dp,
         contentPadding = PaddingValues(horizontal = 16.dp),
-    ) { i ->
+    ) { index ->
+        val portfolio = state.portfolio[index]
         Box(
             modifier = Modifier
                 .width(202.dp)
                 .aspectRatio(63F / 88F)
                 .maskClip(shape = MaterialTheme.shapes.extraLarge)
-                .background(MaterialTheme.colorScheme.primaryContainer, shape = RoundedCornerShape(12.dp)),
-        )
+                .background(Color(portfolio.backgroundColor), shape = RoundedCornerShape(12.dp))
+                .clickable { uriHandler.openUri(portfolio.url) },
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Image(
+                    modifier = Modifier.size(52.dp),
+                    painter = painterResource(portfolio.logo),
+                    contentDescription = null
+                )
+                Spacer(Modifier.height(12.dp))
+                Text(
+                    text = portfolio.name,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    modifier = Modifier.heightIn(min = (MaterialTheme.typography.bodyMedium.lineHeight * 2).value.dp),
+                    text = portfolio.description,
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
     }
 }
 

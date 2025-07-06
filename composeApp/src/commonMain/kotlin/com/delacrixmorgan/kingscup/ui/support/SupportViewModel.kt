@@ -2,6 +2,7 @@ package com.delacrixmorgan.kingscup.ui.support
 
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
+import com.delacrixmorgan.kingscup.data.support.model.Portfolio
 import com.delacrixmorgan.kingscup.getVersionCode
 import com.delacrixmorgan.kingscup.getVersionName
 import com.delacrixmorgan.kingscup.nav.Routes
@@ -43,6 +44,7 @@ class SupportViewModel : ViewModel() {
 
 data class SupportUiState(
     val version: String = "",
+    val portfolio: List<Portfolio> = Portfolio.entries,
 
     val openPrivacyPolicy: Boolean = false,
     val openSendFeedback: Boolean = false,
