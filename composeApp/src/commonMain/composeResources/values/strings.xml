@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">King's Cup</string>
+    <string name="locale_selectTitle">Select language</string>
+    <string name="locale_english">English</string>
+    <string name="locale_englishContributor">Delacrix Morgan</string>
+    <string name="locale_chinese">Chinese</string>
+    <string name="locale_chineseContributor">Wang Ruihao</string>
     <string name="rules_kingEmoji">🌟</string>
     <string name="rules_kingLabel">King's Cup</string>
     <string name="rules_kingDescription">Set a new rule. Fill the King's Cup!</string>

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">国王之杯</string>
+    <string name="locale_selectTitle">选择语言</string>
+    <string name="locale_english">英文</string>
+    <string name="locale_englishContributor">Delacrix Morgan</string>
+    <string name="locale_chinese">中文</string>
+    <string name="locale_chineseContributor">Wang Ruihao</string>
     <string name="rules_kingEmoji">🌟</string>
     <string name="rules_kingLabel">国王杯</string>
     <string name="rules_kingDescription">制定新规则。填满国王杯！</string>

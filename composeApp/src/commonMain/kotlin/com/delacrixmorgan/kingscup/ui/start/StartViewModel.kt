@@ -45,7 +45,14 @@ class StartViewModel(
                 navHostController.navigate(Routes.Setup)
             }
             StartAction.OnLocalisationClicked -> when (platform) {
-                Platform.Android -> _state.update { it.copy(showLocalisationBottomSheet = true) }
+                Platform.Android -> _state.update {
+                    it.copy(
+                        locales = LocalePreference.entries.sortedWith(compareBy { localePreference ->
+                            localePreference != state.value.selectedLocale
+                        }),
+                        showLocalisationBottomSheet = true
+                    )
+                }
                 Platform.iOS -> _state.update { it.copy(openAppSettings = true) }
             }
             is StartAction.OnLocalisationChanged -> viewModelScope.launch {
@@ -69,7 +76,7 @@ class StartViewModel(
 
 data class StartUiState(
     val selectedLocale: LocalePreference = LocalePreference.Default,
-    val locale: List<LocalePreference> = LocalePreference.entries,
+    val locales: List<LocalePreference> = LocalePreference.entries,
     val showLocalisationBottomSheet: Boolean = false,
     val openAppSettings: Boolean = false,
 )
