@@ -64,6 +64,9 @@ class StartViewModel(
             StartAction.OnLocalisationAppSettingsOpened -> {
                 _state.update { it.copy(openAppSettings = false) }
             }
+            StartAction.OnLocalisationVolunteerClicked -> {
+                
+            }
             StartAction.OnSupportClicked -> {
                 navHostController.navigate(Routes.Support)
             }
@@ -88,6 +91,7 @@ sealed interface StartAction {
     data class OnLocalisationChanged(val localePreference: LocalePreference) : StartAction
     data object OnLocalisationBottomSheetDismissed : StartAction
     data object OnLocalisationAppSettingsOpened : StartAction
+    data object OnLocalisationVolunteerClicked : StartAction
 
     data object OnSupportClicked : StartAction
 

@@ -126,7 +126,6 @@ fun StartScreen(
                 }
             }
             Spacer(Modifier.height(220.dp))
-            // TODO (Banner - Translation Request)
         }
     }
 
