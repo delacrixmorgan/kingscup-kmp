@@ -32,6 +32,14 @@ import com.delacrixmorgan.kingscup.theme.appListItemColors
 import com.delacrixmorgan.kingscup.ui.component.AppBar
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.appInfo_developerLabel
+import kingscup.composeapp.generated.resources.appInfo_sourceCodeDescription
+import kingscup.composeapp.generated.resources.appInfo_sourceCodeLabel
+import kingscup.composeapp.generated.resources.appInfo_styleGuideDescription
+import kingscup.composeapp.generated.resources.appInfo_styleGuideLabel
+import kingscup.composeapp.generated.resources.appInfo_title
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -51,7 +59,7 @@ fun AppInfoScreen(
     AppScaffold(
         topBar = { scrollBehavior ->
             AppBar(
-                title = "App Info",
+                title = stringResource(Res.string.appInfo_title),
                 navigationIcon = { NavigationBackIcon { onAction(AppInfoAction.OnBackClicked) } },
                 scrollBehavior = scrollBehavior,
             )
@@ -67,47 +75,26 @@ fun AppInfoScreen(
                     ListItem(
                         modifier = Modifier.clickable { onAction(AppInfoAction.OpenDeveloperPage(open = true)) },
                         colors = appListItemColors(),
-                        leadingContent = {
-                            Icon(
-                                imageVector = Icons.Rounded.Person,
-                                contentDescription = null,
-                            )
-                        },
-                        headlineContent = { Text("Developer") },
+                        leadingContent = { Icon(imageVector = Icons.Rounded.Person, contentDescription = null) },
+                        headlineContent = { Text(stringResource(Res.string.appInfo_developerLabel)) },
                         supportingContent = { Text("Delacrix Morgan") },
-                        trailingContent = {
-                            Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
-                        }
+                        trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
                     )
                     ListItem(
                         modifier = Modifier.clickable { onAction(AppInfoAction.OpenSourceCode(open = true)) },
                         colors = appListItemColors(),
-                        leadingContent = {
-                            Icon(
-                                imageVector = Icons.Rounded.Code,
-                                contentDescription = null,
-                            )
-                        },
-                        headlineContent = { Text("Source Code") },
-                        supportingContent = { Text("GitHub") },
-                        trailingContent = {
-                            Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
-                        }
+                        leadingContent = { Icon(imageVector = Icons.Rounded.Code, contentDescription = null) },
+                        headlineContent = { Text(stringResource(Res.string.appInfo_sourceCodeLabel)) },
+                        supportingContent = { Text(stringResource(Res.string.appInfo_sourceCodeDescription)) },
+                        trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
                     )
                     ListItem(
                         modifier = Modifier.clickable { onAction(AppInfoAction.OnStyleGuideClicked) },
                         colors = appListItemColors(),
-                        leadingContent = {
-                            Icon(
-                                imageVector = Icons.Rounded.Palette,
-                                contentDescription = null,
-                            )
-                        },
-                        headlineContent = { Text("Style Guide") },
-                        supportingContent = { Text("Pixels and Hexes") },
-                        trailingContent = {
-                            Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
-                        }
+                        leadingContent = { Icon(imageVector = Icons.Rounded.Palette, contentDescription = null) },
+                        headlineContent = { Text(stringResource(Res.string.appInfo_styleGuideLabel)) },
+                        supportingContent = { Text(stringResource(Res.string.appInfo_styleGuideDescription)) },
+                        trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
                     )
                 }
             }

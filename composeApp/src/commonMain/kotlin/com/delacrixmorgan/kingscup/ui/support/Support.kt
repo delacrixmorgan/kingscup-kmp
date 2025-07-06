@@ -48,7 +48,14 @@ import com.delacrixmorgan.kingscup.theme.appListItemColors
 import com.delacrixmorgan.kingscup.ui.component.AppBar
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.support_appInfoLabel
+import kingscup.composeapp.generated.resources.support_privacyPolicyLabel
+import kingscup.composeapp.generated.resources.support_rateUsLabel
+import kingscup.composeapp.generated.resources.support_sendFeedbackLabel
+import kingscup.composeapp.generated.resources.support_title
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -68,7 +75,7 @@ fun SupportScreen(
     AppScaffold(
         topBar = { scrollBehavior ->
             AppBar(
-                title = "Support",
+                title = stringResource(Res.string.support_title),
                 navigationIcon = { NavigationBackIcon { onAction(SupportAction.OnBackClicked) } },
                 scrollBehavior = scrollBehavior,
             )
@@ -175,7 +182,7 @@ private fun DetailsSection(
             modifier = Modifier.clickable { onAction(SupportAction.OnAppInfoClicked) },
             colors = appListItemColors(),
             leadingContent = { Icon(imageVector = Icons.Rounded.Info, contentDescription = null) },
-            headlineContent = { Text("App Info") },
+            headlineContent = { Text(stringResource(Res.string.support_appInfoLabel)) },
             trailingContent = {
                 Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
             }
@@ -184,21 +191,21 @@ private fun DetailsSection(
             modifier = Modifier.clickable { onAction(SupportAction.OpenPrivacyPolicy(open = true)) },
             colors = appListItemColors(),
             leadingContent = { Icon(imageVector = Icons.Rounded.Policy, contentDescription = null) },
-            headlineContent = { Text("Privacy Policy") },
+            headlineContent = { Text(stringResource(Res.string.support_privacyPolicyLabel)) },
             trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
         )
         ListItem(
             modifier = Modifier.clickable { onAction(SupportAction.OpenSendFeedback(open = true)) },
             colors = appListItemColors(),
             leadingContent = { Icon(imageVector = Icons.Rounded.Feedback, contentDescription = null) },
-            headlineContent = { Text("Send Feedback") },
+            headlineContent = { Text(stringResource(Res.string.support_sendFeedbackLabel)) },
             trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
         )
         ListItem(
             modifier = Modifier.clickable { onAction(SupportAction.OpenRateUs(open = true)) },
             colors = appListItemColors(),
             leadingContent = { Icon(imageVector = Icons.Rounded.ThumbUp, contentDescription = null) },
-            headlineContent = { Text("Rate Us") },
+            headlineContent = { Text(stringResource(Res.string.support_rateUsLabel)) },
             trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
         )
     }

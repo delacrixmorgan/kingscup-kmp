@@ -26,6 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.AnimatedEmoji
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.board_pauseDialogDescription
+import kingscup.composeapp.generated.resources.board_pauseDialogTitle
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -44,14 +48,14 @@ fun BoardPauseDialog(
                 AnimatedEmoji("\uD83D\uDE44")
                 Spacer(Modifier.height(16.dp))
                 Text(
-                    "Toilet Break",
+                    stringResource(Res.string.board_pauseDialogTitle),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.headlineMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    "It's not like I'm going anywhere.",
+                    stringResource(Res.string.board_pauseDialogDescription),
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.bodyLarge,
@@ -63,10 +67,7 @@ fun BoardPauseDialog(
                         modifier = Modifier.weight(1F),
                         onClick = { onAction(BoardAction.OnRestartClicked) }
                     ) {
-                        Icon(
-                            imageVector = Icons.Rounded.RestartAlt,
-                            contentDescription = "Restart game",
-                        )
+                        Icon(imageVector = Icons.Rounded.RestartAlt, contentDescription = null)
                     }
                     FilledIconButton(
                         modifier = Modifier.weight(1F),
@@ -76,10 +77,7 @@ fun BoardPauseDialog(
                         ),
                         onClick = { onAction(BoardAction.OnExitClicked) }
                     ) {
-                        Icon(
-                            imageVector = Icons.Rounded.Close,
-                            contentDescription = "Exit game",
-                        )
+                        Icon(imageVector = Icons.Rounded.Close, contentDescription = null)
                     }
                 }
             }

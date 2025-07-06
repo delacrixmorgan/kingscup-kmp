@@ -33,6 +33,13 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.ui.component.JokerList
 import com.delacrixmorgan.kingscup.ui.component.bounceClickEffect
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.board_buttonExitGame
+import kingscup.composeapp.generated.resources.board_buttonNewGame
+import kingscup.composeapp.generated.resources.board_cardsLeft
+import kingscup.composeapp.generated.resources.board_gameOver
+import kingscup.composeapp.generated.resources.board_tauntOne
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -52,13 +59,13 @@ fun ColumnScope.BoardStatusSection(
             Box(Modifier.width(120.dp).aspectRatio(1F).background(MaterialTheme.colorScheme.secondaryContainer, MaterialShapes.Cookie12Sided.toShape()))
             Spacer(Modifier.height(16.dp))
             Text(
-                text = if (!state.hasGameEnded) "Let's go!" else "Game over!",
+                text = if (!state.hasGameEnded) stringResource(Res.string.board_tauntOne) else stringResource(Res.string.board_gameOver),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimaryFixed
             )
             Spacer(Modifier.height(4.dp))
             Text(
-                text = "${state.cards.size} cards left",
+                text = stringResource(Res.string.board_cardsLeft, state.cards.size),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onPrimaryFixed
             )
@@ -78,12 +85,12 @@ fun ColumnScope.BoardStatusSection(
                     },
                 ) {
                     Icon(
-                        Icons.Rounded.RestartAlt,
-                        contentDescription = "New game",
-                        modifier = Modifier.size(ButtonDefaults.iconSizeFor(size))
+                        modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
+                        imageVector = Icons.Rounded.RestartAlt,
+                        contentDescription = null
                     )
                     Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
-                    Text("New Game", style = ButtonDefaults.textStyleFor(size))
+                    Text(stringResource(Res.string.board_buttonNewGame), style = ButtonDefaults.textStyleFor(size))
                 }
                 Spacer(Modifier.height(8.dp))
                 OutlinedButton(
@@ -99,12 +106,12 @@ fun ColumnScope.BoardStatusSection(
                     },
                 ) {
                     Icon(
+                        modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
                         imageVector = Icons.Rounded.Close,
-                        contentDescription = "Exit game",
-                        modifier = Modifier.size(ButtonDefaults.iconSizeFor(size))
+                        contentDescription = null
                     )
                     Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
-                    Text("Exit Game", style = ButtonDefaults.textStyleFor(size))
+                    Text(stringResource(Res.string.board_buttonExitGame), style = ButtonDefaults.textStyleFor(size))
                 }
             }
         }

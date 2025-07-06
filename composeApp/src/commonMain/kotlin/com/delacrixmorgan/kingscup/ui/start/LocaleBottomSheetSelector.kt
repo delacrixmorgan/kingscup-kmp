@@ -43,6 +43,8 @@ import com.composables.core.SheetDetent
 import com.composables.core.rememberModalBottomSheetState
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.locale_bannerVolunteerDescription
+import kingscup.composeapp.generated.resources.locale_bannerVolunteerTitle
 import kingscup.composeapp.generated.resources.locale_selectTitle
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -157,12 +159,12 @@ fun LocaleBottomSheetSelector(
                         Spacer(Modifier.width(16.dp))
                         Column {
                             Text(
-                                text = "Can't find what you're looking for?",
+                                text = stringResource(Res.string.locale_bannerVolunteerTitle),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = MaterialTheme.colorScheme.onSurface
                             )
                             Text(
-                                text = "Drop me a message!",
+                                text = stringResource(Res.string.locale_bannerVolunteerDescription),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurface
                             )

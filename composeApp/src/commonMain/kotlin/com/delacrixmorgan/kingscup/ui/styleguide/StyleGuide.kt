@@ -35,7 +35,10 @@ import com.delacrixmorgan.kingscup.ui.styleguide.color.ColorScreen
 import com.delacrixmorgan.kingscup.ui.styleguide.font.FontScreen
 import com.delacrixmorgan.kingscup.ui.styleguide.theme.ThemeScreen
 import com.delacrixmorgan.kingscup.ui.styleguide.theme.ThemeViewModel
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.styleGuide_title
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,7 +49,7 @@ fun StyleGuideRoot(themeViewModel: ThemeViewModel, navHostController: NavHostCon
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             AppBar(
-                title = "Style Guide",
+                title = stringResource(Res.string.styleGuide_title),
                 navigationIcon = { NavigationBackIcon { navHostController.navigateUp() } },
                 scrollBehavior = scrollBehavior
             )

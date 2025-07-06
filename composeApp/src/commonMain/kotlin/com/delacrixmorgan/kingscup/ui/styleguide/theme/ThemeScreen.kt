@@ -26,6 +26,7 @@ import androidx.compose.material3.ToggleButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedback
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
@@ -33,6 +34,12 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.styleGuide_themeDark
+import kingscup.composeapp.generated.resources.styleGuide_themeLabel
+import kingscup.composeapp.generated.resources.styleGuide_themeLight
+import kingscup.composeapp.generated.resources.styleGuide_themeSystem
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -50,9 +57,8 @@ fun ThemeScreen(
             .verticalScroll(rememberScrollState())
             .padding(horizontal = 16.dp)
             .padding(bottom = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        ListItem(headlineContent = { Text("Theme") })
+        ListItem(headlineContent = { Text(stringResource(Res.string.styleGuide_themeLabel)) })
         Row(
             Modifier
                 .background(ListItemDefaults.containerColor)
@@ -62,14 +68,17 @@ fun ThemeScreen(
         ) {
             ThemePreference.entries.forEach { theme ->
                 val (icon, name) = when (theme) {
-                    ThemePreference.System -> Icons.Rounded.SettingsSuggest to "System"
-                    ThemePreference.Light -> Icons.Rounded.WbSunny to "Light"
-                    ThemePreference.Dark -> Icons.Rounded.Bedtime to "Dark"
+                    ThemePreference.System -> Icons.Rounded.SettingsSuggest to stringResource(Res.string.styleGuide_themeSystem)
+                    ThemePreference.Light -> Icons.Rounded.WbSunny to stringResource(Res.string.styleGuide_themeLight)
+                    ThemePreference.Dark -> Icons.Rounded.Bedtime to stringResource(Res.string.styleGuide_themeDark)
                 }
                 ToggleButton(
                     modifier = Modifier.weight(1F).semantics { role = Role.RadioButton },
                     checked = state.selectedTheme == theme,
-                    onCheckedChange = { onAction(ThemeAction.OnThemeSelected(theme)) },
+                    onCheckedChange = {
+                        haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
+                        onAction(ThemeAction.OnThemeSelected(theme))
+                    },
                     shapes = when (theme.ordinal) {
                         0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
                         ThemePreference.entries.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()

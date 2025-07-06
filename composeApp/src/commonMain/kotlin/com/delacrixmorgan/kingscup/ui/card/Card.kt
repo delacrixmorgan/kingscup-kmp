@@ -43,6 +43,8 @@ import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
 import com.delacrixmorgan.kingscup.ui.component.bounceClickEffect
 import com.delacrixmorgan.kingscup.ui.extensions.getMaterialShape
 import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.card_buttonDone
+import kingscup.composeapp.generated.resources.card_buttonGameOver
 import kingscup.composeapp.generated.resources.rules_kingDescription
 import kingscup.composeapp.generated.resources.rules_kingEmoji
 import kingscup.composeapp.generated.resources.rules_kingLabel
@@ -130,7 +132,7 @@ fun CardScreen(
                         )
                         Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
                         Text(
-                            text = if (!state.hasGameEnded) "Done" else "Game Over",
+                            text = if (!state.hasGameEnded) stringResource(Res.string.card_buttonDone) else stringResource(Res.string.card_buttonGameOver),
                             style = ButtonDefaults.textStyleFor(size)
                         )
                     }

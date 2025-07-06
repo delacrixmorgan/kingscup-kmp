@@ -49,6 +49,18 @@ import com.delacrixmorgan.kingscup.theme.appListItemColors
 import com.delacrixmorgan.kingscup.ui.component.AppBar
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.setup_buttonPlay
+import kingscup.composeapp.generated.resources.setup_jokersDescription
+import kingscup.composeapp.generated.resources.setup_jokersLabel
+import kingscup.composeapp.generated.resources.setup_rulesDescription
+import kingscup.composeapp.generated.resources.setup_rulesLabel
+import kingscup.composeapp.generated.resources.setup_themeDark
+import kingscup.composeapp.generated.resources.setup_themeLabel
+import kingscup.composeapp.generated.resources.setup_themeLight
+import kingscup.composeapp.generated.resources.setup_themeSystem
+import kingscup.composeapp.generated.resources.setup_title
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -66,7 +78,7 @@ fun SetupScreen(
     AppScaffold(
         topBar = { scrollBehavior ->
             AppBar(
-                title = "Setup",
+                title = stringResource(Res.string.setup_title),
                 navigationIcon = { NavigationBackIcon { onAction(SetupAction.OnBackClicked) } },
                 scrollBehavior = scrollBehavior,
             )
@@ -85,12 +97,12 @@ fun SetupScreen(
                     onClick = { onAction(SetupAction.OnStartClicked) }
                 ) {
                     Icon(
-                        Icons.Rounded.PlayArrow,
-                        contentDescription = "Localized description",
-                        modifier = Modifier.size(ButtonDefaults.iconSizeFor(size))
+                        modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
+                        contentDescription = null,
+                        imageVector = Icons.Rounded.PlayArrow
                     )
                     Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
-                    Text("Play", style = ButtonDefaults.textStyleFor(size))
+                    Text(stringResource(Res.string.setup_buttonPlay), style = ButtonDefaults.textStyleFor(size))
                 }
                 Spacer(Modifier.height(32.dp))
             }
@@ -112,15 +124,19 @@ private fun ToggleSection(
             .background(MaterialTheme.colorScheme.surfaceContainerLow)
     ) {
         ListItem(
+            modifier = Modifier.clickable {
+                haptic.performHapticFeedback(if (!state.jokersEnabled) HapticFeedbackType.ToggleOn else HapticFeedbackType.ToggleOff)
+                onAction(SetupAction.OnJokerSettingsToggled)
+            },
             colors = appListItemColors(),
-            headlineContent = { Text("Jokers") },
-            supportingContent = { Text("Spice things up a bit") },
+            headlineContent = { Text(stringResource(Res.string.setup_jokersLabel)) },
+            supportingContent = { Text(stringResource(Res.string.setup_jokersDescription)) },
             trailingContent = {
                 Switch(
                     checked = state.jokersEnabled,
                     onCheckedChange = {
                         haptic.performHapticFeedback(if (it) HapticFeedbackType.ToggleOn else HapticFeedbackType.ToggleOff)
-                        onAction(SetupAction.OnJokerSettingsToggled(it))
+                        onAction(SetupAction.OnJokerSettingsToggled)
                     }
                 )
             }
@@ -129,19 +145,14 @@ private fun ToggleSection(
         ListItem(
             modifier = Modifier.clickable { onAction(SetupAction.OnRulesClicked) },
             colors = appListItemColors(),
-            headlineContent = { Text("Rules") },
-            supportingContent = { Text("Refresh your memory") },
-            trailingContent = {
-                Icon(
-                    imageVector = Icons.Rounded.ChevronRight,
-                    contentDescription = "Open rules screen",
-                )
-            }
+            headlineContent = { Text(stringResource(Res.string.setup_rulesLabel)) },
+            supportingContent = { Text(stringResource(Res.string.setup_rulesDescription)) },
+            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
         )
 
         ListItem(
             colors = appListItemColors(),
-            headlineContent = { Text("Theme") }
+            headlineContent = { Text(stringResource(Res.string.setup_themeLabel)) }
         )
         Row(
             Modifier
@@ -152,14 +163,17 @@ private fun ToggleSection(
         ) {
             ThemePreference.entries.forEach { theme ->
                 val (icon, name) = when (theme) {
-                    ThemePreference.System -> Icons.Rounded.SettingsSuggest to "System"
-                    ThemePreference.Light -> Icons.Rounded.WbSunny to "Light"
-                    ThemePreference.Dark -> Icons.Rounded.Bedtime to "Dark"
+                    ThemePreference.System -> Icons.Rounded.SettingsSuggest to stringResource(Res.string.setup_themeSystem)
+                    ThemePreference.Light -> Icons.Rounded.WbSunny to stringResource(Res.string.setup_themeLight)
+                    ThemePreference.Dark -> Icons.Rounded.Bedtime to stringResource(Res.string.setup_themeDark)
                 }
                 ToggleButton(
                     modifier = Modifier.weight(1F).semantics { role = Role.RadioButton },
                     checked = state.selectedTheme == theme,
-                    onCheckedChange = { onAction(SetupAction.OnThemeSelected(theme)) },
+                    onCheckedChange = {
+                        haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
+                        onAction(SetupAction.OnThemeSelected(theme))
+                    },
                     shapes = when (theme.ordinal) {
                         0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
                         ThemePreference.entries.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()

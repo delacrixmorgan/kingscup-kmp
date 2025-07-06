@@ -49,8 +49,8 @@ class SetupViewModel(
 
     fun onAction(navHostController: NavHostController, action: SetupAction) {
         when (action) {
-            is SetupAction.OnJokerSettingsToggled -> viewModelScope.launch {
-                preferencesRepository.saveJokerEnabled(action.enabled)
+            SetupAction.OnJokerSettingsToggled -> viewModelScope.launch {
+                preferencesRepository.saveJokerEnabled(!state.value.jokersEnabled)
             }
             SetupAction.OnStartClicked -> {
                 navHostController.navigate(Routes.Loading)
@@ -79,7 +79,7 @@ data class SetupUiState(
 )
 
 sealed interface SetupAction {
-    data class OnJokerSettingsToggled(val enabled: Boolean) : SetupAction
+    data object OnJokerSettingsToggled : SetupAction
     data class OnThemeSelected(val theme: ThemePreference) : SetupAction
     data class OnSkinSelected(val skin: SkinPreference) : SetupAction
     data object OnRulesClicked : SetupAction
