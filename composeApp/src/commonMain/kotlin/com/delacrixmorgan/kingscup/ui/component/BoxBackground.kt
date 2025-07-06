@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 fun BoxBackground(content: @Composable BoxScope.() -> Unit) {
     Box(Modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
-            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.primaryContainer).weight(1.36F))
+            Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.primaryContainer).weight(2.12F))
             Box(Modifier.fillMaxWidth().background(MaterialTheme.colorScheme.secondaryContainer).weight(1F))
         }
         content()

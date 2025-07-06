@@ -143,7 +143,7 @@ fun LocaleBottomSheetSelector(
                             .padding(horizontal = 20.dp)
                             .background(MaterialTheme.colorScheme.surfaceContainerHigh, shape = RoundedCornerShape(12.dp))
                             .clip(RoundedCornerShape(12.dp))
-                            .clickable { onAction(StartAction.OnLocalisationVolunteerClicked) }
+                            .clickable { onAction(StartAction.OpenContactUs(open = true)) }
                             .padding(16.dp),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {

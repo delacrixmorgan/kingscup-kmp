@@ -64,8 +64,8 @@ class StartViewModel(
             StartAction.OnLocalisationAppSettingsOpened -> {
                 _state.update { it.copy(openAppSettings = false) }
             }
-            StartAction.OnLocalisationVolunteerClicked -> {
-                
+            is StartAction.OpenContactUs -> {
+                _state.update { it.copy(openContactUs = action.open) }
             }
             StartAction.OnSupportClicked -> {
                 navHostController.navigate(Routes.Support)
@@ -82,6 +82,7 @@ data class StartUiState(
     val locales: List<LocalePreference> = LocalePreference.entries,
     val showLocalisationBottomSheet: Boolean = false,
     val openAppSettings: Boolean = false,
+    val openContactUs: Boolean = false,
 )
 
 sealed interface StartAction {
@@ -91,7 +92,7 @@ sealed interface StartAction {
     data class OnLocalisationChanged(val localePreference: LocalePreference) : StartAction
     data object OnLocalisationBottomSheetDismissed : StartAction
     data object OnLocalisationAppSettingsOpened : StartAction
-    data object OnLocalisationVolunteerClicked : StartAction
+    data class OpenContactUs(val open: Boolean) : StartAction
 
     data object OnSupportClicked : StartAction
 

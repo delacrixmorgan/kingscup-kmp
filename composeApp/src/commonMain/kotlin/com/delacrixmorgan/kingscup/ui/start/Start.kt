@@ -29,6 +29,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -59,6 +61,7 @@ fun StartRoot(viewModel: StartViewModel, navHostController: NavHostController) {
 fun StartScreen(
     state: StartUiState,
     onAction: (StartAction) -> Unit,
+    uriHandler: UriHandler = LocalUriHandler.current,
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current
 ) {
     val localeHelper = rememberLocaleHelper()
@@ -138,6 +141,15 @@ fun StartScreen(
 
     LaunchedEffect(state.showLocalisationBottomSheet, lifecycleOwner) {
         sheetState.targetDetent = if (state.showLocalisationBottomSheet) FullyExpanded else Hidden
+    }
+
+    LaunchedEffect(state.openContactUs, lifecycleOwner) {
+        if (state.openContactUs) {
+            val email = "delacrixmorgan@gmail.com"
+            val subject = "King's Cup - Translation Request"
+            uriHandler.openUri("mailto:$email?subject=$subject")
+            onAction(StartAction.OpenContactUs(open = false))
+        }
     }
 
     LaunchedEffect(state.selectedLocale, lifecycleOwner) {
