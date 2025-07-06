@@ -95,7 +95,7 @@ fun CardScreen(
                     state.label?.let {
                         Text(
                             text = stringResource(it),
-                            style = MaterialTheme.typography.titleLarge,
+                            style = MaterialTheme.typography.displaySmall,
                             textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -104,7 +104,7 @@ fun CardScreen(
                     state.description?.let {
                         Text(
                             text = stringResource(it),
-                            style = MaterialTheme.typography.bodyLarge,
+                            style = MaterialTheme.typography.titleLargeEmphasized,
                             textAlign = TextAlign.Center,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )

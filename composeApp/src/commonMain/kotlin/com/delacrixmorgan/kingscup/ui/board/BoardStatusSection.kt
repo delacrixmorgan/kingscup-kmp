@@ -59,14 +59,14 @@ fun ColumnScope.BoardStatusSection(
             Box(Modifier.width(120.dp).aspectRatio(1F).background(MaterialTheme.colorScheme.secondaryContainer, MaterialShapes.Cookie12Sided.toShape()))
             Spacer(Modifier.height(16.dp))
             Text(
-                text = if (!state.hasGameEnded) stringResource(Res.string.board_tauntOne) else stringResource(Res.string.board_gameOver),
-                style = MaterialTheme.typography.titleLarge,
+                text = if (!state.hasGameEnded) stringResource(state.taunt ?: Res.string.board_tauntOne) else stringResource(Res.string.board_gameOver),
+                style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.onPrimaryFixed
             )
             Spacer(Modifier.height(4.dp))
             Text(
                 text = stringResource(Res.string.board_cardsLeft, state.cards.size),
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onPrimaryFixed
             )
             if (state.hasGameEnded) {

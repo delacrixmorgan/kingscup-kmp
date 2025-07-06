@@ -6,6 +6,17 @@ import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.data.card.CardRepository
 import com.delacrixmorgan.kingscup.data.card.model.Card
 import com.delacrixmorgan.kingscup.nav.Routes
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.board_tauntEight
+import kingscup.composeapp.generated.resources.board_tauntFive
+import kingscup.composeapp.generated.resources.board_tauntFour
+import kingscup.composeapp.generated.resources.board_tauntNine
+import kingscup.composeapp.generated.resources.board_tauntOne
+import kingscup.composeapp.generated.resources.board_tauntSeven
+import kingscup.composeapp.generated.resources.board_tauntSix
+import kingscup.composeapp.generated.resources.board_tauntTen
+import kingscup.composeapp.generated.resources.board_tauntThree
+import kingscup.composeapp.generated.resources.board_tauntTwo
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -14,6 +25,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.StringResource
 import org.koin.core.component.KoinComponent
 
 class BoardViewModel(
@@ -28,6 +40,21 @@ class BoardViewModel(
             started = SharingStarted.WhileSubscribed(5_000L),
             initialValue = BoardUiState()
         )
+
+    private val taunts by lazy {
+        listOf(
+            Res.string.board_tauntOne,
+            Res.string.board_tauntTwo,
+            Res.string.board_tauntThree,
+            Res.string.board_tauntFour,
+            Res.string.board_tauntFive,
+            Res.string.board_tauntSix,
+            Res.string.board_tauntSeven,
+            Res.string.board_tauntEight,
+            Res.string.board_tauntNine,
+            Res.string.board_tauntTen,
+        )
+    }
 
     private fun observeData() {
         viewModelScope.launch {
@@ -76,6 +103,7 @@ class BoardViewModel(
             BoardAction.OnCardDismissed -> {
                 if (cardRepository.activeCard != null) {
                     cardRepository.discardCard()
+                    shuffleTaunt()
                 }
                 if (cardRepository.activeJoker != null) {
                     cardRepository.dismissJoker()
@@ -87,7 +115,7 @@ class BoardViewModel(
                     cardRepository.showJoker(action.card)
                     navHostController.navigate(Routes.Card) {
                         launchSingleTop = true
-                        popUpTo(Routes.Card) { inclusive = true  }
+                        popUpTo(Routes.Card) { inclusive = true }
                     }
                     delay(300)
                     _state.update { it.copy(hasCardClicked = false) }
@@ -114,10 +142,15 @@ class BoardViewModel(
             }
         }
     }
+
+    private fun shuffleTaunt() {
+        _state.update { it.copy(taunt = taunts.random()) }
+    }
 }
 
 data class BoardUiState(
     val cards: List<Card> = emptyList(),
+    val taunt: StringResource? = null,
     val gameInSession: Boolean = false,
     val kingCounter: Int = 0,
     val jokerEnabled: Boolean = true,
