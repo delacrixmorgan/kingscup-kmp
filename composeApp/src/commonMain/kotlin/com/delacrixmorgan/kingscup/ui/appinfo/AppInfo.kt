@@ -16,10 +16,15 @@ import androidx.compose.material3.ListItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
@@ -40,6 +45,8 @@ fun AppInfoRoot(viewModel: AppInfoViewModel, navHostController: NavHostControlle
 fun AppInfoScreen(
     state: AppInfoUiState,
     onAction: (AppInfoAction) -> Unit,
+    uriHandler: UriHandler = LocalUriHandler.current,
+    lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
 ) {
     AppScaffold(
         topBar = { scrollBehavior ->
@@ -58,7 +65,7 @@ fun AppInfoScreen(
                         .background(MaterialTheme.colorScheme.surfaceContainerLow)
                 ) {
                     ListItem(
-                        modifier = Modifier.clickable { onAction(AppInfoAction.OnDeveloperClicked) },
+                        modifier = Modifier.clickable { onAction(AppInfoAction.OpenDeveloperPage(open = true)) },
                         colors = appListItemColors(),
                         leadingContent = {
                             Icon(
@@ -73,7 +80,7 @@ fun AppInfoScreen(
                         }
                     )
                     ListItem(
-                        modifier = Modifier.clickable { onAction(AppInfoAction.OnSourceCodeClicked) },
+                        modifier = Modifier.clickable { onAction(AppInfoAction.OpenSourceCode(open = true)) },
                         colors = appListItemColors(),
                         leadingContent = {
                             Icon(
@@ -106,6 +113,18 @@ fun AppInfoScreen(
             }
         }
     )
+    LaunchedEffect(state.openDeveloperPage, lifecycleOwner) {
+        if (state.openDeveloperPage) {
+            uriHandler.openUri("https://github.com/delacrixmorgan")
+            onAction(AppInfoAction.OpenDeveloperPage(open = false))
+        }
+    }
+    LaunchedEffect(state.openSourceCode, lifecycleOwner) {
+        if (state.openSourceCode) {
+            uriHandler.openUri("https://github.com/delacrixmorgan/kingscup-kmp")
+            onAction(AppInfoAction.OpenSourceCode(open = false))
+        }
+    }
 }
 
 @Preview

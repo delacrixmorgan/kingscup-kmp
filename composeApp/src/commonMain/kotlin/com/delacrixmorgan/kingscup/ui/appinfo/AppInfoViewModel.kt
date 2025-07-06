@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class AppInfoViewModel : ViewModel() {
 
@@ -36,8 +37,12 @@ class AppInfoViewModel : ViewModel() {
             AppInfoAction.OnBackClicked -> {
                 navHostController.navigateUp()
             }
-            AppInfoAction.OnDeveloperClicked -> TODO()
-            AppInfoAction.OnSourceCodeClicked -> TODO()
+            is AppInfoAction.OpenDeveloperPage -> {
+                _state.update { it.copy(openDeveloperPage = action.open) }
+            }
+            is AppInfoAction.OpenSourceCode -> {
+                _state.update { it.copy(openSourceCode = action.open) }
+            }
             AppInfoAction.OnStyleGuideClicked -> {
                 navHostController.navigate(Routes.StyleGuide)
             }
@@ -47,11 +52,13 @@ class AppInfoViewModel : ViewModel() {
 
 data class AppInfoUiState(
     val closeScreen: Boolean = false,
+    val openDeveloperPage: Boolean = false,
+    val openSourceCode: Boolean = false,
 )
 
 sealed interface AppInfoAction {
     data object OnBackClicked : AppInfoAction
-    data object OnDeveloperClicked : AppInfoAction
-    data object OnSourceCodeClicked : AppInfoAction
+    data class OpenDeveloperPage(val open: Boolean) : AppInfoAction
+    data class OpenSourceCode(val open: Boolean) : AppInfoAction
     data object OnStyleGuideClicked : AppInfoAction
 }

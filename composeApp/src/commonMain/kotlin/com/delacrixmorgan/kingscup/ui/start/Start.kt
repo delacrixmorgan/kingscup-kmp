@@ -36,7 +36,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
-import com.composables.core.ModalBottomSheetState
 import com.composables.core.SheetDetent.Companion.FullyExpanded
 import com.composables.core.SheetDetent.Companion.Hidden
 import com.composables.core.rememberModalBottomSheetState
@@ -132,7 +131,7 @@ fun StartScreen(
         }
     }
 
-    val sheetState: ModalBottomSheetState = rememberModalBottomSheetState(initialDetent = Hidden)
+    val sheetState = rememberModalBottomSheetState(initialDetent = Hidden)
     LocaleBottomSheetSelector(
         sheetState = sheetState,
         state = state,
@@ -142,7 +141,9 @@ fun StartScreen(
     LaunchedEffect(state.showLocalisationBottomSheet, lifecycleOwner) {
         sheetState.targetDetent = if (state.showLocalisationBottomSheet) FullyExpanded else Hidden
     }
-
+    LaunchedEffect(state.selectedLocale, lifecycleOwner) {
+        localeHelper.setLanguage(state.selectedLocale.code)
+    }
     LaunchedEffect(state.openContactUs, lifecycleOwner) {
         if (state.openContactUs) {
             val email = "delacrixmorgan@gmail.com"
@@ -151,11 +152,6 @@ fun StartScreen(
             onAction(StartAction.OpenContactUs(open = false))
         }
     }
-
-    LaunchedEffect(state.selectedLocale, lifecycleOwner) {
-        localeHelper.setLanguage(state.selectedLocale.code)
-    }
-
     LaunchedEffect(state.openAppSettings, lifecycleOwner) {
         if (state.openAppSettings) {
             localeHelper.openAppSettings()
