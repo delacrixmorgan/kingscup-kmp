@@ -4,7 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -40,6 +40,7 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -154,12 +155,13 @@ private fun ToggleSection(
             colors = appListItemColors(),
             headlineContent = { Text(stringResource(Res.string.setup_themeLabel)) }
         )
-        Row(
+        FlowRow(
             Modifier
                 .background(appListItemColors().containerColor)
-                .padding(horizontal = 16.dp)
+                .padding(16.dp)
                 .padding(bottom = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween),
+            verticalArrangement = Arrangement.spacedBy(ButtonGroupDefaults.ConnectedSpaceBetween)
         ) {
             ThemePreference.entries.forEach { theme ->
                 val (icon, name) = when (theme) {
@@ -182,7 +184,7 @@ private fun ToggleSection(
                 ) {
                     Icon(imageVector = icon, contentDescription = name)
                     Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
-                    Text(name)
+                    Text(name, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 }
             }
         }

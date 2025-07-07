@@ -30,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.ui.component.JokerList
 import com.delacrixmorgan.kingscup.ui.component.bounceClickEffect
@@ -61,13 +62,15 @@ fun ColumnScope.BoardStatusSection(
             Text(
                 text = if (!state.hasGameEnded) stringResource(state.taunt ?: Res.string.board_tauntOne) else stringResource(Res.string.board_gameOver),
                 style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.onPrimaryFixed
+                color = MaterialTheme.colorScheme.onPrimaryFixed,
+                textAlign = TextAlign.Center
             )
             Spacer(Modifier.height(4.dp))
             Text(
                 text = stringResource(Res.string.board_cardsLeft, state.cards.size),
                 style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onPrimaryFixed
+                color = MaterialTheme.colorScheme.onPrimaryFixed,
+                textAlign = TextAlign.Center
             )
             if (state.hasGameEnded) {
                 Spacer(Modifier.height(16.dp))
