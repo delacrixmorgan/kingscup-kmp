@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">حلقه آتش</string>
+    <string name="locale_english">English</string>
+    <string name="locale_englishContributor">Delacrix Morgan</string>
+    <string name="locale_chinese">Chinese</string>
+    <string name="locale_chineseContributor">Wang Ruihao</string>
+    <string name="locale_croatian">Croatian</string>
+    <string name="locale_croatianContributor">Generated</string>
+    <string name="locale_czech">Czech</string>
+    <string name="locale_czechContributor">Michal Matlach</string>
+    <string name="locale_danish">Danish</string>
+    <string name="locale_danishContributor">Generated</string>
+    <string name="locale_dutch">Dutch</string>
+    <string name="locale_dutchContributor">Kasper Nooteboom</string>
+    <string name="locale_filipino">Filipino</string>
+    <string name="locale_filipinoContributor">Rexson Bernal</string>
+    <string name="locale_finnish">Finnish</string>
+    <string name="locale_finnishContributor">Karim Moubarik</string>
+    <string name="locale_french">French</string>
+    <string name="locale_frenchContributor">David Chitchong Thingee</string>
+    <string name="locale_german">German</string>
+    <string name="locale_germanContributor">Roland Stuhler</string>
+    <string name="locale_greek">Greek</string>
+    <string name="locale_greekContributor">Generated</string>
+    <string name="locale_hungarian">Hungarian</string>
+    <string name="locale_hungarianContributor">Dávid Kardos</string>
+    <string name="locale_indonesian">Bahasa Indonesia</string>
+    <string name="locale_indonesianContributor">Julius Lukman</string>
+    <string name="locale_italian">Italian</string>
+    <string name="locale_italianContributor">Andrea Castaldi</string>
+    <string name="locale_japanese">Japanese</string>
+    <string name="locale_japaneseContributor">Yukiko Kimura</string>
+    <string name="locale_lao">Lao</string>
+    <string name="locale_laoContributor">Generated</string>
+    <string name="locale_persian">Farsi</string>
+    <string name="locale_persianContributor">Generated</string>
+    <string name="locale_polish">Polish</string>
+    <string name="locale_polishContributor">Kamil Kowalik</string>
+    <string name="locale_portuguese">Portuguese</string>
+    <string name="locale_portugueseContributor">Lays Correia</string>
+    <string name="locale_romanian">Romanian</string>
+    <string name="locale_romanianContributor">Generated</string>
+    <string name="locale_russian">Russian</string>
+    <string name="locale_russianContributor">Alexander Bondarevskyi</string>
+    <string name="locale_slovak">Slovak</string>
+    <string name="locale_slovakContributor">Generated</string>
+    <string name="locale_spanish">Spanish</string>
+    <string name="locale_spanishContributor">Santos Martinez and Gonzo Fernandez</string>
+    <string name="locale_thai">Thai</string>
+    <string name="locale_thaiContributor">Generated</string>
+    <string name="locale_turkish">Turkish</string>
+    <string name="locale_turkishContributor">Generated</string>
+    <string name="locale_ukrainian">Ukrainian</string>
+    <string name="locale_ukrainianContributor">Alexander Bondarevskyi</string>
+    <string name="locale_vietnamese">Vietnamese</string>
+    <string name="locale_vietnameseContributor">Generated</string>
+    <string name="locale_selectTitle">زبان را انتخاب کنید</string>
+    <string name="locale_bannerVolunteerTitle">چیزی را که به دنبالش هستید پیدا نمی کنید؟</string>
+    <string name="locale_bannerVolunteerDescription">به من پیام بده</string>
+    <string name="setup_title">راه اندازی</string>
+    <string name="setup_jokersLabel">جوکرها</string>
+    <string name="setup_jokersDescription">چیزها را کمی ادویه کنید</string>
+    <string name="setup_rulesLabel">قوانین</string>
+    <string name="setup_rulesDescription">حافظه خود را تازه کنید</string>
+    <string name="setup_themeLabel">تم</string>
+    <string name="setup_themeSystem">سیستم</string>
+    <string name="setup_themeLight">نور</string>
+    <string name="setup_themeDark">تاریک</string>
+    <string name="setup_buttonPlay">بازی کنید</string>
+    <string name="rules_title">قوانین</string>
+    <string name="rules_kingEmoji">🌟</string>
+    <string name="rules_kingLabel">جام پادشاه</string>
+    <string name="rules_kingDescription">یک قانون جدید تعیین کنید. جام پادشاه را پر کن!</string>
+    <string name="rules_kingGameOverDescription">بازی تمام شد، شما باید جام پادشاه را تمام کنید!</string>
+    <string name="rules_questionMasterEmoji">❓</string>
+    <string name="rules_questionMasterLabel">سوال استاد</string>
+    <string name="rules_questionMasterDescription">از یک بازیکن سوال بپرسید. آنها باید با یک سوال دیگر به نفر بعدی پاسخ دهند. اول شکست بخورید!</string>
+    <string name="rules_neverHaveIEverEmoji">🤔</string>
+    <string name="rules_neverHaveIEverLabel">هرگز من هرگز</string>
+    <string name="rules_neverHaveIEverDescription">جمله را کامل کن هرگز من هرگز.. هر که دارد، بنوش!</string>
+    <string name="rules_categoriesEmoji">🔮</string>
+    <string name="rules_categoriesLabel">دسته بندی ها</string>
+    <string name="rules_categoriesDescription">یک دسته را انتخاب کنید. چیزی بگو که جا بیفتد تا هر که به ذهنش نرسد، بنوشد!</string>
+    <string name="rules_snakeEyesEmoji">🐍</string>
+    <string name="rules_snakeEyesLabel">چشم مار</string>
+    <string name="rules_snakeEyesDescription">هیچ کس نمی تواند با شما تماس چشمی برقرار کند. اگر گرفتار شد، بنوشید!</string>
+    <string name="rules_mateEmoji">🫶</string>
+    <string name="rules_mateLabel">رفیق </string>
+    <string name="rules_mateDescription">یک شریک انتخاب کنید و هر زمان که آن بازیکن نوشیدنی می‌نوشید، بنوشید!</string>
+    <string name="rules_heavenEmoji">☝🏻</string>
+    <string name="rules_heavenLabel">بهشت</string>
+    <string name="rules_heavenDescription">همه با دو دست به آسمان می رسند. آخرین بازیکن نوشیدنی!</string>
+    <string name="rules_chicksEmoji">💃</string>
+    <string name="rules_chicksLabel">جوجه ها</string>
+    <string name="rules_chicksDescription">همه خانم ها می نوشند!</string>
+    <string name="rules_dudesEmoji">🤠</string>
+    <string name="rules_dudesLabel">دوستان</string>
+    <string name="rules_dudesDescription">همه بچه ها می نوشند!</string>
+    <string name="rules_thumbMasterEmoji">👍</string>
+    <string name="rules_thumbMasterLabel">استاد شست</string>
+    <string name="rules_thumbMasterDescription">انگشت شست خود را روی میز قرار دهید. آخرین انجام این کار، نوشیدنی!</string>
+    <string name="rules_meEmoji">👊</string>
+    <string name="rules_meLabel">من</string>
+    <string name="rules_meDescription">فقط تو بنوشید!</string>
+    <string name="rules_youEmoji">🤝</string>
+    <string name="rules_youLabel">شما</string>
+    <string name="rules_youDescription">یک همسر انتخاب کنید و با هم بنوشید!</string>
+    <string name="rules_waterfallEmoji">🌊</string>
+    <string name="rules_waterfallLabel">آبشار</string>
+    <string name="rules_waterfallDescription">همه شروع به نوشیدن می کنند تا زمانی که شخصی که کارت را کشیده است متوقف شود.</string>
+    <string name="rules_vikingEmoji">😈</string>
+    <string name="rules_vikingLabel">قانون وایکینگ ها</string>
+    <string name="rules_vikingDescription">هر زمان که «شاخ‌های وایکینگ‌های تند» درست می‌کنید، همه باید طوری دست و پا بزنند که انگار در قایق هستند!\n\nآخرین کسی که این کار را می کند، نوشیدنی است!</string>
+    <string name="rules_noFirstNamesEmoji">😱</string>
+    <string name="rules_noFirstNamesLabel">بدون قانون نام</string>
+    <string name="rules_noFirstNamesDescription">این باند است، جیمز باند.\nاوه! فقط منو باند صدا کن خدایا</string>
+    <string name="rules_noPointingEmoji">🫵</string>
+    <string name="rules_noPointingLabel">بدون قانون اشاره</string>
+    <string name="rules_noPointingDescription">اگر به کسی اشاره کنی، می نوشی!</string>
+    <string name="rules_tRexArmsEmoji">🦖</string>
+    <string name="rules_tRexArmsLabel">قانون اسلحه تی رکس</string>
+    <string name="rules_tRexArmsDescription">احساس تشنگی می کنید؟ فقط با بهترین بازوهای تی رکس خود بنوشید.</string>
+    <string name="rules_beLikeBillyEmoji">🤓</string>
+    <string name="rules_beLikeBillyLabel">بیلی رال</string>
+    <string name="rules_beLikeBillyDescription">حالا همه را باید بیلی نامید. مثل بیلی باش</string>
+    <string name="rules_iWillTellYouWhatEmoji">🥴</string>
+    <string name="rules_iWillTellYouWhatLabel">قانون \"من به شما خواهم گفت\"</string>
+    <string name="rules_iWillTellYouWhatDescription">قبل از صحبت کردن باید این عبارت را بگویید!</string>
+    <string name="rules_noPhonesEmoji">🤳</string>
+    <string name="rules_noPhonesLabel">بدون قانون تلفن</string>
+    <string name="rules_noPhonesDescription">اگر تلفن خود یا تلفن شخص دیگری را لمس کنید. بنوشید!</string>
+    <string name="rules_noSwearingEmoji">🤬</string>
+    <string name="rules_noSwearingLabel">بدون قاعده فحش دادن</string>
+    <string name="rules_noSwearingDescription">\"لطفا کسی به فکر بچه ها نیست!\"</string>
+    <string name="rules_photographerEmoji">📷</string>
+    <string name="rules_photographerLabel">قانون عکاس</string>
+    <string name="rules_photographerDescription">با صدای بلند 3، 2، 1 بشمار و عکس بگیر. اگر در عکس نیستید بنوشید!</string>
+    <string name="rules_lastOneLaughingEmoji">🤣</string>
+    <string name="rules_lastOneLaughingLabel">آخرین قانون خنده</string>
+    <string name="rules_lastOneLaughingDescription">وقتی کسی می خندد، بقیه باید بخندند. آخرین عضویت، نوشیدنی!</string>
+    <string name="rules_leftHandEmoji">✋🏻</string>
+    <string name="rules_leftHandLabel">قانون دست چپ</string>
+    <string name="rules_leftHandDescription">فقط با دست چپ بنوشید!</string>
+    <string name="rules_toiletEmoji">☣️</string>
+    <string name="rules_toiletLabel">قانون توالت</string>
+    <string name="rules_toiletDescription">قبل از اینکه کسی به پی پی یا پو پو برود، همه باید بنوشند!</string>
+    <string name="loading_title">در حال بارگذاری</string>
+    <string name="board_tauntOne">جدی</string>
+    <string name="board_tauntTwo">بالا آمدن</string>
+    <string name="board_tauntThree">فقط یکی دیگر</string>
+    <string name="board_tauntFour">این است</string>
+    <string name="board_tauntFive">فکر نکن</string>
+    <string name="board_tauntSix">منو بنوش</string>
+    <string name="board_tauntSeven">سریعتر رفیق</string>
+    <string name="board_tauntEight">مطمئنی؟</string>
+    <string name="board_tauntNine">باشه رفیق؟</string>
+    <string name="board_tauntTen">بیا</string>
+    <string name="board_cardsLeft">%1$s کارت باقی مانده است</string>
+    <string name="board_pauseDialogTitle">استراحت توالت</string>
+    <string name="board_pauseDialogDescription">اینطور نیست که من جایی بروم.</string>
+    <string name="board_buttonNewGame">یک بازی دیگر</string>
+    <string name="board_buttonExitGame">خروج از بازی</string>
+    <string name="board_gameOver">آن را بنوشید!</string>
+    <string name="card_buttonDone">انجام شد</string>
+    <string name="card_buttonGameOver">بازی تمام شد</string>
+    <string name="rules_countdownEmoji">⏰</string>
+    <string name="rules_countdownLabel">شمارش معکوس نهایی</string>
+    <string name="rules_countdownDescription">شروع به شمردن کنید، افرادی که یک عدد را دو بار می گویند، می نوشند!</string>
+    <string name="rules_rhymeEmoji">🫳</string>
+    <string name="rules_rhymeLabel">نیم تنه قافیه</string>
+    <string name="rules_rhymeDescription">یک کلمه بگویید، بازیکن سمت چپ شما باید یک کلمه قافیه بگوید.\n\nدور دایره بروید تا کسی تردید کند یا تکرار کند. آنها باید بنوشند!</string>
+    <string name="rules_swapCupsEmoji">🍻</string>
+    <string name="rules_swapCupsLabel">تعویض جام</string>
+    <string name="rules_swapCupsDescription">برای بقیه بازی باید نوشیدنی را با شخص دیگری عوض کنید.</string>
+    <string name="rules_tellAJokeEmoji">🤡</string>
+    <string name="rules_tellAJokeLabel">جوک بگو</string>
+    <string name="rules_tellAJokeDescription">باید یه جوک بگی اگر هیچ کس نمی خندد، شوخی با شماست و باید بنوشید!</string>
+    <string name="support_title">پشتیبانی کنید</string>
+    <string name="support_appInfoLabel">اطلاعات برنامه</string>
+    <string name="support_privacyPolicyLabel">سیاست حفظ حریم خصوصی</string>
+    <string name="support_sendFeedbackLabel">ارسال بازخورد</string>
+    <string name="support_rateUsLabel">به ما امتیاز دهید</string>
+    <string name="appInfo_title">اطلاعات برنامه</string>
+    <string name="appInfo_developerLabel">توسعه دهنده</string>
+    <string name="appInfo_sourceCodeLabel">کد منبع</string>
+    <string name="appInfo_sourceCodeDescription">GitHub</string>
+    <string name="appInfo_styleGuideLabel">راهنمای سبک</string>
+    <string name="appInfo_styleGuideDescription">پیکسل و هگز</string>
+    <string name="styleGuide_title">راهنمای سبک</string>
+    <string name="styleGuide_themeLabel">تم</string>
+    <string name="styleGuide_themeSystem">سیستم</string>
+    <string name="styleGuide_themeLight">نور</string>
+    <string name="styleGuide_themeDark">تاریک</string>
+</resources>

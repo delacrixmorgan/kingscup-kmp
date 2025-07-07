@@ -25,11 +25,15 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import com.delacrixmorgan.kingscup.theme.AppTheme
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.loading_title
 import kotlinx.coroutines.delay
+import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
@@ -57,9 +61,10 @@ fun LoadingScreen(
                 color = MaterialTheme.colorScheme.secondaryContainer
             )
             Text(
-                text = "Loading",
+                text = stringResource(Res.string.loading_title),
                 color = MaterialTheme.colorScheme.onPrimary,
-                style = MaterialTheme.typography.headlineLarge
+                style = MaterialTheme.typography.headlineLarge,
+                textAlign = TextAlign.Center
             )
         }
     }
@@ -77,7 +82,7 @@ fun LoadingScreen(
     }
     LaunchedEffect(state.openBoardScreen) {
         if (state.openBoardScreen) {
-//            delay(3_000L)
+            delay(3_000L)
             onAction(LoadingAction.OpenBoardScreen)
         }
     }

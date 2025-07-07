@@ -33,6 +33,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.composables.core.DragIndication
 import com.composables.core.ModalBottomSheet
@@ -115,13 +116,15 @@ fun LocaleBottomSheetSelector(
                                 modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
                                 text = stringResource(localePreference.localisedName),
                                 style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.onPrimary
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                textAlign = TextAlign.Center
                             )
                             Text(
                                 modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
                                 text = stringResource(localePreference.contributorName),
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onPrimary
+                                color = MaterialTheme.colorScheme.onPrimary,
+                                textAlign = TextAlign.Center
                             )
                             Spacer(Modifier.weight(1F))
 
@@ -161,7 +164,7 @@ fun LocaleBottomSheetSelector(
                             Text(
                                 text = stringResource(Res.string.locale_bannerVolunteerTitle),
                                 style = MaterialTheme.typography.labelLarge,
-                                color = MaterialTheme.colorScheme.onSurface
+                                color = MaterialTheme.colorScheme.onSurface,
                             )
                             Text(
                                 text = stringResource(Res.string.locale_bannerVolunteerDescription),
