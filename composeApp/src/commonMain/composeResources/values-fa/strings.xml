@@ -125,14 +125,14 @@
     <string name="rules_beLikeBillyLabel">بیلی رال</string>
     <string name="rules_beLikeBillyDescription">حالا همه را باید بیلی نامید. مثل بیلی باش</string>
     <string name="rules_iWillTellYouWhatEmoji">🥴</string>
-    <string name="rules_iWillTellYouWhatLabel">قانون \"من به شما خواهم گفت\"</string>
+    <string name="rules_iWillTellYouWhatLabel">قانون "من به شما خواهم گفت"</string>
     <string name="rules_iWillTellYouWhatDescription">قبل از صحبت کردن باید این عبارت را بگویید!</string>
     <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">بدون قانون تلفن</string>
     <string name="rules_noPhonesDescription">اگر تلفن خود یا تلفن شخص دیگری را لمس کنید. بنوشید!</string>
     <string name="rules_noSwearingEmoji">🤬</string>
     <string name="rules_noSwearingLabel">بدون قاعده فحش دادن</string>
-    <string name="rules_noSwearingDescription">\"لطفا کسی به فکر بچه ها نیست!\"</string>
+    <string name="rules_noSwearingDescription">"لطفا کسی به فکر بچه ها نیست!"</string>
     <string name="rules_photographerEmoji">📷</string>
     <string name="rules_photographerLabel">قانون عکاس</string>
     <string name="rules_photographerDescription">با صدای بلند 3، 2، 1 بشمار و عکس بگیر. اگر در عکس نیستید بنوشید!</string>

@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">ທຸກ​ຄົນ​ເລີ່ມ​ດື່ມ​ຈົນ​ກວ່າ​ຜູ້​ທີ່​ຈົກ​ບັດ​ໄດ້​ຢຸດ​ເຊົາ.</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">ກົດລະບຽບ Viking</string>
-    <string name="rules_vikingDescription">ເມື່ອໃດທີ່ເຈົ້າເຮັດ \"ເຂົາ Viking wiggly\" ທຸກຄົນຕ້ອງ paddle ຄືພວກເຂົາຢູ່ໃນເຮືອ!\n\nຄົນສຸດທ້າຍທີ່ເຮັດແນວນັ້ນ, ດື່ມ!</string>
+    <string name="rules_vikingDescription">ເມື່ອໃດທີ່ເຈົ້າເຮັດ "ເຂົາ Viking wiggly" ທຸກຄົນຕ້ອງ paddle ຄືພວກເຂົາຢູ່ໃນເຮືອ!\n\nຄົນສຸດທ້າຍທີ່ເຮັດແນວນັ້ນ, ດື່ມ!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">ບໍ່ມີກົດລະບຽບຊື່</string>
     <string name="rules_noFirstNamesDescription">ມັນແມ່ນ Bond, James Bond.\nອຸຍ! ພຽງແຕ່ໂທຫາຂ້ອຍ Bond, godammit.</string>
@@ -125,7 +125,7 @@
     <string name="rules_beLikeBillyLabel">ກົດລະບຽບ Billy</string>
     <string name="rules_beLikeBillyDescription">ໃນປັດຈຸບັນ, ທຸກຄົນຕ້ອງຖືກເອີ້ນວ່າ Billy. ເປັນຄື Billy.</string>
     <string name="rules_iWillTellYouWhatEmoji">🥴</string>
-    <string name="rules_iWillTellYouWhatLabel">\"ຂ້ອຍຈະບອກເຈົ້າວ່າແນວໃດ\" ກົດລະບຽບ</string>
+    <string name="rules_iWillTellYouWhatLabel">"ຂ້ອຍຈະບອກເຈົ້າວ່າແນວໃດ" ກົດລະບຽບ</string>
     <string name="rules_iWillTellYouWhatDescription">ຕ້ອງເວົ້າປະໂຫຍກນີ້ກ່ອນຈະເວົ້າ!</string>
     <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">ບໍ່ມີກົດລະບຽບໂທລະສັບ</string>

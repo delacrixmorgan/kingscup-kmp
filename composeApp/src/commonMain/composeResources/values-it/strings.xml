@@ -78,7 +78,7 @@
     <string name="rules_questionMasterDescription">Fai una domanda ad un giocatore. Lui deve rispondere con un altra domanda. Il primo che non sa cosa dire o esita, beve!</string>
     <string name="rules_neverHaveIEverEmoji">🤔</string>
     <string name="rules_neverHaveIEverLabel">Fante</string>
-    <string name="rules_neverHaveIEverDescription">Completa la frase \"non ho mai...\". Chi lo ha fatto, beve!</string>
+    <string name="rules_neverHaveIEverDescription">Completa la frase "non ho mai...". Chi lo ha fatto, beve!</string>
     <string name="rules_categoriesEmoji">🔮</string>
     <string name="rules_categoriesLabel">Argomento</string>
     <string name="rules_categoriesDescription">Scegli una argomento. Dì qualcosa di pertinente finché qualcuno non sa cosa dire. Lui beve!</string>
@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">Tutti bevono finché il giocatore che ha estratto la carta non smette</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">Dominio vichingo</string>
-    <string name="rules_vikingDescription">Ogni volta che si fanno le \"corna vichinghe ondulate\", tutti devono remare come se fossero su una barca!\n\nL'ultimo a farlo, beve!</string>
+    <string name="rules_vikingDescription">Ogni volta che si fanno le "corna vichinghe ondulate", tutti devono remare come se fossero su una barca!\n\nL'ultimo a farlo, beve!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">Nessuna regola sui nomi propri</string>
     <string name="rules_noFirstNamesDescription">Sono Bond, James Bond.\nOps! Chiamatemi pure Bond, perbacco.</string>
@@ -125,14 +125,14 @@
     <string name="rules_beLikeBillyLabel">Billy Rule</string>
     <string name="rules_beLikeBillyDescription">Ora, tutti devono chiamarsi Billy. Siate come Billy.</string>
     <string name="rules_iWillTellYouWhatEmoji">🥴</string>
-    <string name="rules_iWillTellYouWhatLabel">Regola \"ti dirò cosa\"</string>
+    <string name="rules_iWillTellYouWhatLabel">Regola "ti dirò cosa"</string>
     <string name="rules_iWillTellYouWhatDescription">Devi dire questa frase prima di parlare!</string>
     <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">Regola del niente telefono</string>
     <string name="rules_noPhonesDescription">Se tocchi il tuo telefono o quello di qualcun altro, bevi!</string>
     <string name="rules_noSwearingEmoji">🤬</string>
     <string name="rules_noSwearingLabel">Regola del divieto di parolacce</string>
-    <string name="rules_noSwearingDescription">\"Per favore, qualcuno non pensi ai bambini!?\"</string>
+    <string name="rules_noSwearingDescription">"Per favore, qualcuno non pensi ai bambini!?"</string>
     <string name="rules_photographerEmoji">📷</string>
     <string name="rules_photographerLabel">Regola del fotografo</string>
     <string name="rules_photographerDescription">Conta ad alta voce 3, 2, 1 e scatta una foto. Se non sei nella foto, bevi!</string>

@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">Lahat ay tatagay hanggang sa tumigil ang taong nakabunot sa baraha na ito.</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">Panuntunan ng Viking</string>
-    <string name="rules_vikingDescription">Sa tuwing gagawa ka ng \"wiggly Viking horns\" lahat ay kailangang magtampisaw na parang nasa bangka!\n\nHuling taong gumawa nito, inumin!</string>
+    <string name="rules_vikingDescription">Sa tuwing gagawa ka ng "wiggly Viking horns" lahat ay kailangang magtampisaw na parang nasa bangka!\n\nHuling taong gumawa nito, inumin!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">Panuntunan sa Walang Pangalan</string>
     <string name="rules_noFirstNamesDescription">Ito ay Bond, James Bond.\nOops! Tawagin mo na lang akong Bond, godammit.</string>
@@ -125,14 +125,14 @@
     <string name="rules_beLikeBillyLabel">Billy Rule</string>
     <string name="rules_beLikeBillyDescription">Ngayon, lahat ay dapat na tinatawag na Billy. Maging tulad ni Billy.</string>
     <string name="rules_iWillTellYouWhatEmoji">🥴</string>
-    <string name="rules_iWillTellYouWhatLabel">\"Sasabihin ko sa iyo kung ano\" Rule</string>
+    <string name="rules_iWillTellYouWhatLabel">"Sasabihin ko sa iyo kung ano" Rule</string>
     <string name="rules_iWillTellYouWhatDescription">Dapat sabihin ang pariralang ito bago ka magsalita!</string>
     <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">Walang Panuntunan sa Telepono</string>
     <string name="rules_noPhonesDescription">Kung hinawakan mo ang iyong telepono, o ang telepono ng ibang tao. inumin!</string>
     <string name="rules_noSwearingEmoji">🤬</string>
     <string name="rules_noSwearingLabel">Walang Panuntunan sa Pagmumura</string>
-    <string name="rules_noSwearingDescription">\"Wala bang mag-iisip ng mga bata!?\"</string>
+    <string name="rules_noSwearingDescription">"Wala bang mag-iisip ng mga bata!?"</string>
     <string name="rules_photographerEmoji">📷</string>
     <string name="rules_photographerLabel">Panuntunan ng Photographer</string>
     <string name="rules_photographerDescription">Bilangin nang malakas ang 3, 2, 1 at kumuha ng litrato. Kung wala ka sa litrato, uminom!</string>

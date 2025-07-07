@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">Elije un número del 2 al 9 (excepto el 7), cámbiale de nombre, y tanto él como sus múltiplos se llaman igual!, el que falle ¡bebe!</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">Regla vikinga</string>
-    <string name="rules_vikingDescription">Cada vez que haces un \"cuerno vikingo ondulante\", ¡todos tienen que remar como si estuvieran en un barco!\n\n¡El último en hacerlo, bebe!</string>
+    <string name="rules_vikingDescription">Cada vez que haces un "cuerno vikingo ondulante", ¡todos tienen que remar como si estuvieran en un barco!\n\n¡El último en hacerlo, bebe!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">Regla de no usar nombres de pila</string>
     <string name="rules_noFirstNamesDescription">Soy Bond, James Bond.\n¡Uy! Llámame Bond, maldita sea.</string>

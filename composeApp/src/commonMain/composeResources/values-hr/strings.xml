@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">Svi počinju piti sve dok osoba koja je izvukla kartu ne prestane.</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">Vikinška vladavina</string>
-    <string name="rules_vikingDescription">Kad god napravite \"vrckave vikinške rogove\" svi moraju veslati kao da su na čamcu!\n\nZadnja osoba koja to učini, pije!</string>
+    <string name="rules_vikingDescription">Kad god napravite "vrckave vikinške rogove" svi moraju veslati kao da su na čamcu!\n\nZadnja osoba koja to učini, pije!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">Pravilo bez imena</string>
     <string name="rules_noFirstNamesDescription">To je Bond, James Bond.\nUps! Samo me zovi Bond, dovraga.</string>
@@ -132,7 +132,7 @@
     <string name="rules_noPhonesDescription">Ako dodirnete svoj telefon ili tuđi telefon. Piće!</string>
     <string name="rules_noSwearingEmoji">🤬</string>
     <string name="rules_noSwearingLabel">Pravilo bez psovanja</string>
-    <string name="rules_noSwearingDescription">\"Neće li netko, molim vas, misliti na djecu!?\"</string>
+    <string name="rules_noSwearingDescription">"Neće li netko, molim vas, misliti na djecu!?"</string>
     <string name="rules_photographerEmoji">📷</string>
     <string name="rules_photographerLabel">Pravilo fotografa</string>
     <string name="rules_photographerDescription">Brojite glasno 3, 2, 1 i fotografirajte se. Ako niste na slici, pijte!</string>

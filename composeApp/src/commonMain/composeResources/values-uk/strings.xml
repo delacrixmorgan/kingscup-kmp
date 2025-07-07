@@ -78,7 +78,7 @@
     <string name="rules_questionMasterDescription">Задайте гравцеві запитання. Він має відповісти іншим запитанням наступному гравцеві. Перший хто не впорався п'є!</string>
     <string name="rules_neverHaveIEverEmoji">🤔</string>
     <string name="rules_neverHaveIEverLabel">Ніколи я ніколи</string>
-    <string name="rules_neverHaveIEverDescription">Доповни речення : \"Я ніколи не..\". Хто робив - п'є!</string>
+    <string name="rules_neverHaveIEverDescription">Доповни речення : "Я ніколи не..". Хто робив - п'є!</string>
     <string name="rules_categoriesEmoji">🔮</string>
     <string name="rules_categoriesLabel">Категорії</string>
     <string name="rules_categoriesDescription">Обери категорію. Кожен каже по слову з цієї категорії, хто не зможе - п'є!</string>

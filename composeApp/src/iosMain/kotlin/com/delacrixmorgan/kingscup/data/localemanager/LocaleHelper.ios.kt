@@ -9,6 +9,7 @@ import platform.Foundation.languageCode
 import platform.UIKit.UIApplication
 import platform.UIKit.UIApplicationOpenSettingsURLString
 
+@Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class LocaleHelper {
     // Not Available
     actual fun setLanguage(languageCode: String) {}

@@ -125,14 +125,14 @@
     <string name="rules_beLikeBillyLabel">Billyho Rule</string>
     <string name="rules_beLikeBillyDescription">Teraz sa každý musí volať Billy. Buď ako Billy.</string>
     <string name="rules_iWillTellYouWhatEmoji">🥴</string>
-    <string name="rules_iWillTellYouWhatLabel">\"Poviem ti čo\" Pravidlo</string>
+    <string name="rules_iWillTellYouWhatLabel">"Poviem ti čo" Pravidlo</string>
     <string name="rules_iWillTellYouWhatDescription">Túto frázu musíte povedať skôr, ako prehovoríte!</string>
     <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">Žiadne telefónne pravidlo</string>
     <string name="rules_noPhonesDescription">Ak sa dotknete svojho telefónu alebo telefónu niekoho iného. Pite!</string>
     <string name="rules_noSwearingEmoji">🤬</string>
     <string name="rules_noSwearingLabel">Žiadne pravidlo nadávok</string>
-    <string name="rules_noSwearingDescription">\"Nemyslí niekto, prosím, na deti?\"</string>
+    <string name="rules_noSwearingDescription">"Nemyslí niekto, prosím, na deti?"</string>
     <string name="rules_photographerEmoji">📷</string>
     <string name="rules_photographerLabel">Fotograf Rule</string>
     <string name="rules_photographerDescription">Nahlas počítajte 3, 2, 1 a odfoťte. Ak nie ste na fotke, pite!</string>

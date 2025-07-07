@@ -105,7 +105,7 @@ fun RulesScreen(
                                 modifier = Modifier.align(Alignment.CenterHorizontally),
                                 text = stringResource(card.rule.label),
                                 style = MaterialTheme.typography.bodyLargeEmphasized,
-                                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                                color = MaterialTheme.colorScheme.onPrimaryFixed,
                                 textAlign = TextAlign.Center
 
                             )
@@ -113,7 +113,7 @@ fun RulesScreen(
                                 BasicText(
                                     modifier = Modifier.fillMaxWidth(),
                                     text = stringResource(card.rule.description),
-                                    style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onPrimaryContainer, textAlign = TextAlign.Center),
+                                    style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onPrimaryFixed, textAlign = TextAlign.Center),
                                     autoSize = TextAutoSize.StepBased(maxFontSize = MaterialTheme.typography.bodySmall.fontSize)
                                 )
                             }

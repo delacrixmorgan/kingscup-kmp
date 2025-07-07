@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">Kartı çeken kişi içmeyi bırakana kadar herkes içmeye başlar.</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">Viking Kuralı</string>
-    <string name="rules_vikingDescription">\"Kıvrımlı Viking boynuzları\" yaptığınızda herkes sanki bir teknedeymiş gibi kürek çekmek zorunda!\n\nBunu yapan son kişi, içkiler!</string>
+    <string name="rules_vikingDescription">"Kıvrımlı Viking boynuzları" yaptığınızda herkes sanki bir teknedeymiş gibi kürek çekmek zorunda!\n\nBunu yapan son kişi, içkiler!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">İlk İsim Kuralı Yok</string>
     <string name="rules_noFirstNamesDescription">Bond, James Bond.\nOops! Bana sadece Bond de, kahretsin.</string>
@@ -125,14 +125,14 @@
     <string name="rules_beLikeBillyLabel">Billy Kuralı</string>
     <string name="rules_beLikeBillyDescription">Şimdi herkesin adı Billy olmalı. Billy gibi ol.</string>
     <string name="rules_iWillTellYouWhatEmoji">🥴</string>
-    <string name="rules_iWillTellYouWhatLabel">\"Sana ne diyeceğim\" Kuralı</string>
+    <string name="rules_iWillTellYouWhatLabel">"Sana ne diyeceğim" Kuralı</string>
     <string name="rules_iWillTellYouWhatDescription">Konuşmadan önce bu cümleyi söylemelisin!</string>
     <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">Telefon Kuralı Yok</string>
     <string name="rules_noPhonesDescription">Telefonunuza veya başkasının telefonuna dokunursanız. İçin!</string>
     <string name="rules_noSwearingEmoji">🤬</string>
     <string name="rules_noSwearingLabel">Küfür Yok Kuralı</string>
-    <string name="rules_noSwearingDescription">\"Lütfen birileri çocukları düşünmesin!?\"</string>
+    <string name="rules_noSwearingDescription">"Lütfen birileri çocukları düşünmesin!?"</string>
     <string name="rules_photographerEmoji">📷</string>
     <string name="rules_photographerLabel">Fotoğrafçı Kuralı</string>
     <string name="rules_photographerDescription">Yüksek sesle 3, 2, 1 diye sayın ve fotoğraf çekin. Fotoğrafta değilseniz, için!</string>

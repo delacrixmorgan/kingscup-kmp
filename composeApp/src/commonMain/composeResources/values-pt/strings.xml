@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">Todo mundo começa a beber até a pessoa que pegou a carta parar de beber.</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">Regra Viking</string>
-    <string name="rules_vikingDescription">Sempre que você fizer um \"chifre de viking balançando\", todos terão que remar como se estivessem em um barco!\n\nO último a fazer isso, bebe!</string>
+    <string name="rules_vikingDescription">Sempre que você fizer um "chifre de viking balançando", todos terão que remar como se estivessem em um barco!\n\nO último a fazer isso, bebe!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">Regra de não usar nomes próprios</string>
     <string name="rules_noFirstNamesDescription">É Bond, James Bond.\nOps! Pode me chamar de Bond, porra.</string>

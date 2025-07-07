@@ -111,7 +111,7 @@
     <string name="rules_waterfallDescription">Alle begynder at drikke, indtil personen, der har trukket kortet, er stoppet.</string>
     <string name="rules_vikingEmoji">😈</string>
     <string name="rules_vikingLabel">Vikingestyret</string>
-    <string name="rules_vikingDescription">Hver gang du laver \"vrikkede vikingehorn\" skal alle padle, som om de er på en båd!\n\nSidste person til at gøre det, drinks!</string>
+    <string name="rules_vikingDescription">Hver gang du laver "vrikkede vikingehorn" skal alle padle, som om de er på en båd!\n\nSidste person til at gøre det, drinks!</string>
     <string name="rules_noFirstNamesEmoji">😱</string>
     <string name="rules_noFirstNamesLabel">Ingen fornavneregel</string>
     <string name="rules_noFirstNamesDescription">Det er Bond, James Bond.\nUps! Kald mig bare Bond, for helvede.</string>
@@ -125,14 +125,14 @@
     <string name="rules_beLikeBillyLabel">Billy regel</string>
     <string name="rules_beLikeBillyDescription">Nu skal alle hedde Billy. Vær ligesom Billy.</string>
     <string name="rules_iWillTellYouWhatEmoji">🥴</string>
-    <string name="rules_iWillTellYouWhatLabel">\"Jeg vil fortælle dig hvad\" Regel</string>
+    <string name="rules_iWillTellYouWhatLabel">"Jeg vil fortælle dig hvad" Regel</string>
     <string name="rules_iWillTellYouWhatDescription">Skal sige denne sætning, før du taler!</string>
     <string name="rules_noPhonesEmoji">🤳</string>
     <string name="rules_noPhonesLabel">Ingen telefonregel</string>
     <string name="rules_noPhonesDescription">Hvis du rører ved din telefon eller en andens telefon. Drikke!</string>
     <string name="rules_noSwearingEmoji">🤬</string>
     <string name="rules_noSwearingLabel">Ingen banderegel</string>
-    <string name="rules_noSwearingDescription">\"Vil nogen ikke venligst tænke på børnene!?\"</string>
+    <string name="rules_noSwearingDescription">"Vil nogen ikke venligst tænke på børnene!?"</string>
     <string name="rules_photographerEmoji">📷</string>
     <string name="rules_photographerLabel">Fotograf Regel</string>
     <string name="rules_photographerDescription">Tæl højt 3, 2, 1 og tag et billede. Hvis du ikke er på billedet, så drik!</string>

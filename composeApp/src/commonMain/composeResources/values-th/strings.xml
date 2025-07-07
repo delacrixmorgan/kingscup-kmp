@@ -110,7 +110,7 @@
     <string name="rules_waterfallLabel">น้ำตก</string>
     <string name="rules_waterfallDescription">ทุกคนเริ่มดื่มจนกระทั่งคนที่จับไพ่หยุดดื่ม</string>
     <string name="rules_vikingLabel">กฎไวกิ้ง</string>
-    <string name="rules_vikingDescription">ทุกครั้งที่คุณทำ \"เขาไวกิ้งที่ขยับได้\" ทุกคนต้องพายเรือเหมือนอยู่บนเรือ!\n\nคนสุดท้ายที่ทำได้คือดื่ม!</string>
+    <string name="rules_vikingDescription">ทุกครั้งที่คุณทำ "เขาไวกิ้งที่ขยับได้" ทุกคนต้องพายเรือเหมือนอยู่บนเรือ!\n\nคนสุดท้ายที่ทำได้คือดื่ม!</string>
     <string name="rules_noFirstNamesLabel">กฎห้ามใช้ชื่อจริง</string>
     <string name="rules_noFirstNamesDescription">นี่เจมส์ บอนด์นะ\nอุ๊ย! เรียกฉันว่าบอนด์ก็ได้นะโว้ย</string>
     <string name="rules_noPointingLabel">ไม่มีกฎการชี้</string>
