@@ -46,6 +46,7 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.locale_bannerVolunteerDescription
 import kingscup.composeapp.generated.resources.locale_bannerVolunteerTitle
+import kingscup.composeapp.generated.resources.locale_generatedPlaceholder
 import kingscup.composeapp.generated.resources.locale_selectTitle
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -114,14 +115,14 @@ fun LocaleBottomSheetSelector(
                             Spacer(Modifier.height(8.dp))
                             Text(
                                 modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
-                                text = stringResource(localePreference.localisedName),
+                                text = localePreference.localisedName,
                                 style = MaterialTheme.typography.titleLarge,
                                 color = MaterialTheme.colorScheme.onPrimary,
                                 textAlign = TextAlign.Center
                             )
                             Text(
                                 modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
-                                text = stringResource(localePreference.contributorName),
+                                text = localePreference.contributorName ?: stringResource(Res.string.locale_generatedPlaceholder),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onPrimary,
                                 textAlign = TextAlign.Center

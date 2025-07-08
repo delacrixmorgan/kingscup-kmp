@@ -1,60 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">حلقه آتش</string>
-    <string name="locale_english">English</string>
-    <string name="locale_englishContributor">Delacrix Morgan</string>
-    <string name="locale_chinese">Chinese</string>
-    <string name="locale_chineseContributor">Wang Ruihao</string>
-    <string name="locale_croatian">Croatian</string>
-    <string name="locale_croatianContributor">Generated</string>
-    <string name="locale_czech">Czech</string>
-    <string name="locale_czechContributor">Michal Matlach</string>
-    <string name="locale_danish">Danish</string>
-    <string name="locale_danishContributor">Generated</string>
-    <string name="locale_dutch">Dutch</string>
-    <string name="locale_dutchContributor">Kasper Nooteboom</string>
-    <string name="locale_filipino">Filipino</string>
-    <string name="locale_filipinoContributor">Rexson Bernal</string>
-    <string name="locale_finnish">Finnish</string>
-    <string name="locale_finnishContributor">Karim Moubarik</string>
-    <string name="locale_french">French</string>
-    <string name="locale_frenchContributor">David Chitchong Thingee</string>
-    <string name="locale_german">German</string>
-    <string name="locale_germanContributor">Roland Stuhler</string>
-    <string name="locale_greek">Greek</string>
-    <string name="locale_greekContributor">Generated</string>
-    <string name="locale_hungarian">Hungarian</string>
-    <string name="locale_hungarianContributor">Dávid Kardos</string>
-    <string name="locale_indonesian">Bahasa Indonesia</string>
-    <string name="locale_indonesianContributor">Julius Lukman</string>
-    <string name="locale_italian">Italian</string>
-    <string name="locale_italianContributor">Andrea Castaldi</string>
-    <string name="locale_japanese">Japanese</string>
-    <string name="locale_japaneseContributor">Yukiko Kimura</string>
-    <string name="locale_lao">Lao</string>
-    <string name="locale_laoContributor">Generated</string>
-    <string name="locale_persian">Farsi</string>
-    <string name="locale_persianContributor">Generated</string>
-    <string name="locale_polish">Polish</string>
-    <string name="locale_polishContributor">Kamil Kowalik</string>
-    <string name="locale_portuguese">Portuguese</string>
-    <string name="locale_portugueseContributor">Lays Correia</string>
-    <string name="locale_romanian">Romanian</string>
-    <string name="locale_romanianContributor">Generated</string>
-    <string name="locale_russian">Russian</string>
-    <string name="locale_russianContributor">Alexander Bondarevskyi</string>
-    <string name="locale_slovak">Slovak</string>
-    <string name="locale_slovakContributor">Generated</string>
-    <string name="locale_spanish">Spanish</string>
-    <string name="locale_spanishContributor">Santos Martinez and Gonzo Fernandez</string>
-    <string name="locale_thai">Thai</string>
-    <string name="locale_thaiContributor">Generated</string>
-    <string name="locale_turkish">Turkish</string>
-    <string name="locale_turkishContributor">Generated</string>
-    <string name="locale_ukrainian">Ukrainian</string>
-    <string name="locale_ukrainianContributor">Alexander Bondarevskyi</string>
-    <string name="locale_vietnamese">Vietnamese</string>
-    <string name="locale_vietnameseContributor">Generated</string>
+    <string name="locale_generatedPlaceholder">تولید شده است</string>
     <string name="locale_selectTitle">زبان را انتخاب کنید</string>
     <string name="locale_bannerVolunteerTitle">چیزی را که به دنبالش هستید پیدا نمی کنید؟</string>
     <string name="locale_bannerVolunteerDescription">به من پیام بده</string>
@@ -63,7 +10,7 @@
     <string name="setup_jokersDescription">چیزها را کمی ادویه کنید</string>
     <string name="setup_rulesLabel">قوانین</string>
     <string name="setup_rulesDescription">حافظه خود را تازه کنید</string>
-    <string name="setup_themeLabel">تم</string>
+    <string name="setup_themeLabel">موضوع</string>
     <string name="setup_themeSystem">سیستم</string>
     <string name="setup_themeLight">نور</string>
     <string name="setup_themeDark">تاریک</string>
@@ -78,10 +25,10 @@
     <string name="rules_questionMasterDescription">از یک بازیکن سوال بپرسید. آنها باید با یک سوال دیگر به نفر بعدی پاسخ دهند. اول شکست بخورید!</string>
     <string name="rules_neverHaveIEverEmoji">🤔</string>
     <string name="rules_neverHaveIEverLabel">هرگز من هرگز</string>
-    <string name="rules_neverHaveIEverDescription">جمله را کامل کن هرگز من هرگز.. هر که دارد، بنوش!</string>
+    <string name="rules_neverHaveIEverDescription">جمله را کامل کن، هرگز من هرگز.. هر که دارد، بنوش!</string>
     <string name="rules_categoriesEmoji">🔮</string>
     <string name="rules_categoriesLabel">دسته بندی ها</string>
-    <string name="rules_categoriesDescription">یک دسته را انتخاب کنید. چیزی بگو که جا بیفتد تا هر که به ذهنش نرسد، بنوشد!</string>
+    <string name="rules_categoriesDescription">یک دسته را انتخاب کنید. چیزی بگو که جا بیفتد تا هر که به ذهنش نمی رسد، بنوشد!</string>
     <string name="rules_snakeEyesEmoji">🐍</string>
     <string name="rules_snakeEyesLabel">چشم مار</string>
     <string name="rules_snakeEyesDescription">هیچ کس نمی تواند با شما تماس چشمی برقرار کند. اگر گرفتار شد، بنوشید!</string>
@@ -146,9 +93,9 @@
     <string name="rules_toiletLabel">قانون توالت</string>
     <string name="rules_toiletDescription">قبل از اینکه کسی به پی پی یا پو پو برود، همه باید بنوشند!</string>
     <string name="loading_title">در حال بارگذاری</string>
-    <string name="board_tauntOne">جدی</string>
+    <string name="board_tauntOne">به طور جدی</string>
     <string name="board_tauntTwo">بالا آمدن</string>
-    <string name="board_tauntThree">فقط یکی دیگر</string>
+    <string name="board_tauntThree">فقط یک بیشتر</string>
     <string name="board_tauntFour">این است</string>
     <string name="board_tauntFive">فکر نکن</string>
     <string name="board_tauntSix">منو بنوش</string>
@@ -166,7 +113,7 @@
     <string name="card_buttonGameOver">بازی تمام شد</string>
     <string name="rules_countdownEmoji">⏰</string>
     <string name="rules_countdownLabel">شمارش معکوس نهایی</string>
-    <string name="rules_countdownDescription">شروع به شمردن کنید، افرادی که یک عدد را دو بار می گویند، می نوشند!</string>
+    <string name="rules_countdownDescription">شروع به شمردن، افرادی که یک عدد را دو بار می گویند، می نوشند!</string>
     <string name="rules_rhymeEmoji">🫳</string>
     <string name="rules_rhymeLabel">نیم تنه قافیه</string>
     <string name="rules_rhymeDescription">یک کلمه بگویید، بازیکن سمت چپ شما باید یک کلمه قافیه بگوید.\n\nدور دایره بروید تا کسی تردید کند یا تکرار کند. آنها باید بنوشند!</string>
@@ -188,7 +135,7 @@
     <string name="appInfo_styleGuideLabel">راهنمای سبک</string>
     <string name="appInfo_styleGuideDescription">پیکسل و هگز</string>
     <string name="styleGuide_title">راهنمای سبک</string>
-    <string name="styleGuide_themeLabel">تم</string>
+    <string name="styleGuide_themeLabel">موضوع</string>
     <string name="styleGuide_themeSystem">سیستم</string>
     <string name="styleGuide_themeLight">نور</string>
     <string name="styleGuide_themeDark">تاریک</string>
