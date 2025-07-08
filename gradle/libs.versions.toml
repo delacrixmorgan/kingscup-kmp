@@ -1,0 +1,45 @@
+[versions]
+kotlin = "2.2.0"
+agp = "8.11.0"
+android-kmp-plugin = "8.11.0" # https://mvnrepository.com/artifact/com.android.kotlin.multiplatform.library/com.android.kotlin.multiplatform.library.gradle.plugin
+android-compileSdk = "36"
+android-minSdk = "23"
+android-targetSdk = "36"
+
+androidx-lifecycle = "2.9.1"
+androidx-datastore-preference = "1.1.7" # https://developer.android.com/jetpack/androidx/releases/datastore
+androidx-navigation-compose = "2.9.0-beta03" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
+
+compose-multiplatform = "1.9.0-alpha03" # https://github.com/JetBrains/compose-multiplatform/releases
+composeBoM = "2025.06.01" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
+composables-core = "1.36.1"
+
+koinBoM = "4.1.0" # https://github.com/InsertKoinIO/koin/releases
+compottie = "2.0.0-rc04"
+confetti-kit = "0.5.1"
+
+[libraries]
+androidx-datastore-preference = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-preference" }
+androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
+androidx-lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "androidx-lifecycle" }
+androidx-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "androidx-navigation-compose" }
+compose-ui-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "compose-multiplatform" }
+composables-core = { module = "com.composables:core", version.ref = "composables-core" }
+
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBoM" }
+
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBoM" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-composeVM = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinBoM" }
+compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
+confetti-kit = { module = "io.github.vinceglb:confettikit", version.ref = "confetti-kit" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "android-kmp-plugin" }
+jetbrainsComposeMultiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+jetbrainsKotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
