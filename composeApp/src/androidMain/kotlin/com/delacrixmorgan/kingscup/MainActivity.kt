@@ -23,6 +23,7 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.repeatOnLifecycle
+import com.delacrixmorgan.kingscup.data.localemanager.rememberLocaleHelper
 import com.delacrixmorgan.kingscup.data.preferences.PreferencesRepository
 import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
@@ -42,6 +43,8 @@ class MainActivity : ComponentActivity(), KoinComponent {
         setContent {
             val skin = remember { mutableStateOf(SkinPreference.Default) }
             val theme = remember { mutableStateOf(ThemePreference.Default) }
+            val localeHelper = rememberLocaleHelper()
+            preferencesRepository.systemLocale = localeHelper.getSystemLanguage()
 
             AppTheme(skin.value, theme.value) {
                 Scaffold {

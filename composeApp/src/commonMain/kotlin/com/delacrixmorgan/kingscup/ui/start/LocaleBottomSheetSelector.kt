@@ -100,9 +100,9 @@ fun LocaleBottomSheetSelector(
                                 .width(202.dp)
                                 .aspectRatio(63F / 88F)
                                 .maskClip(shape = MaterialTheme.shapes.extraLarge)
+                                .clickable { onAction(StartAction.OnLocalisationChanged(localePreference)) }
                                 .background(MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(12.dp))
-                                .padding(horizontal = 16.dp, vertical = 32.dp)
-                                .clickable { onAction(StartAction.OnLocalisationChanged(localePreference)) },
+                                .padding(horizontal = 16.dp, vertical = 32.dp),
                         ) {
                             Spacer(Modifier.height(16.dp))
                             Text(

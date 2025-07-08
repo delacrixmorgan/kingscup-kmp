@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
+import androidx.core.text.util.LocalePreferences
 import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 
 /**
@@ -27,15 +29,9 @@ actual class LocaleHelper(private val context: Context) {
         }
     }
 
-    actual fun getSystemLanguage(): String {
-        val locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            context.getSystemService(LocaleManager::class.java)
-                ?.applicationLocales
-                ?.get(0)
-        } else {
-            AppCompatDelegate.getApplicationLocales().get(0)
-        }
-        return locale?.language ?: LocalePreference.Default.code
+    actual fun getSystemLanguage(): LocalePreference {
+        val locale = ConfigurationCompat.getLocales(context.resources.configuration)[0]
+        return LocalePreference.entries.firstOrNull { it.code == locale?.language } ?: LocalePreference.Default
     }
 
     // API 31 (Android 13 - Tiramisu) >=

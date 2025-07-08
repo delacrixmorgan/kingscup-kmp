@@ -227,6 +227,7 @@ enum class LocalePreference(
     );
 
     companion object {
-        val Default = English
+        val Default = Chinese
+//        val Default = English
     }
 }

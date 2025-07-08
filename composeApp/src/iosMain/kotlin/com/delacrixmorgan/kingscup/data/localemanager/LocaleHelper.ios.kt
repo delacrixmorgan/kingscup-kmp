@@ -2,6 +2,7 @@ package com.delacrixmorgan.kingscup.data.localemanager
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 import platform.Foundation.NSLocale
 import platform.Foundation.NSURL
 import platform.Foundation.currentLocale
@@ -14,9 +15,9 @@ actual class LocaleHelper {
     // Not Available
     actual fun setLanguage(languageCode: String) {}
 
-    actual fun getSystemLanguage(): String {
+    actual fun getSystemLanguage(): LocalePreference {
         val nsLocale = NSLocale.currentLocale.languageCode
-        return nsLocale
+        return LocalePreference.entries.firstOrNull { it.code == nsLocale } ?: LocalePreference.Default
     }
 
     actual fun openAppSettings() {

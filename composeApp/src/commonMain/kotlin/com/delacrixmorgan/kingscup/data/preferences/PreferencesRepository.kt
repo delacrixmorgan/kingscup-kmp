@@ -22,12 +22,18 @@ class PreferencesRepository(
         private val KEY_JOKER_ENABLED = booleanPreferencesKey("ffhrUNfmCXujeNiwVrPH")
     }
 
+    var systemLocale: LocalePreference = LocalePreference.Default
+
     val localeFlow: Flow<LocalePreference>
         get() = dataStore.data
-            .map { LocalePreference.valueOf(it[KEY_LOCALE] ?: LocalePreference.Default.name) }
+            .map {
+                LocalePreference.entries.firstOrNull { preference ->
+                    preference.code == (it[KEY_LOCALE] ?: systemLocale.code)
+                } ?: LocalePreference.Default
+            }
 
     suspend fun saveLocale(value: LocalePreference) {
-        dataStore.edit { it[KEY_LOCALE] = value.name }
+        dataStore.edit { it[KEY_LOCALE] = value.code }
     }
 
     val skinFlow: Flow<SkinPreference>
