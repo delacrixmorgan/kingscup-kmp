@@ -77,6 +77,7 @@ fun SetupScreen(
     onAction: (SetupAction) -> Unit,
 ) {
     AppScaffold(
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = { scrollBehavior ->
             AppBar(
                 title = stringResource(Res.string.setup_title),

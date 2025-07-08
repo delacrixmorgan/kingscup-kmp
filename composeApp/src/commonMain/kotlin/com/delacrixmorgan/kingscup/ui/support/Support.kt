@@ -73,6 +73,7 @@ fun SupportScreen(
     lifecycleOwner: LifecycleOwner = LocalLifecycleOwner.current,
 ) {
     AppScaffold(
+        containerColor = MaterialTheme.colorScheme.primaryContainer,
         topBar = { scrollBehavior ->
             AppBar(
                 title = stringResource(Res.string.support_title),
@@ -92,7 +93,7 @@ fun SupportScreen(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     text = state.version,
                     style = MaterialTheme.typography.labelMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = Color.White
                 )
             }
         }

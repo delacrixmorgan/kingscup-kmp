@@ -62,7 +62,7 @@ fun LoadingScreen(
             )
             Text(
                 text = stringResource(Res.string.loading_title),
-                color = MaterialTheme.colorScheme.onPrimary,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
                 style = MaterialTheme.typography.headlineLarge,
                 textAlign = TextAlign.Center
             )
