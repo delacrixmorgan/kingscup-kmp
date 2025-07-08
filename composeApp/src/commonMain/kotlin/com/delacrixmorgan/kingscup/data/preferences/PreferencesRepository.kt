@@ -10,6 +10,7 @@ import com.delacrixmorgan.kingscup.data.preferences.model.SkinPreference
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
 import org.koin.core.component.KoinComponent
 
 class PreferencesRepository(
@@ -26,10 +27,14 @@ class PreferencesRepository(
 
     val localeFlow: Flow<LocalePreference>
         get() = dataStore.data
-            .map {
-                LocalePreference.entries.firstOrNull { preference ->
-                    preference.code == (it[KEY_LOCALE] ?: systemLocale.code)
-                } ?: LocalePreference.Default
+            .onEach { preferences ->
+                if (!preferences.contains(KEY_LOCALE)) {
+                    dataStore.edit { it[KEY_LOCALE] = systemLocale.code }
+                }
+            }
+            .map { preferences ->
+                val code = preferences[KEY_LOCALE] ?: systemLocale.code
+                LocalePreference.entries.firstOrNull { it.code == code } ?: LocalePreference.Default
             }
 
     suspend fun saveLocale(value: LocalePreference) {

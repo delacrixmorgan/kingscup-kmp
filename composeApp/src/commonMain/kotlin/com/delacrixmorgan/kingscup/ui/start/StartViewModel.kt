@@ -56,7 +56,9 @@ class StartViewModel(
                 Platform.iOS -> _state.update { it.copy(openAppSettings = true) }
             }
             is StartAction.OnLocalisationChanged -> viewModelScope.launch {
-                preferencesRepository.saveLocale(action.localePreference)
+                if (state.value.selectedLocale != action.localePreference) {
+                    preferencesRepository.saveLocale(action.localePreference)
+                }
             }
             StartAction.OnLocalisationBottomSheetDismissed -> {
                 _state.update { it.copy(showLocalisationBottomSheet = false) }

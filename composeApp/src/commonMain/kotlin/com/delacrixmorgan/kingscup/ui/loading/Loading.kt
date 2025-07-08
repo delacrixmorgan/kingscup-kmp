@@ -82,7 +82,7 @@ fun LoadingScreen(
     }
     LaunchedEffect(state.openBoardScreen) {
         if (state.openBoardScreen) {
-            delay(3_000L)
+            delay(1_500L)
             onAction(LoadingAction.OpenBoardScreen)
         }
     }
