@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">国王之杯</string>
-    <string name="locale_generatedPlaceholder">选择语言</string>
+    <string name="locale_generatedPlaceholder">生成</string>
     <string name="locale_selectTitle">选择语言</string>
     <string name="locale_bannerVolunteerTitle">找不到您想要的内容？</string>
     <string name="locale_bannerVolunteerDescription">给我留言！</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Kingsen</string>
-    <string name="locale_generatedPlaceholder">gegenereerd</string>
+    <string name="locale_generatedPlaceholder">Gegenereerd</string>
     <string name="locale_selectTitle">Selecteer taal</string>
     <string name="locale_bannerVolunteerTitle">Kunt u niet vinden wat u zoekt?</string>
     <string name="locale_bannerVolunteerDescription">Stuur mij een berichtje!</string>
