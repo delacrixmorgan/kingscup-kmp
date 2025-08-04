@@ -43,7 +43,9 @@ kotlin {
             implementation(project.dependencies.platform(libs.compose.bom))
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material3)
+
+            // Material 3 decoupled from composeBOM (https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.9.0-beta01)
+            implementation("org.jetbrains.compose.material3:material3:1.9.0-alpha04")
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)

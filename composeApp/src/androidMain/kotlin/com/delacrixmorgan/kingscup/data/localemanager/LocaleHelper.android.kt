@@ -13,7 +13,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
-import androidx.core.text.util.LocalePreferences
 import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 
 /**
