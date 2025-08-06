@@ -10,9 +10,9 @@ local.properties
 captures
 .externalNativeBuild
 .cxx
-iosApp/iosApp.xcodeproj/*
+#iosApp/iosApp.xcodeproj/*
+#iosApp/iosApp.xcodeproj/project.pbxproj
 iosApp/Configuration/Config.xcconfig
-iosApp/iosApp.xcodeproj/project.pbxproj
 iosApp/iosApp.xcodeproj/xcshareddata/
 iosApp/iosApp.xcodeproj/project.xcworkspace/
 !*.xcworkspace/contents.xcworkspacedata
