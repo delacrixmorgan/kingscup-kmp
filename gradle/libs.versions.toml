@@ -1,7 +1,6 @@
 [versions]
 kotlin = "2.2.0"
-agp = "8.11.1"
-android-kmp-plugin = "8.11.1" # https://mvnrepository.com/artifact/com.android.kotlin.multiplatform.library/com.android.kotlin.multiplatform.library.gradle.plugin
+agp = "8.12.0"
 android-compileSdk = "36"
 android-minSdk = "23"
 android-targetSdk = "36"
@@ -37,7 +36,7 @@ confetti-kit = { module = "io.github.vinceglb:confettikit", version.ref = "confe
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-android-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "android-kmp-plugin" }
+android-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 
