@@ -15,9 +15,6 @@ import androidx.core.os.ConfigurationCompat
 import androidx.core.os.LocaleListCompat
 import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 
-/**
- * https://blog.kotlin-academy.com/localization-in-jetpack-compose-71b7f7233243
- */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class LocaleHelper(private val context: Context) {
     actual fun setLanguage(languageCode: String) {
