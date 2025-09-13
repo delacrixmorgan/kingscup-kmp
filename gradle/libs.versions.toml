@@ -1,20 +1,20 @@
 [versions]
-kotlin = "2.2.0"
-agp = "8.12.0"
+kotlin = "2.2.20"
+agp = "8.13.0"
 android-compileSdk = "36"
 android-minSdk = "23"
 android-targetSdk = "36"
 
-androidx-lifecycle = "2.9.1"
+androidx-lifecycle = "2.9.3"
 androidx-datastore-preference = "1.1.7" # https://developer.android.com/jetpack/androidx/releases/datastore
-androidx-navigation-compose = "2.9.0-beta04" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
+androidx-navigation-compose = "2.9.0-rc02" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
 
-compose-multiplatform = "1.9.0-beta01" # https://github.com/JetBrains/compose-multiplatform/releases
-composeBoM = "2025.07.00" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-composables-core = "1.39.0"
+compose-multiplatform = "1.9.0-rc02" # https://github.com/JetBrains/compose-multiplatform/releases
+composeBoM = "2025.09.00" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
+composables-core = "1.43.1"
 
-koinBoM = "4.1.0" # https://github.com/InsertKoinIO/koin/releases
-compottie = "2.0.0-rc04"
+koinBoM = "4.1.1" # https://github.com/InsertKoinIO/koin/releases
+compottie = "2.0.0"
 confetti-kit = "0.6.0"
 
 [libraries]

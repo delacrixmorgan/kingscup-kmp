@@ -8,8 +8,8 @@ import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
  */
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 expect class LocaleHelper {
-    fun setLanguage(languageCode: String)
     fun getSystemLanguage(): LocalePreference
+    fun setLanguage(languageCode: String)
     fun openAppSettings()
 }
 

@@ -17,6 +17,12 @@ import com.delacrixmorgan.kingscup.data.preferences.model.LocalePreference
 
 @Suppress("EXPECT_ACTUAL_CLASSIFIERS_ARE_IN_BETA_WARNING")
 actual class LocaleHelper(private val context: Context) {
+
+    actual fun getSystemLanguage(): LocalePreference {
+        val locale = ConfigurationCompat.getLocales(context.resources.configuration)[0]
+        return LocalePreference.entries.firstOrNull { it.code == locale?.language } ?: LocalePreference.Default
+    }
+
     actual fun setLanguage(languageCode: String) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             context.getSystemService(LocaleManager::class.java).applicationLocales = LocaleList.forLanguageTags(languageCode)
@@ -25,17 +31,13 @@ actual class LocaleHelper(private val context: Context) {
         }
     }
 
-    actual fun getSystemLanguage(): LocalePreference {
-        val locale = ConfigurationCompat.getLocales(context.resources.configuration)[0]
-        return LocalePreference.entries.firstOrNull { it.code == locale?.language } ?: LocalePreference.Default
-    }
-
-    // API 31 (Android 13 - Tiramisu) >=
     actual fun openAppSettings() {
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
-            data = Uri.fromParts("package", context.packageName, null)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                data = Uri.fromParts("package", context.packageName, null)
+            }
+            context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
         }
-        context.startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
     }
 }
 
