@@ -1,21 +1,22 @@
 [versions]
-kotlin = "2.2.21"
-agp = "8.13.2"
-android-compileSdk = "36"
-android-minSdk = "23"
-android-targetSdk = "36"
+kotlin = "2.4.0"
+agp = "9.2.1"
+android-compileSdk = "37"
+android-minSdk = "24"
+android-targetSdk = "37"
 
-androidx-lifecycle = "2.9.6"
-androidx-datastore-preference = "1.2.0" # https://developer.android.com/jetpack/androidx/releases/datastore
-androidx-navigation-compose = "2.9.1" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
+androidx-lifecycle = "2.10.0"
+androidx-datastore-preference = "1.2.1" # https://developer.android.com/jetpack/androidx/releases/datastore
+androidx-navigation-compose = "2.9.2" # https://mvnrepository.com/artifact/org.jetbrains.androidx.navigation/navigation-compose-uikitarm64
 
-compose-multiplatform = "1.9.3" # https://github.com/JetBrains/compose-multiplatform/releases
-composeBoM = "2025.09.00" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
-composables-core = "1.49.3"
+compose-multiplatform = "1.11.1" # https://github.com/JetBrains/compose-multiplatform/releases
+composeBoM = "2026.05.01" # https://developer.android.com/develop/ui/compose/bom/bom-mapping
+composables-core = "1.49.9"
 
-koinBoM = "4.1.1" # https://github.com/InsertKoinIO/koin/releases
-compottie = "2.0.2"
-confetti-kit = "0.6.0"
+koinBoM = "4.2.1" # https://github.com/InsertKoinIO/koin/releases
+compottie = "2.2.1"
+confetti-kit = "0.8.0"
+material3 = "1.11.0-alpha07"
 
 [libraries]
 androidx-datastore-preference = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-preference" }
@@ -33,6 +34,7 @@ koin-android = { module = "io.insert-koin:koin-android" }
 koin-composeVM = { module = "io.insert-koin:koin-compose-viewmodel", version.ref = "koinBoM" }
 compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
 confetti-kit = { module = "io.github.vinceglb:confettikit", version.ref = "confetti-kit" }
+material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
