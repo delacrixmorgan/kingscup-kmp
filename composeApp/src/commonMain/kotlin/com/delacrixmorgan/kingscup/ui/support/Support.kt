@@ -14,12 +14,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ChevronRight
-import androidx.compose.material.icons.rounded.Feedback
-import androidx.compose.material.icons.rounded.Info
-import androidx.compose.material.icons.rounded.Policy
-import androidx.compose.material.icons.rounded.ThumbUp
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
@@ -37,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -49,6 +44,11 @@ import com.delacrixmorgan.kingscup.ui.component.AppBar
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
 import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.ic_chevron_right
+import kingscup.composeapp.generated.resources.ic_feedback
+import kingscup.composeapp.generated.resources.ic_info
+import kingscup.composeapp.generated.resources.ic_policy
+import kingscup.composeapp.generated.resources.ic_thumb_up
 import kingscup.composeapp.generated.resources.support_appInfoLabel
 import kingscup.composeapp.generated.resources.support_privacyPolicyLabel
 import kingscup.composeapp.generated.resources.support_rateUsLabel
@@ -56,7 +56,6 @@ import kingscup.composeapp.generated.resources.support_sendFeedbackLabel
 import kingscup.composeapp.generated.resources.support_title
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun SupportRoot(viewModel: SupportViewModel, navHostController: NavHostController) {
@@ -182,32 +181,32 @@ private fun DetailsSection(
         ListItem(
             modifier = Modifier.clickable { onAction(SupportAction.OnAppInfoClicked) },
             colors = appListItemColors(),
-            leadingContent = { Icon(imageVector = Icons.Rounded.Info, contentDescription = null) },
+            leadingContent = { Icon(painter = painterResource(Res.drawable.ic_info), contentDescription = null) },
             headlineContent = { Text(stringResource(Res.string.support_appInfoLabel)) },
             trailingContent = {
-                Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null)
+                Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null)
             }
         )
         ListItem(
             modifier = Modifier.clickable { onAction(SupportAction.OpenPrivacyPolicy(open = true)) },
             colors = appListItemColors(),
-            leadingContent = { Icon(imageVector = Icons.Rounded.Policy, contentDescription = null) },
+            leadingContent = { Icon(painter = painterResource(Res.drawable.ic_policy), contentDescription = null) },
             headlineContent = { Text(stringResource(Res.string.support_privacyPolicyLabel)) },
-            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
+            trailingContent = { Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null) }
         )
         ListItem(
             modifier = Modifier.clickable { onAction(SupportAction.OpenSendFeedback(open = true)) },
             colors = appListItemColors(),
-            leadingContent = { Icon(imageVector = Icons.Rounded.Feedback, contentDescription = null) },
+            leadingContent = { Icon(painter = painterResource(Res.drawable.ic_feedback), contentDescription = null) },
             headlineContent = { Text(stringResource(Res.string.support_sendFeedbackLabel)) },
-            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
+            trailingContent = { Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null) }
         )
         ListItem(
             modifier = Modifier.clickable { onAction(SupportAction.OpenRateUs(open = true)) },
             colors = appListItemColors(),
-            leadingContent = { Icon(imageVector = Icons.Rounded.ThumbUp, contentDescription = null) },
+            leadingContent = { Icon(painter = painterResource(Res.drawable.ic_thumb_up), contentDescription = null) },
             headlineContent = { Text(stringResource(Res.string.support_rateUsLabel)) },
-            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
+            trailingContent = { Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null) }
         )
     }
 }

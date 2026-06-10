@@ -9,9 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
@@ -26,11 +23,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.AnimatedEmoji
+import androidx.compose.ui.tooling.preview.Preview
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.board_pauseDialogDescription
 import kingscup.composeapp.generated.resources.board_pauseDialogTitle
+import kingscup.composeapp.generated.resources.ic_close
+import kingscup.composeapp.generated.resources.ic_restart_alt
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun BoardPauseDialog(
@@ -67,7 +67,7 @@ fun BoardPauseDialog(
                         modifier = Modifier.weight(1F),
                         onClick = { onAction(BoardAction.OnRestartClicked) }
                     ) {
-                        Icon(imageVector = Icons.Rounded.RestartAlt, contentDescription = null)
+                        Icon(painter = painterResource(Res.drawable.ic_restart_alt), contentDescription = null)
                     }
                     FilledIconButton(
                         modifier = Modifier.weight(1F),
@@ -77,7 +77,7 @@ fun BoardPauseDialog(
                         ),
                         onClick = { onAction(BoardAction.OnExitClicked) }
                     ) {
-                        Icon(imageVector = Icons.Rounded.Close, contentDescription = null)
+                        Icon(painter = painterResource(Res.drawable.ic_close), contentDescription = null)
                     }
                 }
             }

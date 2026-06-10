@@ -12,9 +12,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Close
-import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
@@ -40,6 +37,9 @@ import kingscup.composeapp.generated.resources.board_buttonNewGame
 import kingscup.composeapp.generated.resources.board_cardsLeft
 import kingscup.composeapp.generated.resources.board_gameOver
 import kingscup.composeapp.generated.resources.board_tauntOne
+import kingscup.composeapp.generated.resources.ic_close
+import kingscup.composeapp.generated.resources.ic_restart_alt
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
@@ -89,7 +89,7 @@ fun ColumnScope.BoardStatusSection(
                 ) {
                     Icon(
                         modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
-                        imageVector = Icons.Rounded.RestartAlt,
+                        painter = painterResource(Res.drawable.ic_restart_alt),
                         contentDescription = null
                     )
                     Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
@@ -110,7 +110,7 @@ fun ColumnScope.BoardStatusSection(
                 ) {
                     Icon(
                         modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
-                        imageVector = Icons.Rounded.Close,
+                        painter = painterResource(Res.drawable.ic_close),
                         contentDescription = null
                     )
                     Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))

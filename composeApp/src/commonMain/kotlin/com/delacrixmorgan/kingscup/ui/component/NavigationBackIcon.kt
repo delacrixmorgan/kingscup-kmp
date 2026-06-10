@@ -2,15 +2,16 @@ package com.delacrixmorgan.kingscup.ui.component
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.theme.AppTheme
-import org.jetbrains.compose.ui.tooling.preview.Preview
+import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.ic_arrow_back
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun NavigationBackIcon(
@@ -22,7 +23,7 @@ fun NavigationBackIcon(
         onClick = onClicked
     ) {
         Icon(
-            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+            painter = painterResource(Res.drawable.ic_arrow_back),
             contentDescription = "Go back",
         )
     }

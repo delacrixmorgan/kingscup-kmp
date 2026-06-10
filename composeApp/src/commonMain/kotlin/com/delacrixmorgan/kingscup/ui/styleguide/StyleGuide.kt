@@ -1,10 +1,6 @@
 package com.delacrixmorgan.kingscup.ui.styleguide
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Contrast
-import androidx.compose.material.icons.rounded.Palette
-import androidx.compose.material.icons.rounded.TextFields
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -17,7 +13,6 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedback
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -36,8 +31,13 @@ import com.delacrixmorgan.kingscup.ui.styleguide.font.FontScreen
 import com.delacrixmorgan.kingscup.ui.styleguide.theme.ThemeScreen
 import com.delacrixmorgan.kingscup.ui.styleguide.theme.ThemeViewModel
 import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.ic_contrast
+import kingscup.composeapp.generated.resources.ic_palette
+import kingscup.composeapp.generated.resources.ic_text_fields
 import kingscup.composeapp.generated.resources.styleGuide_title
 import kotlinx.serialization.Serializable
+import org.jetbrains.compose.resources.DrawableResource
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -87,7 +87,7 @@ private fun BottomNavigationBar(
                 derivedStateOf { currentRoute == navItem.route::class.qualifiedName }
             }
             NavigationBarItem(
-                icon = { Icon(navItem.icon, contentDescription = navItem.title) },
+                icon = { Icon(painter = painterResource(navItem.icon), contentDescription = navItem.title) },
                 selected = selected,
                 onClick = {
                     haptic.performHapticFeedback(HapticFeedbackType.ContextClick)
@@ -106,22 +106,22 @@ private fun BottomNavigationBar(
 enum class DashboardBottomNavItem(
     val title: String,
     val route: StyleGuideRoutes,
-    val icon: ImageVector,
+    val icon: DrawableResource,
 ) {
     Color(
         "Color",
         StyleGuideRoutes.Color,
-        Icons.Rounded.Palette
+        Res.drawable.ic_palette
     ),
     Font(
         "Font",
         StyleGuideRoutes.Font,
-        Icons.Rounded.TextFields
+        Res.drawable.ic_text_fields
     ),
     Theme(
         "Theme",
         StyleGuideRoutes.Theme,
-        Icons.Rounded.Contrast
+        Res.drawable.ic_contrast
     ),
 }
 

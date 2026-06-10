@@ -40,15 +40,14 @@ kotlin {
 
             // Compose
             implementation(project.dependencies.platform(libs.compose.bom))
-            implementation(compose.runtime)
-            implementation(compose.foundation)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
 
             // Material 3 decoupled from composeBOM (https://github.com/JetBrains/compose-multiplatform/releases/tag/v1.9.0-beta01)
             implementation(libs.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
-            implementation(compose.materialIconsExtended)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
+            implementation(libs.compose.ui.tooling.preview)
 
             // AndroidX
             implementation(libs.androidx.datastore.preference)
@@ -94,5 +93,5 @@ android {
 }
 
 dependencies {
-    debugImplementation(compose.uiTooling)
+    debugImplementation(libs.compose.ui.tooling)
 }

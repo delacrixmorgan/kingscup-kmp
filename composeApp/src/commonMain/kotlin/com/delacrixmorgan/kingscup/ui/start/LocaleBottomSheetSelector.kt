@@ -19,10 +19,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Campaign
-import androidx.compose.material.icons.rounded.CheckCircle
-import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -34,6 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.composables.core.DragIndication
 import com.composables.core.ModalBottomSheet
@@ -44,12 +41,15 @@ import com.composables.core.SheetDetent
 import com.composables.core.rememberModalBottomSheetState
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.ic_campaign
+import kingscup.composeapp.generated.resources.ic_check_circle
+import kingscup.composeapp.generated.resources.ic_chevron_right
 import kingscup.composeapp.generated.resources.locale_bannerVolunteerDescription
 import kingscup.composeapp.generated.resources.locale_bannerVolunteerTitle
 import kingscup.composeapp.generated.resources.locale_generatedPlaceholder
 import kingscup.composeapp.generated.resources.locale_selectTitle
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -134,7 +134,7 @@ fun LocaleBottomSheetSelector(
                                     modifier = Modifier
                                         .size(24.dp)
                                         .align(alignment = Alignment.CenterHorizontally),
-                                    imageVector = Icons.Rounded.CheckCircle,
+                                    painter = painterResource(Res.drawable.ic_check_circle),
                                     colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.tertiaryContainer),
                                     contentDescription = "Selected language"
                                 )
@@ -156,7 +156,7 @@ fun LocaleBottomSheetSelector(
                         Image(
                             modifier = Modifier
                                 .size(48.dp),
-                            imageVector = Icons.Rounded.Campaign,
+                            painter = painterResource(Res.drawable.ic_campaign),
                             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
                             contentDescription = null
                         )
@@ -177,7 +177,7 @@ fun LocaleBottomSheetSelector(
                         Image(
                             modifier = Modifier
                                 .size(24.dp),
-                            imageVector = Icons.Rounded.ChevronRight,
+                            painter = painterResource(Res.drawable.ic_chevron_right),
                             colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
                             contentDescription = null
                         )

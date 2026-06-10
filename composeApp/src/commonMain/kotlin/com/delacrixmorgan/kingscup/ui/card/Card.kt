@@ -10,9 +10,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Done
-import androidx.compose.material.icons.rounded.LocalDrink
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -42,14 +39,17 @@ import com.delacrixmorgan.kingscup.ui.component.Confetti
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
 import com.delacrixmorgan.kingscup.ui.component.bounceClickEffect
 import com.delacrixmorgan.kingscup.ui.extensions.getMaterialShape
+import androidx.compose.ui.tooling.preview.Preview
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.card_buttonDone
 import kingscup.composeapp.generated.resources.card_buttonGameOver
+import kingscup.composeapp.generated.resources.ic_done
+import kingscup.composeapp.generated.resources.ic_local_drink
 import kingscup.composeapp.generated.resources.rules_kingDescription
 import kingscup.composeapp.generated.resources.rules_kingEmoji
 import kingscup.composeapp.generated.resources.rules_kingLabel
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -126,7 +126,7 @@ fun CardScreen(
                         },
                     ) {
                         Icon(
-                            imageVector = if (!state.hasGameEnded) Icons.Rounded.Done else Icons.Rounded.LocalDrink,
+                            painter = painterResource(if (!state.hasGameEnded) Res.drawable.ic_done else Res.drawable.ic_local_drink),
                             modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
                             contentDescription = null
                         )

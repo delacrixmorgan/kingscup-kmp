@@ -10,10 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Bedtime
-import androidx.compose.material.icons.rounded.SettingsSuggest
-import androidx.compose.material.icons.rounded.WbSunny
 import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
@@ -31,16 +27,20 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.delacrixmorgan.kingscup.data.preferences.model.ThemePreference
 import com.delacrixmorgan.kingscup.theme.AppTheme
 import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.ic_bedtime
+import kingscup.composeapp.generated.resources.ic_settings_suggest
+import kingscup.composeapp.generated.resources.ic_wb_sunny
 import kingscup.composeapp.generated.resources.styleGuide_themeDark
 import kingscup.composeapp.generated.resources.styleGuide_themeLabel
 import kingscup.composeapp.generated.resources.styleGuide_themeLight
 import kingscup.composeapp.generated.resources.styleGuide_themeSystem
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -68,9 +68,9 @@ fun ThemeScreen(
         ) {
             ThemePreference.entries.forEach { theme ->
                 val (icon, name) = when (theme) {
-                    ThemePreference.System -> Icons.Rounded.SettingsSuggest to stringResource(Res.string.styleGuide_themeSystem)
-                    ThemePreference.Light -> Icons.Rounded.WbSunny to stringResource(Res.string.styleGuide_themeLight)
-                    ThemePreference.Dark -> Icons.Rounded.Bedtime to stringResource(Res.string.styleGuide_themeDark)
+                    ThemePreference.System -> Res.drawable.ic_settings_suggest to stringResource(Res.string.styleGuide_themeSystem)
+                    ThemePreference.Light -> Res.drawable.ic_wb_sunny to stringResource(Res.string.styleGuide_themeLight)
+                    ThemePreference.Dark -> Res.drawable.ic_bedtime to stringResource(Res.string.styleGuide_themeDark)
                 }
                 ToggleButton(
                     modifier = Modifier.weight(1F).semantics { role = Role.RadioButton },
@@ -85,7 +85,7 @@ fun ThemeScreen(
                         else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
                     }
                 ) {
-                    Icon(imageVector = icon, contentDescription = name)
+                    Icon(painter = painterResource(icon), contentDescription = name)
                     Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
                     Text(name)
                 }

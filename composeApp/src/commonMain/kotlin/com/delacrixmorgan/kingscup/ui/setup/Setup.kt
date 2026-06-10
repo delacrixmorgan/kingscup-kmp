@@ -11,12 +11,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Bedtime
-import androidx.compose.material.icons.rounded.ChevronRight
-import androidx.compose.material.icons.rounded.PlayArrow
-import androidx.compose.material.icons.rounded.SettingsSuggest
-import androidx.compose.material.icons.rounded.WbSunny
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonGroupDefaults
@@ -41,6 +35,7 @@ import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -51,6 +46,11 @@ import com.delacrixmorgan.kingscup.ui.component.AppBar
 import com.delacrixmorgan.kingscup.ui.component.AppScaffold
 import com.delacrixmorgan.kingscup.ui.component.NavigationBackIcon
 import kingscup.composeapp.generated.resources.Res
+import kingscup.composeapp.generated.resources.ic_bedtime
+import kingscup.composeapp.generated.resources.ic_chevron_right
+import kingscup.composeapp.generated.resources.ic_play_arrow
+import kingscup.composeapp.generated.resources.ic_settings_suggest
+import kingscup.composeapp.generated.resources.ic_wb_sunny
 import kingscup.composeapp.generated.resources.setup_buttonPlay
 import kingscup.composeapp.generated.resources.setup_jokersDescription
 import kingscup.composeapp.generated.resources.setup_jokersLabel
@@ -61,8 +61,8 @@ import kingscup.composeapp.generated.resources.setup_themeLabel
 import kingscup.composeapp.generated.resources.setup_themeLight
 import kingscup.composeapp.generated.resources.setup_themeSystem
 import kingscup.composeapp.generated.resources.setup_title
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun SetupRoot(viewModel: SetupViewModel, navHostController: NavHostController) {
@@ -101,7 +101,7 @@ fun SetupScreen(
                     Icon(
                         modifier = Modifier.size(ButtonDefaults.iconSizeFor(size)),
                         contentDescription = null,
-                        imageVector = Icons.Rounded.PlayArrow
+                        painter = painterResource(Res.drawable.ic_play_arrow)
                     )
                     Spacer(Modifier.size(ButtonDefaults.iconSpacingFor(size)))
                     Text(stringResource(Res.string.setup_buttonPlay), style = ButtonDefaults.textStyleFor(size))
@@ -149,7 +149,7 @@ private fun ToggleSection(
             colors = appListItemColors(),
             headlineContent = { Text(stringResource(Res.string.setup_rulesLabel)) },
             supportingContent = { Text(stringResource(Res.string.setup_rulesDescription)) },
-            trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
+            trailingContent = { Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null) }
         )
 
         ListItem(
@@ -166,9 +166,9 @@ private fun ToggleSection(
         ) {
             ThemePreference.entries.forEach { theme ->
                 val (icon, name) = when (theme) {
-                    ThemePreference.System -> Icons.Rounded.SettingsSuggest to stringResource(Res.string.setup_themeSystem)
-                    ThemePreference.Light -> Icons.Rounded.WbSunny to stringResource(Res.string.setup_themeLight)
-                    ThemePreference.Dark -> Icons.Rounded.Bedtime to stringResource(Res.string.setup_themeDark)
+                    ThemePreference.System -> Res.drawable.ic_settings_suggest to stringResource(Res.string.setup_themeSystem)
+                    ThemePreference.Light -> Res.drawable.ic_wb_sunny to stringResource(Res.string.setup_themeLight)
+                    ThemePreference.Dark -> Res.drawable.ic_bedtime to stringResource(Res.string.setup_themeDark)
                 }
                 ToggleButton(
                     modifier = Modifier.weight(1F).semantics { role = Role.RadioButton },
@@ -183,7 +183,7 @@ private fun ToggleSection(
                         else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
                     }
                 ) {
-                    Icon(imageVector = icon, contentDescription = name)
+                    Icon(painter = painterResource(icon), contentDescription = name)
                     Spacer(Modifier.size(ToggleButtonDefaults.IconSpacing))
                     Text(name, maxLines = 1, overflow = TextOverflow.Ellipsis)
                 }

@@ -5,11 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ChevronRight
-import androidx.compose.material.icons.rounded.Code
-import androidx.compose.material.icons.rounded.Palette
-import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItem
@@ -22,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -39,8 +35,12 @@ import kingscup.composeapp.generated.resources.appInfo_sourceCodeLabel
 import kingscup.composeapp.generated.resources.appInfo_styleGuideDescription
 import kingscup.composeapp.generated.resources.appInfo_styleGuideLabel
 import kingscup.composeapp.generated.resources.appInfo_title
+import kingscup.composeapp.generated.resources.ic_chevron_right
+import kingscup.composeapp.generated.resources.ic_code
+import kingscup.composeapp.generated.resources.ic_palette
+import kingscup.composeapp.generated.resources.ic_person
+import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun AppInfoRoot(viewModel: AppInfoViewModel, navHostController: NavHostController) {
@@ -75,26 +75,26 @@ fun AppInfoScreen(
                     ListItem(
                         modifier = Modifier.clickable { onAction(AppInfoAction.OpenDeveloperPage(open = true)) },
                         colors = appListItemColors(),
-                        leadingContent = { Icon(imageVector = Icons.Rounded.Person, contentDescription = null) },
+                        leadingContent = { Icon(painter = painterResource(Res.drawable.ic_person), contentDescription = null) },
                         headlineContent = { Text(stringResource(Res.string.appInfo_developerLabel)) },
                         supportingContent = { Text("Delacrix Morgan") },
-                        trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
+                        trailingContent = { Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null) }
                     )
                     ListItem(
                         modifier = Modifier.clickable { onAction(AppInfoAction.OpenSourceCode(open = true)) },
                         colors = appListItemColors(),
-                        leadingContent = { Icon(imageVector = Icons.Rounded.Code, contentDescription = null) },
+                        leadingContent = { Icon(painter = painterResource(Res.drawable.ic_code), contentDescription = null) },
                         headlineContent = { Text(stringResource(Res.string.appInfo_sourceCodeLabel)) },
                         supportingContent = { Text(stringResource(Res.string.appInfo_sourceCodeDescription)) },
-                        trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
+                        trailingContent = { Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null) }
                     )
                     ListItem(
                         modifier = Modifier.clickable { onAction(AppInfoAction.OnStyleGuideClicked) },
                         colors = appListItemColors(),
-                        leadingContent = { Icon(imageVector = Icons.Rounded.Palette, contentDescription = null) },
+                        leadingContent = { Icon(painter = painterResource(Res.drawable.ic_palette), contentDescription = null) },
                         headlineContent = { Text(stringResource(Res.string.appInfo_styleGuideLabel)) },
                         supportingContent = { Text(stringResource(Res.string.appInfo_styleGuideDescription)) },
-                        trailingContent = { Icon(imageVector = Icons.Rounded.ChevronRight, contentDescription = null) }
+                        trailingContent = { Icon(painter = painterResource(Res.drawable.ic_chevron_right), contentDescription = null) }
                     )
                 }
             }

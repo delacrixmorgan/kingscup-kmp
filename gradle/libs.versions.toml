@@ -16,7 +16,7 @@ composables-core = "1.49.9"
 koinBoM = "4.2.1" # https://github.com/InsertKoinIO/koin/releases
 compottie = "2.2.1"
 confetti-kit = "0.8.0"
-material3 = "1.11.0-alpha07"
+material3 = "1.11.0-alpha07" # 1.12.0-alpha01 will break
 
 [libraries]
 androidx-datastore-preference = { module = "androidx.datastore:datastore-preferences-core", version.ref = "androidx-datastore-preference" }
@@ -27,6 +27,12 @@ compose-ui-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", v
 composables-core = { module = "com.composables:core", version.ref = "composables-core" }
 
 compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBoM" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-multiplatform" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-multiplatform" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
+compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose-multiplatform" }
+compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-multiplatform" }
+compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose-multiplatform" }
 
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBoM" }
 koin-core = { module = "io.insert-koin:koin-core" }

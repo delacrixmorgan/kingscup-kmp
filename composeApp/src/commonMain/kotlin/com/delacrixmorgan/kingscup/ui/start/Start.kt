@@ -14,10 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowForward
-import androidx.compose.material.icons.rounded.Favorite
-import androidx.compose.material.icons.rounded.Public
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LargeFloatingActionButton
@@ -31,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.LocalLifecycleOwner
@@ -44,10 +41,12 @@ import com.delacrixmorgan.kingscup.theme.AppTheme
 import com.delacrixmorgan.kingscup.ui.component.BoxBackground
 import kingscup.composeapp.generated.resources.Res
 import kingscup.composeapp.generated.resources.app_name
+import kingscup.composeapp.generated.resources.ic_arrow_forward
+import kingscup.composeapp.generated.resources.ic_favorite
+import kingscup.composeapp.generated.resources.ic_public
 import kingscup.composeapp.generated.resources.img_logo
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun StartRoot(viewModel: StartViewModel, navHostController: NavHostController) {
@@ -97,7 +96,7 @@ fun StartScreen(
                     onClick = { onAction(StartAction.OnSupportClicked) },
                 ) {
                     Icon(
-                        imageVector = Icons.Rounded.Favorite,
+                        painter = painterResource(Res.drawable.ic_favorite),
                         contentDescription = "Support"
                     )
                 }
@@ -110,7 +109,7 @@ fun StartScreen(
                 ) {
                     Icon(
                         modifier = Modifier.size(40.dp),
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowForward,
+                        painter = painterResource(Res.drawable.ic_arrow_forward),
                         contentDescription = "Setup game"
                     )
                 }
@@ -122,7 +121,7 @@ fun StartScreen(
                     onClick = { onAction(StartAction.OnLocalisationClicked) },
                 ) {
                     Icon(
-                        imageVector = Icons.Rounded.Public,
+                        painter = painterResource(Res.drawable.ic_public),
                         contentDescription = "Change Language"
                     )
                 }
