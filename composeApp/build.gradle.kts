@@ -67,8 +67,8 @@ android {
         applicationId = "com.delacrixmorgan.kingscup"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = 76
-        versionName = "2025.4"
+        versionCode = 77
+        versionName = "2026.1"
     }
     packaging {
         resources {
