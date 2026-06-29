@@ -157,6 +157,11 @@ enum class LocalePreference(
         code = "vi",
         emoji = "\uD83C\uDDFB\uD83C\uDDF3",
         localisedName = "Vietnamese",
+    ),
+    Hebrew(
+        code = "he",
+        emoji = "\uD83C\uDDEE\uD83C\uDDF1",
+        localisedName = "Hebrew",
     );
 
     companion object {

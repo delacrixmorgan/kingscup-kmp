@@ -15,7 +15,7 @@ Yes, you read that right. UNLIMITED amount of fun that will make 20 minutes feel
 
 __b) Gorgeous Designs with Material Design__ ✏️
 
-Beautifully hand crafted with excruciating detail.
+Beautifully handcrafted with excruciating detail.
 
 __c) Multiple Language Support__ 🌏
 
